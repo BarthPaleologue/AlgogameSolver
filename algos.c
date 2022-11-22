@@ -28,28 +28,63 @@ void printProgram(Program p) {
  * - Si y a pas (tourner à droite || tourner à gauche)
  * - Si y a peindre en rouge sur rouge || peindre en bleu sur bleu
  */
+char isProgramWorthTesting(Program p) {
+    char nbForwardActions = 0;
+    char nbTurnActions = 0;
+    char nbF1Calls = 0;
+    char nbF2Calls = 0;
+    
+    for(unsigned char i = 0; i < PROGRAM_LENGTH; i++) {
+        switch(p[i].action) {
+            case FORWARD:
+                nbForwardActions++;
+                break;
+            case TURN_RIGHT:
+            case TURN_LEFT:
+                nbTurnActions++;
+                break;
+            case F1:
+                nbF1Calls++;
+                break;
+            case F2:
+                nbF2Calls++;
+                break;
+            default:
+                break;
+        }
+    }
+
+    if(nbForwardActions == 0) return 0;
+    if(nbTurnActions == 0) return 0;
+    if(nbF1Calls == 0) return 0;
+    if(nbF2Calls == 0) return 0;
+    return 1;
+}
+
 
 // Program program = generateNextProgram();
 Program generateNextProgram() {
     Program program = malloc(sizeof(struct Instruction) * PROGRAM_LENGTH);
 
-    // generate program using this state
-    for(unsigned char i = 0; i < PROGRAM_LENGTH; i++) {
-        program[i].action = programState[i] / NB_CONDITIONS;
-        program[i].condition = programState[i] % NB_CONDITIONS;
-    }
-
-    //printProgram(program);
-
-    // increment state
-    for(unsigned char i = 0; i < NB_INSTRUCTIONS; i++) {
-        if(programState[i] != NB_INSTRUCTIONS - 1) {
-            programState[i] += 1;
-            break;
+    do {
+        // generate program using this state
+        for(unsigned char i = 0; i < PROGRAM_LENGTH; i++) {
+            program[i].action = programState[i] / NB_CONDITIONS;
+            program[i].condition = programState[i] % NB_CONDITIONS;
         }
-        programState[i] = 0;
-    }
 
-    //printProgramState();
+        //printProgram(program);
+
+        // increment state
+        for(unsigned char i = 0; i < NB_INSTRUCTIONS; i++) {
+            if(programState[i] != NB_INSTRUCTIONS - 1) {
+                programState[i] += 1;
+                break;
+            }
+            programState[i] = 0;
+        }
+    } while(!isProgramWorthTesting(program));
+
+    printProgramState();
     return program;
 }
