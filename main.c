@@ -128,6 +128,10 @@ int main() {
         Program program = generateNextProgram();
         int programCase = 0;
 
+        coords.x = 5 ;
+        coords.y = 10;
+        direction = RIGHT;
+
         while (!gameLost() && !gameWon()) {
 
             struct Instruction instruction = program[programCase];
@@ -137,17 +141,17 @@ int main() {
                 case CD_NONE:
                     doAction(instruction.action, &programCase);
                     break;
-                case CASE_RED:
+                case CD_RED:
                     if (isRed()) {
                         doAction(instruction.action, &programCase);
                     }
                     break;
-                case CASE_ORANGE:
+                case CD_ORANGE:
                     if (isOrange()) {
                         doAction(instruction.action, &programCase);
                     }
                     break;
-                case CASE_BLUE:
+                case CD_BLUE:
                     if (isBlue()) {
                         doAction(instruction.action, &programCase);
                     }
