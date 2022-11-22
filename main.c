@@ -7,8 +7,8 @@ enum Direction {
 };
 
 struct Coords {
-    int x;
-    int y;
+    unsigned char x;
+    unsigned char y;
 };
 //careful, the position is at matrix[y][x]
 
@@ -52,42 +52,42 @@ void paintBlue() {
     matrix[coords.y][coords.x] = CASE_BLUE;
 }
 
-int gameLost() {
+char gameLost() {
     if (matrix[coords.y][coords.x] == CASE_WHITE) {
         return 1;
     }
     return 0;
 }
 
-int isRed() {
+char isRed() {
     if (matrix[coords.y][coords.x] == CASE_RED) {
         return 1;
     }
     return 0;
 }
 
-int isOrange() {
+char isOrange() {
     if (matrix[coords.y][coords.x] == CASE_ORANGE) {
         return 1;
     }
     return 0;
 }
 
-int isBlue() {
+char isBlue() {
     if (matrix[coords.y][coords.x] == CASE_BLUE) {
         return 1;
     }
     return 0;
 }
 
-int gameWon() {
+char gameWon() {
     if (matrix[coords.y][coords.x] == CASE_STAR) {
         return 1;
     }
     return 0;
 }
 
-void doAction(enum Action action, int * programCasePointer) {
+void doAction(enum Action action, unsigned char * programCasePointer) {
     switch (action) {
         case FORWARD:
             move();
@@ -126,7 +126,7 @@ int main() {
     for (int i = 0 ; i < 10 ; i++) {
 
         Program program = generateNextProgram();
-        int programCase = 0;
+        unsigned char programCase = 0;
 
         coords.x = 5 ;
         coords.y = 10;
@@ -163,18 +163,14 @@ int main() {
         }
 
         if (gameWon()) {
-            printf("this program succeeded : ");
+            printf("this program succeeded:\n");
             printProgram(program);
         }
 
         if (gameLost()) {
-            printf("this program failed : ");
+            printf("this program failed:\n");
             printProgram(program);
         }
     }
-    
-
-    
-
     return 0;
 }

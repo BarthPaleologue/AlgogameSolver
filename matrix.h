@@ -7,6 +7,6 @@ enum Color {
 //if you're on CASE_WHITE, you lose
 //if you're on CASE_STAR, you win
 
-extern int matrix[12][10];
+extern char matrix[12][10];
 
 #endif
