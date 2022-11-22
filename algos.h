@@ -1,3 +1,6 @@
+#ifndef ALGOS
+#define ALGOS
+
 enum Action {
     FORWARD,
     TURN_LEFT, TURN_RIGHT,
@@ -29,3 +32,5 @@ Program generateNextProgram();
 void printProgramState();
 
 void printProgram(Program p);
+
+#endif
