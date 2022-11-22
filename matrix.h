@@ -1,3 +1,6 @@
+#ifndef matrix_h
+#define matrix_h
+
 enum Color {
     CASE_WHITE, CASE_RED, CASE_ORANGE, CASE_BLUE, CASE_STAR
 };
@@ -5,3 +8,5 @@ enum Color {
 //if you're on CASE_STAR, you win
 
 int matrix[12][10];
+
+#endif
