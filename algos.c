@@ -2,6 +2,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+const int NB_ACTIONS = 7;
+
+const int NB_CONDITIONS = 4;
+
+const int NB_INSTRUCTIONS = NB_CONDITIONS * NB_ACTIONS;
+
+const int PROGRAM_LENGTH = 7;
+
 int programState[7] = {0, 0, 0, 0, 0, 0, 0};
 
 void printProgramState() {
