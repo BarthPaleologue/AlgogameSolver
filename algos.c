@@ -85,6 +85,6 @@ Program generateNextProgram() {
         }
     } while(!isProgramWorthTesting(program));
 
-    printProgramState();
+    //printProgramState();
     return program;
 }
