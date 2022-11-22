@@ -8,17 +8,17 @@ enum Action {
     F1, F2
 };
 
-const int NB_ACTIONS = 7;
+extern const int NB_ACTIONS;
 
 enum Condition {
     CD_NONE, CD_RED, CD_ORANGE, CD_BLUE
 };
 
-const int NB_CONDITIONS = 4;
+extern const int NB_CONDITIONS;
 
-const int NB_INSTRUCTIONS = NB_CONDITIONS * NB_ACTIONS;
+extern const int NB_INSTRUCTIONS;
 
-const int PROGRAM_LENGTH = 7;
+extern const int PROGRAM_LENGTH;
 
 struct Instruction {
     enum Action action;
