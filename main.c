@@ -1,6 +1,14 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "matrix.h"
 #include "algos.h"
+
+typedef struct node {
+    struct node * oldNode;
+    unsigned char programCase;
+} node_t;
+
+node_t firstNode = {NULL, 0};
 
 enum Direction {
     RIGHT, DOWN, LEFT, UP
@@ -87,33 +95,28 @@ char gameWon() {
     return 0;
 }
 
-void doAction(enum Action action, unsigned char * programCasePointer) {
+void doAction(enum Action action) {
     switch (action) {
         case FORWARD:
             move();
-            *programCasePointer = *programCasePointer + 1;
             break;
         case TURN_LEFT:
             turnLeft();
-            *programCasePointer = *programCasePointer + 1;
             break;
         case TURN_RIGHT:
             turnRight();
-            *programCasePointer = *programCasePointer + 1;
             break;
         case PAINT_RED:
             paintRed();
-            *programCasePointer = *programCasePointer + 1;
             break;
         case PAINT_BLUE:
             paintBlue();
-            *programCasePointer = *programCasePointer + 1;
             break;
         case F1:
-            *programCasePointer = 0;
+            
             break;
         case F2:
-            *programCasePointer = 3;
+            //TODO
             break;
     }
 
@@ -122,10 +125,10 @@ void doAction(enum Action action, unsigned char * programCasePointer) {
 
 int main() {
 
-    printCoords();
     for (int i = 0 ; i < 10 ; i++) {
 
         Program program = generateNextProgram();
+        printProgram(program);
         unsigned char programCase = 0;
 
         coords.x = 5 ;
@@ -134,42 +137,45 @@ int main() {
 
         while (!gameLost() && !gameWon()) {
 
-            struct Instruction instruction = program[programCase];
-            printCoords();
+            struct Instruction instruction;
+            if (programCase < PROGRAM_LENGTH - 1){
+                instruction = program[programCase];
+                programCase = programCase + 1;
+            } else {
+                //TODO (remonter à la fonction appelante, ou arreter)
+            }
 
             switch(instruction.condition) {
                 case CD_NONE:
-                    doAction(instruction.action, &programCase);
+                    doAction(instruction.action);
                     break;
                 case CD_RED:
                     if (isRed()) {
-                        doAction(instruction.action, &programCase);
+                        doAction(instruction.action);
                     }
                     break;
                 case CD_ORANGE:
                     if (isOrange()) {
-                        doAction(instruction.action, &programCase);
+                        doAction(instruction.action);
                     }
                     break;
                 case CD_BLUE:
                     if (isBlue()) {
-                        doAction(instruction.action, &programCase);
+                        doAction(instruction.action);
                     }
                     break;
             }
 
+            printCoords();
 
-        
         }
 
         if (gameWon()) {
-            printf("this program succeeded:\n");
-            printProgram(program);
+            printf("this program succeeded\n\n\n");
         }
 
         if (gameLost()) {
-            printf("this program failed:\n");
-            printProgram(program);
+            printf("this program failed\n\n\n");
         }
     }
     return 0;
