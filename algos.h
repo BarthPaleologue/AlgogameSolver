@@ -6,7 +6,7 @@ enum Action {
 };
 
 enum Condition {
-    LOST, RED, ORANGE, BLUE
+    CD_NONE, CD_RED, CD_ORANGE, CD_BLUE
 };
 
 struct Instruction {
@@ -17,3 +17,7 @@ struct Instruction {
 typedef struct Instruction* Program;
 
 Program generateNextProgram();
+
+void printProgramState();
+
+void printProgram(Program p);
