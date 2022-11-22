@@ -31,6 +31,8 @@ Program generateNextProgram();
 
 void printProgramState();
 
+char isProgramWorthTesting(Program p);
+
 void printProgram(Program p);
 
 #endif
