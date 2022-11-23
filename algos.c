@@ -34,6 +34,10 @@ char isProgramWorthTesting(Program p) {
     char nbF1Calls = 0;
     char nbF2Calls = 0;
     
+    if (p[0].action == F1) {
+        return 0;
+    }
+
     for(unsigned char i = 0; i < PROGRAM_LENGTH; i++) {
         switch(p[i].action) {
             case FORWARD:
@@ -47,7 +51,9 @@ char isProgramWorthTesting(Program p) {
                 nbF1Calls++;
                 break;
             case F2:
-                nbF2Calls++;
+                if (i < 3) {
+                    nbF2Calls++;
+                }
                 break;
             default:
                 break;
