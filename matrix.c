@@ -1,6 +1,7 @@
+#include <stdio.h>
 #include "matrix.h"
 
-char matrix[12][10] = {
+char matrixBase[12][10] = {
     {CASE_WHITE, CASE_WHITE, CASE_WHITE, CASE_WHITE, CASE_WHITE, CASE_WHITE, CASE_WHITE, CASE_WHITE, CASE_WHITE, CASE_WHITE},
     {CASE_WHITE, CASE_WHITE, CASE_WHITE, CASE_WHITE, CASE_STAR, CASE_WHITE, CASE_WHITE, CASE_WHITE, CASE_WHITE, CASE_WHITE},
     {CASE_WHITE, CASE_WHITE, CASE_WHITE, CASE_WHITE, CASE_RED, CASE_WHITE, CASE_WHITE, CASE_WHITE, CASE_WHITE, CASE_WHITE},
@@ -15,11 +16,16 @@ char matrix[12][10] = {
     {CASE_WHITE, CASE_WHITE, CASE_WHITE, CASE_WHITE, CASE_WHITE, CASE_WHITE, CASE_WHITE, CASE_WHITE, CASE_WHITE, CASE_WHITE}
 };
 
+char matrix[12][10];
+
 
 struct Coords coords = {5, 10};
 enum Direction direction = RIGHT;
 
 void printCoords() {
+    if (coords.x == 5 && coords.y == 10) {
+        return;
+    }
     printf("x : %d; y : %d\n", coords.x, coords.y);
 }
 
@@ -89,4 +95,12 @@ char gameWon() {
         return 1;
     }
     return 0;
+}
+
+void resetMatrix() {
+    for (int i = 0; i < 12; i++) {
+        for (int j = 0; j < 10; j++) {
+            matrix[i][j] = matrixBase[i][j];
+        }
+    }
 }

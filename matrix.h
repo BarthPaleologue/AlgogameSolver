@@ -8,6 +8,7 @@ enum Color {
 //if you're on CASE_STAR, you win
 
 extern char matrix[12][10];
+void resetMatrix();
 
 enum Direction {
     RIGHT, DOWN, LEFT, UP
