@@ -2,3 +2,5 @@
 !*.*
 *.o
 !Makefile
+.gdb_history
+peda-session-main.txt
