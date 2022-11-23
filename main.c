@@ -1,19 +1,20 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "matrix.h"
+
 #include "algos.h"
+#include "matrix.h"
 
 typedef struct node {
-    struct node * oldNode;
+    struct node *oldNode;
     unsigned char programCase;
 } node_t;
 
 node_t node = {NULL, 8};
-node_t * lastNode = &node;
+node_t *lastNode = &node;
 unsigned char programCase;
 
-node_t * jumpInProgram(char newProgramCase) {
-    node_t * newNode = (node_t *)malloc(sizeof(node_t));
+node_t *jumpInProgram(char newProgramCase) {
+    node_t *newNode = (node_t *)malloc(sizeof(node_t));
     newNode->oldNode = lastNode;
     newNode->programCase = programCase;
     programCase = newProgramCase;
@@ -21,7 +22,7 @@ node_t * jumpInProgram(char newProgramCase) {
 }
 
 void jumpBack() {
-    node_t * temp = lastNode->oldNode;
+    node_t *temp = lastNode->oldNode;
     programCase = lastNode->programCase;
     free(lastNode);
     lastNode = temp;
@@ -51,16 +52,15 @@ void doAction(enum Action action) {
             lastNode = jumpInProgram(3);
             break;
     }
-
 }
 
 void resetStatus() {
-    coords.x = 5 ;
+    coords.x = 5;
     coords.y = 10;
     direction = RIGHT;
-    resetMatrix(); //pas necessaire a chaque fois...
+    resetMatrix();  // pas necessaire a chaque fois...
     while (lastNode->programCase != 8) {
-        jumpBack(); //permet de free tous les nodes
+        jumpBack();  // permet de free tous les nodes
     }
     programCase = 0;
 }
@@ -71,14 +71,14 @@ int main() {
         //printf("%d", i);
         resetStatus();
         Program program = generateNextProgram();
-        //printProgram(program);
+        // printProgram(program);
 
         for (int step = 0; step < 100 && !gameLost() && !gameWon(); step++) {
-            if (programCase == PROGRAM_LENGTH - 1 || programCase == 2){
-                //2 correspond a F1_LENGTH - 1
+            if (programCase == PROGRAM_LENGTH - 1 || programCase == 2) {
+                // 2 correspond a F1_LENGTH - 1
                 if (lastNode->programCase == 8) {
-                    //printf("t");
-                    //printProgram(program);
+                    // printf("t");
+                    // printProgram(program);
                     break;
                 } else {
                     jumpBack();
@@ -87,7 +87,7 @@ int main() {
             struct Instruction instruction = program[programCase];
             programCase = programCase + 1;
 
-            switch(instruction.condition) {
+            switch (instruction.condition) {
                 case CD_NONE:
                     doAction(instruction.action);
                     break;
@@ -108,23 +108,22 @@ int main() {
                     break;
             }
 
-            //printCoords();
-
+            // printCoords();
         }
 
         if (gameWon()) {
             printf("this program succeeded\n\n\n");
             printProgram(program);
         } else if (gameLost()) {
-            //printf("this program failed\n\n\n");
-            //printf("f-");
+            // printf("this program failed\n\n\n");
+            // printf("f-");
         } else {
-            //printf("this program terminated without finding the star\n\n\n");
-            //printf("i-");
+            // printf("this program terminated without finding the star\n\n\n");
+            // printf("i-");
         }
-        //printf("\n");
+        // printf("\n");
 
-        //free(program);
+        // free(program);
     }
     return 0;
 }
