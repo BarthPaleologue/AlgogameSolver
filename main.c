@@ -55,9 +55,13 @@ void doAction(enum Action action) {
 }
 
 int main() {
+    for (int i = 150000 ; i < 150100 ; i++) {
+        //si on boucle sur plus de 100 valeurs on a un
+        //free(): invalid size
+        //Aborted (core dumped)
+        //http://wiki.seas.harvard.edu/geos-chem/index.php/Other_less-common_errors#Memory_error:_.22free:_invalid_size.22
 
-    for (int i = 0 ; i < 100 ; i++) {
-
+        printf("%d", i);
         Program program = generateNextProgram();
         //printProgram(program);
 
@@ -114,6 +118,8 @@ int main() {
             //printf("this program failed\n\n\n");
             printf("f-");
         }
+
+        //free(program);
     }
     return 0;
 }

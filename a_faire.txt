@@ -1,2 +1,2 @@
-gérer appel d'une fonction 
-gérer fin du programme
+trouver le problème avec le free() 
+debug
