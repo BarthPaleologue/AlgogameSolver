@@ -1,0 +1,5 @@
+Actions : 0 5 6 1 0 4 5
+Conditions : 0 1 0 0 0 0 0
+
+Program : 0 21 24 4 0 16 20
+accorded to The guy
