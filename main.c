@@ -8,16 +8,16 @@ typedef struct node {
     unsigned char programCase;
 } node_t;
 
-node_t node = {NULL, -1};
+node_t node = {NULL, 8};
 node_t * lastNode = &node;
-unsigned char programCase = 8;
+unsigned char programCase;
 
-void jumpInProgram(char newProgramCase) {
-    node_t * newNode = malloc(sizeof(node_t));
+node_t * jumpInProgram(char newProgramCase) {
+    node_t * newNode = (node_t *)malloc(sizeof(node_t));
     newNode->oldNode = lastNode;
     newNode->programCase = programCase;
     programCase = newProgramCase;
-    lastNode = newNode;
+    return newNode;
 }
 
 void jumpBack() {
@@ -45,40 +45,43 @@ void doAction(enum Action action) {
             paintBlue();
             break;
         case F1:
-            jumpInProgram(0);
+            lastNode = jumpInProgram(0);
             break;
         case F2:
-            jumpInProgram(3);
+            lastNode = jumpInProgram(3);
             break;
     }
 
 }
 
-int main() {
-    for (int i = 150000 ; i < 150100 ; i++) {
-        //si on boucle sur plus de 100 valeurs on a un
-        //free(): invalid size
-        //Aborted (core dumped)
-        //http://wiki.seas.harvard.edu/geos-chem/index.php/Other_less-common_errors#Memory_error:_.22free:_invalid_size.22
+void resetStatus() {
+    coords.x = 5 ;
+    coords.y = 10;
+    direction = RIGHT;
+    resetMatrix(); //pas necessaire a chaque fois...
+    while (lastNode->programCase != 8) {
+        jumpBack(); //permet de free tous les nodes
+    }
+    programCase = 0;
+}
 
-        printf("%d", i);
+int main() {
+    for (int i = 0 ; i < 1000000 ; i++) {
+
+        //printf("%d", i);
+        resetStatus();
         Program program = generateNextProgram();
         //printProgram(program);
 
-        coords.x = 5 ;
-        coords.y = 10;
-        direction = RIGHT;
-
-        while (!gameLost() && !gameWon()) {
-
-
-            if (programCase == PROGRAM_LENGTH - 1 || PROGRAM_LENGTH == 2){
+        for (int step = 0; step < 100 && !gameLost() && !gameWon(); step++) {
+            if (programCase == PROGRAM_LENGTH - 1 || programCase == 2){
                 //2 correspond a F1_LENGTH - 1
-                jumpBack();
-                if (programCase == 8) {
-                    printf("This program terminated without finding the star");
-                    printProgram(program);
+                if (lastNode->programCase == 8) {
+                    //printf("t");
+                    //printProgram(program);
                     break;
+                } else {
+                    jumpBack();
                 }
             }
             struct Instruction instruction = program[programCase];
@@ -112,12 +115,14 @@ int main() {
         if (gameWon()) {
             printf("this program succeeded\n\n\n");
             printProgram(program);
-        }
-
-        if (gameLost()) {
+        } else if (gameLost()) {
             //printf("this program failed\n\n\n");
-            printf("f-");
+            //printf("f-");
+        } else {
+            //printf("this program terminated without finding the star\n\n\n");
+            //printf("i-");
         }
+        //printf("\n");
 
         //free(program);
     }
