@@ -66,9 +66,9 @@ void resetStatus() {
 }
 
 int main() {
-    for (int i = 0 ; i < 1000000 ; i++) {
-
-        //printf("%d", i);
+    unsigned long long n = 28ll * 28ll * 28ll * 28ll * 28ll * 28ll * 28ll;
+    for (unsigned long long i = 0; i < n; i++) {
+        // printf("%d", i);
         resetStatus();
         Program program = generateNextProgram();
         // printProgram(program);
