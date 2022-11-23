@@ -68,10 +68,9 @@ void resetStatus() {
 int main() {
     unsigned long long n = 28ll * 28ll * 28ll * 28ll * 28ll * 28ll * 28ll;
     for (unsigned long long i = 0; i < n; i++) {
-        // printf("%d", i);
+        printf("Tested programs: %llu\r", i);
         resetStatus();
         Program program = generateNextProgram();
-        // printProgram(program);
 
         for (int step = 0; step < 100 && !gameLost() && !gameWon(); step++) {
             if (programCase == PROGRAM_LENGTH - 1 || programCase == 2) {
@@ -113,7 +112,7 @@ int main() {
 
         if (gameWon()) {
             printf("this program succeeded\n\n\n");
-            printProgram(program);
+            printProgramVerbose(program);
         } else if (gameLost()) {
             // printf("this program failed\n\n\n");
             // printf("f-");
