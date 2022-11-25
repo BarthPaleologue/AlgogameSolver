@@ -74,18 +74,8 @@ int main() {
         Program program = generateNextProgram();
 
         for (int step = 0; step < 100 && !gameLost() && !gameWon(); step++) {
-            if (programCase == PROGRAM_LENGTH - 1 || programCase == 2) {
-                // 2 correspond a F1_LENGTH - 1
-                if (lastNode->programCase == 8) {
-                    // printf("t");
-                    // printProgram(program);
-                    break;
-                } else {
-                    jumpBack();
-                }
-            }
             struct Instruction instruction = program[programCase];
-            programCase = programCase + 1;
+            
 
             switch (instruction.condition) {
                 case CD_NONE:
@@ -107,7 +97,19 @@ int main() {
                     }
                     break;
             }
-
+            if (programCase == PROGRAM_LENGTH - 1 || programCase == 2) {
+                // 2 correspond a F1_LENGTH - 1
+                if (lastNode->programCase == 8) {
+                //if (*lastNode == NULL) {
+                    // printf("t");
+                    // printProgram(program);
+                    break;
+                } else {
+                    jumpBack();
+                }
+            } else {
+                programCase = programCase + 1;
+            }
             // printCoords();
         }
 
