@@ -10,6 +10,8 @@ typedef struct node {
 
 node_t node = {NULL, 8};
 node_t * lastNode = &node;
+//changer pour node_t * lastNode = NULL;
+
 unsigned char programCase;
 
 node_t * jumpInProgram(char newProgramCase) {
@@ -66,18 +68,21 @@ void resetStatus() {
 }
 
 int main() {
-    for (int i = 0 ; i < 1000000 ; i++) {
+    for (long i = 0; i < 1 ; i++) {
 
-        //printf("%d", i);
+        if (i%100000==0) {
+            printf("%ld\n", i);
+            printProgramState();
+        }
         resetStatus();
         Program program = generateNextProgram();
         //printProgram(program);
 
         for (int step = 0; step < 100 && !gameLost() && !gameWon(); step++) {
-            if (programCase == PROGRAM_LENGTH - 1 || programCase == 2){
+            if (programCase == PROGRAM_LENGTH || programCase == 3){
                 //2 correspond a F1_LENGTH - 1
                 if (lastNode->programCase == 8) {
-                    //printf("t");
+                    printf("t");
                     //printProgram(program);
                     break;
                 } else {
@@ -108,7 +113,8 @@ int main() {
                     break;
             }
 
-            //printCoords();
+            printCoords();
+            printf("%d", direction);
 
         }
 
@@ -117,10 +123,10 @@ int main() {
             printProgram(program);
         } else if (gameLost()) {
             //printf("this program failed\n\n\n");
-            //printf("f-");
+            printf("f-");
         } else {
             //printf("this program terminated without finding the star\n\n\n");
-            //printf("i-");
+            printf("i-");
         }
         //printf("\n");
 
