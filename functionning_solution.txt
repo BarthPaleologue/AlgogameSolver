@@ -2,4 +2,10 @@ Actions : 0 5 6 1 0 4 5
 Conditions : 0 1 0 0 0 0 0
 
 Program : 0 21 24 4 0 16 20
-accorded to The guy
+according to The guy
+
+
+
+FOUND:
+Actions:    2 6 1 0 0 5 5
+Conditions: 2 1 0 2 0 1 0

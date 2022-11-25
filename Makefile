@@ -1,4 +1,4 @@
-CFLAGS = -Wall -Wextra -g
+CFLAGS = -Wall -Wextra -g -o3
 LDFLAGS = -g
 
 main: main.o algos.o matrix.o
