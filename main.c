@@ -3,31 +3,11 @@
 
 #include "algos.h"
 #include "matrix.h"
+#include "stack.h"
 
-typedef struct node {
-    struct node *oldNode;
-    unsigned char programCase;
-} node_t;
 
-node_t node = {NULL, 8};
-node_t *lastNode = &node;
-//changer pour node_t * lastNode = NULL;
 unsigned char programCase;
 
-node_t *jumpInProgram(char newProgramCase) {
-    node_t *newNode = (node_t *)malloc(sizeof(node_t));
-    newNode->oldNode = lastNode;
-    newNode->programCase = programCase;
-    programCase = newProgramCase;
-    return newNode;
-}
-
-void jumpBack() {
-    node_t *temp = lastNode->oldNode;
-    programCase = lastNode->programCase;
-    free(lastNode);
-    lastNode = temp;
-}
 
 void doAction(enum Action action) {
     switch (action) {
@@ -47,10 +27,10 @@ void doAction(enum Action action) {
             paintBlue();
             break;
         case F1:
-            lastNode = jumpInProgram(0);
+            lastNode = jumpInProgram(0, &programCase);
             break;
         case F2:
-            lastNode = jumpInProgram(3);
+            lastNode = jumpInProgram(3, &programCase);
             break;
     }
 }
@@ -60,8 +40,8 @@ void resetStatus() {
     coords.y = 10;
     direction = RIGHT;
     resetMatrix();  // pas necessaire a chaque fois...
-    while (lastNode->programCase != 8) {
-        jumpBack();  // permet de free tous les nodes
+    while (lastNode != NULL) {
+        jumpBack(&programCase);  // permet de free tous les nodes
     }
     programCase = 0;
 }
@@ -99,13 +79,12 @@ int main() {
             }
             if (programCase == PROGRAM_LENGTH - 1 || programCase == 2) {
                 // 2 correspond a F1_LENGTH - 1
-                if (lastNode->programCase == 8) {
-                //if (*lastNode == NULL) {
-                    // printf("t");
-                    // printProgram(program);
+                if (lastNode == NULL) {
+                    //printf("t");
+                    //printProgram(program);
                     break;
                 } else {
-                    jumpBack();
+                    jumpBack(&programCase);
                 }
             } else {
                 programCase = programCase + 1;
