@@ -45,9 +45,16 @@ void resetStatus() {
 }
 
 int main() {
-    char programArray[7] = {0, 21, 24, 4, 0, 16, 20};
+    char programArray[7][2] = {
+        {FORWARD, CD_NONE},
+        {F1, CD_RED},
+        {F2, CD_NONE},
+        {TURN_LEFT, CD_NONE},
+        {FORWARD, CD_NONE},
+        {PAINT_BLUE, CD_NONE},
+        {F1, CD_NONE}};
 
-    Program p = getProgramFromArray(programArray);
+    Program p = getProgramFromVerboseArray(programArray);
 
     printProgramVerbose(p);
 
