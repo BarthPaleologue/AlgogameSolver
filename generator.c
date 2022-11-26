@@ -12,7 +12,13 @@ char programState[PROGRAM_LENGTH];
  *
  */
 void printProgramState() {
-    printf("Program state: {%d, %d, %d, %d, %d, %d, %d}\n", programState[0], programState[1], programState[2], programState[3], programState[4], programState[5], programState[6]);
+    printf("Program State: {");
+    for (int i = 0; i < PROGRAM_LENGTH; i++) {
+        printf("%d", programState[i]);
+        if (i < PROGRAM_LENGTH - 1)
+            printf(", ");
+    }
+    printf("}\n");
 }
 
 /**
@@ -22,6 +28,9 @@ void printProgramState() {
  */
 void writeProgramStateToFile(char* filename) {
     FILE* file = fopen(filename, "w");
+    if (file == NULL)
+        printf("Error opening file! Could not write the program state.\n");
+
     fprintf(file, "%d %d %d %d %d %d %d\n", programState[0], programState[1], programState[2], programState[3], programState[4], programState[5], programState[6]);
     fprintf(file, "Program state: {%d, %d, %d, %d, %d, %d, %d}\n", programState[0], programState[1], programState[2], programState[3], programState[4], programState[5], programState[6]);
     fclose(file);
