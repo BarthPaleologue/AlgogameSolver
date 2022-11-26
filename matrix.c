@@ -105,17 +105,11 @@ void paintBlue() {
 }
 
 char gameLost() {
-    if (matrix[coords.y][coords.x] == CASE_WHITE) {
-        return 1;
-    }
-    return 0;
+    return matrix[coords.y][coords.x] == CASE_WHITE;
 }
 
 char gameWon() {
-    if (matrix[coords.y][coords.x] == CASE_STAR) {
-        return 1;
-    }
-    return 0;
+    return matrix[coords.y][coords.x] == CASE_STAR;
 }
 
 void resetMatrix() {
