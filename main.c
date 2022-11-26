@@ -102,12 +102,12 @@ int main() {
 
     printMatrix(matrix);
 
-    unsigned long long n = 28ll * 28ll * 28ll * 28ll * 28ll * 28ll * 28ll;
-    for (unsigned long long i = 0; i < n; i++) {
-        printf("Tested programs: %llu\r", i);
-        resetStatus();
+    unsigned long long n = 0;
 
-        Program program = generateNextProgram();
+    Program program = NULL;
+
+    while ((program = generateNextProgram()) != NULL) {
+        resetStatus();
 
         for (int step = 0; step < 120 && !gameLost() && !gameWon() && !gameTerminated(); step++) {
             struct Instruction instruction = program[programCase];
@@ -157,6 +157,8 @@ int main() {
             //  printf("i-");
         }
         // printf("\n");
+
+        printf("Tested programs: %llu\r", ++n);
 
         free(program);
     }

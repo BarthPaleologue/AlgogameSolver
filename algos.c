@@ -153,18 +153,22 @@ Program generateNextProgram() {
             program[i].condition = programState[i] % NB_CONDITIONS;
         }
 
-        // printProgram(program);
-
         // increment state
+        int checkSum = 0;
         for (unsigned char i = 0; i < NB_INSTRUCTIONS; i++) {
             if (programState[i] != NB_INSTRUCTIONS - 1) {
                 programState[i] += 1;
+                checkSum += programState[i];
                 break;
             }
             programState[i] = 0;
+            checkSum += programState[i];
+        }
+        if (checkSum == 0) {
+            free(program);
+            return NULL;
         }
     } while (!isProgramWorthTesting(program));
 
-    // printProgramState();
     return program;
 }
