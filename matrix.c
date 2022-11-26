@@ -119,6 +119,7 @@ void declareWasPainted() {
 }
 
 char wasPainted() {
+    //reads and resets the flag
     if (!_WasPainted) {
         return 0;
     }
@@ -131,6 +132,7 @@ void declareGameTerminated() {
 }
 
 char gameTerminated() {
+    //reads and resets the flag
     if (!_gameTerminated) {
         return 0;
     }
