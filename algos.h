@@ -20,6 +20,8 @@ enum Condition {
     CD_BLUE
 };
 
+extern char programState[7];
+
 extern const char NB_CONDITIONS;
 
 extern const char NB_INSTRUCTIONS;
@@ -36,6 +38,8 @@ typedef struct Instruction* Program;
 Program generateNextProgram();
 
 void printProgramState();
+
+void writeProgramStateToFile(char* filename);
 
 Program getProgramFromVerboseArray(char programArray[7][2]);
 

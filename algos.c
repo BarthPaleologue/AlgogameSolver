@@ -17,6 +17,13 @@ void printProgramState() {
     printf("Program state: {%d, %d, %d, %d, %d, %d, %d}\n", programState[0], programState[1], programState[2], programState[3], programState[4], programState[5], programState[6]);
 }
 
+void writeProgramStateToFile(char* filename) {
+    FILE* file = fopen(filename, "w");
+    fprintf(file, "%d %d %d %d %d %d %d\n", programState[0], programState[1], programState[2], programState[3], programState[4], programState[5], programState[6]);
+    fprintf(file, "Program state: {%d, %d, %d, %d, %d, %d, %d}\n", programState[0], programState[1], programState[2], programState[3], programState[4], programState[5], programState[6]);
+    fclose(file);
+}
+
 void printProgram(Program p) {
     printf("Actions:    %d %d %d %d %d %d %d\n", p[0].action, p[1].action, p[2].action, p[3].action, p[4].action, p[5].action, p[6].action);
     printf("Conditions: %d %d %d %d %d %d %d\n\n", p[0].condition, p[1].condition, p[2].condition, p[3].condition, p[4].condition, p[5].condition, p[6].condition);

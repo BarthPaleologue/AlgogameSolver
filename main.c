@@ -73,6 +73,7 @@ void resetStatus() {
 void kill_handler(int signo) {
     if (signo == SIGINT) {
         printProgramState();
+        writeProgramStateToFile("./program_state.txt");
         exit(0);
     }
 }
@@ -80,7 +81,11 @@ void kill_handler(int signo) {
 int main() {
     signal(SIGINT, kill_handler);
 
-    char programArray[7][2] = {
+    // read from program_state.txt and update programState
+    FILE* file = fopen("./program_state.txt", "r");
+    if (file) fscanf(file, "%hhd %hhd %hhd %hhd %hhd %hhd %hhd", &programState[0], &programState[1], &programState[2], &programState[3], &programState[4], &programState[5], &programState[6]);
+
+    /*char programArray[7][2] = {
         {FORWARD, CD_RED},
         {F2, CD_NONE},
         {F1, CD_NONE},
@@ -91,7 +96,7 @@ int main() {
 
     Program p = getProgramFromVerboseArray(programArray);
 
-    printProgramVerbose(p);
+    printProgramVerbose(p);*/
 
     resetMatrix();
 
