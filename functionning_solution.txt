@@ -7,17 +7,28 @@ according to The guy On Youtube
 
 
 
-Found by us :)
+All solutions found by us :) there are 12, among circa 1.3 billions of tested possibilities, it took less than 2 hours :)
 
 [F2;O] [FRWRD;R] [F1;_]   [TRN_LFT;O] [FRWRD;_] [F2;R] [TRN_LFT;_] 
+[FRWRD;R] [F2;_] [F1;_]   [TRN_LFT;O] [FRWRD;_] [F2;R] [TRN_LFT;_] 
 [FRWRD;R] [F2;O] [F1;_]   [TRN_LFT;O] [FRWRD;_] [F2;R] [TRN_LFT;_]
+
 [F2;O] [FRWRD;R] [F1;O]   [TRN_LFT;O] [FRWRD;_] [F2;R] [TRN_LFT;_]
 [FRWRD;R] [F2;_] [F1;O]   [TRN_LFT;O] [FRWRD;_] [F2;R] [TRN_LFT;_]
 [FRWRD;R] [F2;O] [F1;O]   [TRN_LFT;O] [FRWRD;_] [F2;R] [TRN_LFT;_]
 
+
 [F2;O] [FRWRD;R] [F1;_]   [TRN_LFT;O] [FRWRD;_] [F2;R] [TRN_LFT;O]
 [FRWRD;R] [F2;_] [F1;_]   [TRN_LFT;O] [FRWRD;_] [F2;R] [TRN_LFT;O] 
 [FRWRD;R] [F2;O] [F1;_]   [TRN_LFT;O] [FRWRD;_] [F2;R] [TRN_LFT;O]
+
 [F2;O] [FRWRD;R] [F1;O]   [TRN_LFT;O] [FRWRD;_] [F2;R] [TRN_LFT;O] 
 [FRWRD;R] [F2;_] [F1;O]   [TRN_LFT;O] [FRWRD;_] [F2;R] [TRN_LFT;O]
 [FRWRD;R] [F2;O] [F1;O]   [TRN_LFT;O] [FRWRD;_] [F2;R] [TRN_LFT;O]
+
+
+You can combine any element from each colon : 
+
+[F2;O] [FRWRD;R] [F1;_]   [TRN_LFT;O] [FRWRD;_] [F2;R] [TRN_LFT;_] 
+[FRWRD;R] [F2;_] [F1;O]                                [TRN_LFT;O]
+[FRWRD;R] [F2;O]
