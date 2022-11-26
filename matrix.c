@@ -21,6 +21,7 @@ char matrix[12][10];
 
 struct Coords coords = {5, 10};
 enum Direction direction = RIGHT;
+char _gameTerminated = 0;
 
 void printCoords() {
     if (coords.x == 5 && coords.y == 10) {
@@ -56,6 +57,8 @@ void turnLeft() {
 
 char isRed() {
     if (matrix[coords.y][coords.x] == CASE_RED) {
+        printCoords();
+        printf("%d", matrix[coords.y][coords.x]);
         return 1;
     }
     return 0;
@@ -95,6 +98,18 @@ char gameWon() {
         return 1;
     }
     return 0;
+}
+
+void declareGameTerminated() {
+    _gameTerminated = 1;
+}
+
+char gameTerminated() {
+    if (!_gameTerminated) {
+        return 0;
+    }
+    _gameTerminated = 0;
+    return 1;
 }
 
 void resetMatrix() {
