@@ -11,7 +11,7 @@ const char NB_INSTRUCTIONS = NB_CONDITIONS * NB_ACTIONS;
 
 const char PROGRAM_LENGTH = 7;
 
-char programState[7] = {0, 21, 24, 4, 0, 16, 20};
+char programState[7] = {0, 0, 0, 0, 0, 0, 0};
 
 void printProgramState() {
     printf("Program state: %d %d %d %d %d %d %d\n", programState[0], programState[1], programState[2], programState[3], programState[4], programState[5], programState[6]);
@@ -113,6 +113,15 @@ char isProgramWorthTesting(Program p) {
     if (nbF1Calls == 0) return 0;
     if (nbF2Calls == 0) return 0;
     return 1;
+}
+
+Program getProgramFromArray(char* array) {
+    Program p = malloc(sizeof(struct Instruction) * PROGRAM_LENGTH);
+    for (unsigned char i = 0; i < PROGRAM_LENGTH; i++) {
+        p[i].action = array[i] / NB_CONDITIONS;
+        p[i].condition = array[i] % NB_CONDITIONS;
+    }
+    return p;
 }
 
 // Program program = generateNextProgram();
