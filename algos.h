@@ -1,6 +1,12 @@
 #ifndef ALGOS
 #define ALGOS
 
+#define PROGRAM_LENGTH 7
+
+#define NB_ACTIONS 7
+
+#define NB_CONDITIONS 4
+
 enum Action {
     FORWARD,
     TURN_LEFT,
@@ -11,8 +17,6 @@ enum Action {
     F2
 };
 
-extern const char NB_ACTIONS;
-
 enum Condition {
     CD_NONE,
     CD_RED,
@@ -20,13 +24,7 @@ enum Condition {
     CD_BLUE
 };
 
-extern char programState[7];
-
-extern const char NB_CONDITIONS;
-
-extern const char NB_INSTRUCTIONS;
-
-extern const char PROGRAM_LENGTH;
+extern char programState[PROGRAM_LENGTH];
 
 struct Instruction {
     enum Action action;
@@ -41,7 +39,9 @@ void printProgramState();
 
 void writeProgramStateToFile(char* filename);
 
-Program getProgramFromVerboseArray(char programArray[7][2]);
+void readProgramStateFromFile(char* filename);
+
+Program getProgramFromVerboseArray(char programArray[PROGRAM_LENGTH][2]);
 
 Program getProgramFromArray(char* array);
 

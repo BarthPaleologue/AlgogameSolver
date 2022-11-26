@@ -3,25 +3,41 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-const char NB_ACTIONS = 7;
-
-const char NB_CONDITIONS = 4;
-
 const char NB_INSTRUCTIONS = NB_CONDITIONS * NB_ACTIONS;
 
-const char PROGRAM_LENGTH = 7;
-
-char programState[7] = {0, 0, 0, 0, 0, 0, 0};
+char programState[PROGRAM_LENGTH] = {0, 0, 0, 0, 0, 0, 0};
 
 void printProgramState() {
     printf("Program state: {%d, %d, %d, %d, %d, %d, %d}\n", programState[0], programState[1], programState[2], programState[3], programState[4], programState[5], programState[6]);
 }
 
+/**
+ * @brief Write the state of the generator to a file
+ *
+ * @param filename The name of the file to write to
+ */
 void writeProgramStateToFile(char* filename) {
     FILE* file = fopen(filename, "w");
     fprintf(file, "%d %d %d %d %d %d %d\n", programState[0], programState[1], programState[2], programState[3], programState[4], programState[5], programState[6]);
     fprintf(file, "Program state: {%d, %d, %d, %d, %d, %d, %d}\n", programState[0], programState[1], programState[2], programState[3], programState[4], programState[5], programState[6]);
     fclose(file);
+}
+
+/**
+ * @brief Read the generation state from a file and init the generator. Will init to 0 if no file is found.
+ *
+ * @param filename The file to read from
+ */
+void readProgramStateFromFile(char* filename) {
+    FILE* file = fopen(filename, "r");
+    if (file)
+        fscanf(file, "%hhd %hhd %hhd %hhd %hhd %hhd %hhd", &programState[0], &programState[1], &programState[2], &programState[3], &programState[4], &programState[5], &programState[6]);
+    else {
+        printf("Error while reading file %s\nThe generator will be initialized at 0", filename);
+        for (unsigned char i = 0; i < PROGRAM_LENGTH; i++) {
+            programState[i] = 0;
+        }
+    }
 }
 
 void printProgram(Program p) {

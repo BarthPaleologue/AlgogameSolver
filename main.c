@@ -82,8 +82,7 @@ int main() {
     signal(SIGINT, kill_handler);
 
     // read from program_state.txt and update programState
-    FILE* file = fopen("./program_state.txt", "r");
-    if (file) fscanf(file, "%hhd %hhd %hhd %hhd %hhd %hhd %hhd", &programState[0], &programState[1], &programState[2], &programState[3], &programState[4], &programState[5], &programState[6]);
+    readProgramStateFromFile("./program_state.txt");
 
     /*char programArray[7][2] = {
         {FORWARD, CD_RED},
