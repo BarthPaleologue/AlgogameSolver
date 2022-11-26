@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-#include "algos.h"
+#include "generator.h"
 #include "matrix.h"
 #include "stack.h"
 
