@@ -184,7 +184,11 @@ Program getProgramFromArray(char* array) {
     return p;
 }
 
-// Program program = generateNextProgram();
+/**
+ * @brief Generate the next program worthy of testing
+ *
+ * @return Program The next program
+ */
 Program generateNextProgram() {
     Program program = malloc(sizeof(struct Instruction) * PROGRAM_LENGTH);
 
