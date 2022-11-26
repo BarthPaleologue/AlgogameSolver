@@ -115,6 +115,17 @@ char isProgramWorthTesting(Program p) {
     return 1;
 }
 
+Program getProgramFromVerboseArray(char programArray[7][2]) {
+    Program p = malloc(sizeof(struct Instruction) * PROGRAM_LENGTH);
+    for (unsigned char i = 0; i < PROGRAM_LENGTH; i++) {
+        char action = programArray[i][0];
+        char condition = programArray[i][1];
+        p[i].action = action;
+        p[i].condition = condition;
+    }
+    return p;
+}
+
 Program getProgramFromArray(char* array) {
     Program p = malloc(sizeof(struct Instruction) * PROGRAM_LENGTH);
     for (unsigned char i = 0; i < PROGRAM_LENGTH; i++) {

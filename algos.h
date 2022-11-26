@@ -37,6 +37,8 @@ Program generateNextProgram();
 
 void printProgramState();
 
+Program getProgramFromVerboseArray(char programArray[7][2]);
+
 Program getProgramFromArray(char* array);
 
 char isProgramWorthTesting(Program p);
