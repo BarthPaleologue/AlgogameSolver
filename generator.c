@@ -167,10 +167,8 @@ char isProgramWorthTesting(Program p) {
 Program getProgramFromVerboseArray(char programArray[PROGRAM_LENGTH][2]) {
     Program p = malloc(sizeof(struct Instruction) * PROGRAM_LENGTH);
     for (unsigned char i = 0; i < PROGRAM_LENGTH; i++) {
-        char action = programArray[i][0];
-        char condition = programArray[i][1];
-        p[i].action = action;
-        p[i].condition = condition;
+        p[i].action = programArray[i][0];
+        p[i].condition = programArray[i][1];
     }
     return p;
 }
@@ -208,7 +206,6 @@ Program generateNextProgram() {
                 break;
             }
             programState[i] = 0;
-            checkSum += programState[i];
         }
         if (checkSum == 0) {
             free(program);
