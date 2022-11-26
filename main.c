@@ -125,7 +125,7 @@ int main() {
         }
         // printf("\n");
 
-        // free(program);
+        free(program);
     }
     return 0;
 }
