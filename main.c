@@ -5,9 +5,7 @@
 #include "matrix.h"
 #include "stack.h"
 
-
 unsigned char programCase;
-
 
 void doAction(enum Action action) {
     switch (action) {
@@ -47,6 +45,16 @@ void resetStatus() {
 }
 
 int main() {
+    char programArray[7] = {0, 21, 24, 4, 0, 16, 20};
+
+    Program p = getProgramFromArray(programArray);
+
+    printProgramVerbose(p);
+
+    resetStatus();
+
+    printMatrix(matrix);
+
     unsigned long long n = 28ll * 28ll * 28ll * 28ll * 28ll * 28ll * 28ll;
     for (unsigned long long i = 0; i < n; i++) {
         printf("Tested programs: %llu\r", i);
@@ -55,7 +63,6 @@ int main() {
 
         for (int step = 0; step < 100 && !gameLost() && !gameWon(); step++) {
             struct Instruction instruction = program[programCase];
-            
 
             switch (instruction.condition) {
                 case CD_NONE:
@@ -80,8 +87,8 @@ int main() {
             if (programCase == PROGRAM_LENGTH - 1 || programCase == 2) {
                 // 2 correspond a F1_LENGTH - 1
                 if (lastNode == NULL) {
-                    //printf("t");
-                    //printProgram(program);
+                    // printf("t");
+                    // printProgram(program);
                     break;
                 } else {
                     jumpBack(&programCase);
