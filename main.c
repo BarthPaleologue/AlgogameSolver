@@ -1,5 +1,7 @@
+#include <signal.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 
 #include "algos.h"
 #include "matrix.h"
@@ -68,7 +70,16 @@ void resetStatus() {
     programCase = 0;
 }
 
+void kill_handler(int signo) {
+    if (signo == SIGINT) {
+        printProgramState();
+        exit(0);
+    }
+}
+
 int main() {
+    signal(SIGINT, kill_handler);
+
     char programArray[7][2] = {
         {FORWARD, CD_RED},
         {F2, CD_NONE},

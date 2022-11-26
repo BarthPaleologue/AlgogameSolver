@@ -14,7 +14,7 @@ const char PROGRAM_LENGTH = 7;
 char programState[7] = {0, 0, 0, 0, 0, 0, 0};
 
 void printProgramState() {
-    printf("Program state: %d %d %d %d %d %d %d\n", programState[0], programState[1], programState[2], programState[3], programState[4], programState[5], programState[6]);
+    printf("Program state: {%d, %d, %d, %d, %d, %d, %d}\n", programState[0], programState[1], programState[2], programState[3], programState[4], programState[5], programState[6]);
 }
 
 void printProgram(Program p) {
