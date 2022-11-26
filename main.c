@@ -93,9 +93,9 @@ int main() {
     for (unsigned long long i = 0; i < 1; i++) {
         printf("Tested programs: %llu\r", i);
         resetStatus();
-        Program program = generateNextProgram();
+        Program program = p;//generateNextProgram();
 
-        for (int step = 0; step < 100 && !gameLost() && !gameWon() && !gameTerminated(); step++) {
+        for (int step = 0; step < 150 && !gameLost() && !gameWon() && !gameTerminated(); step++) {
             struct Instruction instruction = program[programCase];
 
             switch (instruction.condition) {
@@ -129,16 +129,17 @@ int main() {
             printf("\n");
             printCoords();
             printf("\n%d\n\n", direction);
+            printMatrix(matrix);
         }
 
         if (gameWon()) {
             printf("this program succeeded\n\n\n");
             printProgramVerbose(program);
         } else if (gameLost()) {
-            // printf("this program failed\n\n\n");
+            printf("this program failed\n\n\n");
             // printf("f-");
-        } else {
-            // printf("this program terminated without finding the star\n\n\n");
+        } else if (gameTerminated()) {
+            printf("this program terminated without finding the star\n\n\n");
             // printf("i-");
         }
         // printf("\n");
