@@ -12,7 +12,13 @@ char programState[PROGRAM_LENGTH];
  *
  */
 void printProgramState() {
-    printf("Program state: {%d, %d, %d, %d, %d, %d, %d}\n", programState[0], programState[1], programState[2], programState[3], programState[4], programState[5], programState[6]);
+    printf("Program State: {");
+    for (int i = 0; i < PROGRAM_LENGTH; i++) {
+        printf("%d", programState[i]);
+        if (i < PROGRAM_LENGTH - 1)
+            printf(", ");
+    }
+    printf("}\n");
 }
 
 /**
@@ -22,6 +28,9 @@ void printProgramState() {
  */
 void writeProgramStateToFile(char* filename) {
     FILE* file = fopen(filename, "w");
+    if (file == NULL)
+        printf("Error opening file! Could not write the program state.\n");
+
     fprintf(file, "%d %d %d %d %d %d %d\n", programState[0], programState[1], programState[2], programState[3], programState[4], programState[5], programState[6]);
     fprintf(file, "Program state: {%d, %d, %d, %d, %d, %d, %d}\n", programState[0], programState[1], programState[2], programState[3], programState[4], programState[5], programState[6]);
     fclose(file);
@@ -158,10 +167,8 @@ char isProgramWorthTesting(Program p) {
 Program getProgramFromVerboseArray(char programArray[PROGRAM_LENGTH][2]) {
     Program p = malloc(sizeof(struct Instruction) * PROGRAM_LENGTH);
     for (unsigned char i = 0; i < PROGRAM_LENGTH; i++) {
-        char action = programArray[i][0];
-        char condition = programArray[i][1];
-        p[i].action = action;
-        p[i].condition = condition;
+        p[i].action = programArray[i][0];
+        p[i].condition = programArray[i][1];
     }
     return p;
 }
@@ -175,7 +182,11 @@ Program getProgramFromArray(char* array) {
     return p;
 }
 
-// Program program = generateNextProgram();
+/**
+ * @brief Generate the next program worthy of testing
+ *
+ * @return Program The next program
+ */
 Program generateNextProgram() {
     Program program = malloc(sizeof(struct Instruction) * PROGRAM_LENGTH);
 
@@ -195,7 +206,6 @@ Program generateNextProgram() {
                 break;
             }
             programState[i] = 0;
-            checkSum += programState[i];
         }
         if (checkSum == 0) {
             free(program);

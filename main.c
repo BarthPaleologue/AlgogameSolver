@@ -33,7 +33,7 @@ char doAction(enum Action action) {
             lastNode = jumpInProgram(0, &programCase);
             return 1;
         case F2:
-            lastNode = jumpInProgram(3, &programCase);
+            lastNode = jumpInProgram(F1_LENGTH, &programCase);
             return 1;
     }
     return 0;
@@ -43,8 +43,7 @@ void updateProgramCase(char hasJumped) {
     if (hasJumped) {
         return;
     }
-    if (programCase == PROGRAM_LENGTH - 1 || programCase == 2) {
-        // 2 correspond a F1_LENGTH - 1
+    if (programCase == PROGRAM_LENGTH - 1 || programCase == F1_LENGTH - 1) {
         if (lastNode == NULL) {
             // printf("t");
             // printProgram(program);
@@ -155,7 +154,6 @@ int main() {
             // printf("this program terminated without finding the star\n\n\n");
             //  printf("i-");
         }
-        // printf("\n");
 
         printf("Tested programs: %llu\r", ++n);
 
