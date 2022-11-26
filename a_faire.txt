@@ -1,10 +1,1 @@
-changer le premier node
-
-coder la stack
-
-corriger le probleme de programCase :
-- on lit l'instruction, on fait programCase++ A PART SI programCase vaut 2 ou 6
-=> dans ces cas : si on peut jumb back on le fait, sinon c'est fini
-=> il faut déplacer le programCase++ à la fin de la boucle (plus comprehensible + terminaison plus facile a gérer)
-
-checker si la matrice a été changée pour économiser le temps de recharge
+Mettre la taille de F1 et de F2 en paramètres globaux

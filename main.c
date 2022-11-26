@@ -69,15 +69,6 @@ void resetStatus() {
 }
 
 int main() {
-    /*char programArray[7][2] = {
-        {FORWARD, CD_NONE},
-        {F1, CD_RED},
-        {F2, CD_NONE},
-        {TURN_LEFT, CD_NONE},
-        {FORWARD, CD_NONE},
-        {PAINT_BLUE, CD_NONE},
-        {F1, CD_NONE}};*/
-
     char programArray[7][2] = {
         {FORWARD, CD_RED},
         {F2, CD_NONE},
@@ -91,7 +82,7 @@ int main() {
 
     printProgramVerbose(p);
 
-    resetStatus();
+    resetMatrix();
 
     printMatrix(matrix);
 
@@ -99,7 +90,7 @@ int main() {
     for (unsigned long long i = 0; i < n; i++) {
         printf("Tested programs: %llu\r", i);
         resetStatus();
-        
+
         Program program = generateNextProgram();
 
         for (int step = 0; step < 120 && !gameLost() && !gameWon() && !gameTerminated(); step++) {
@@ -133,21 +124,21 @@ int main() {
             }
             updateProgramCase(hasJumped);
 
-            //printf("\n");
-            //printCoords();
-            //printf("\n%d\n\n", direction);
-            //printMatrix(matrix);
+            // printf("\n");
+            // printCoords();
+            // printf("\n%d\n\n", direction);
+            // printMatrix(matrix);
         }
 
         if (gameWon()) {
             printf("this program succeeded\n\n\n");
             printProgramVerbose(program);
         } else if (gameLost()) {
-            //printf("this program failed\n\n\n");
-            // printf("f-");
+            // printf("this program failed\n\n\n");
+            //  printf("f-");
         } else if (gameTerminated()) {
-            //printf("this program terminated without finding the star\n\n\n");
-            // printf("i-");
+            // printf("this program terminated without finding the star\n\n\n");
+            //  printf("i-");
         }
         // printf("\n");
 
