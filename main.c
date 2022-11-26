@@ -8,7 +8,6 @@
 unsigned char programCase;
 char hasJumped;
 
-
 char doAction(enum Action action) {
     switch (action) {
         case FORWARD:
@@ -43,8 +42,8 @@ void updateProgramCase(char hasJumped) {
     if (programCase == PROGRAM_LENGTH - 1 || programCase == 2) {
         // 2 correspond a F1_LENGTH - 1
         if (lastNode == NULL) {
-            //printf("t");
-            //printProgram(program);
+            // printf("t");
+            // printProgram(program);
             declareGameTerminated();
         } else {
             jumpBack(&programCase);
@@ -72,14 +71,23 @@ void resetStatus() {
 }
 
 int main() {
-    char programArray[7][2] = {
+    /*char programArray[7][2] = {
         {FORWARD, CD_NONE},
         {F1, CD_RED},
         {F2, CD_NONE},
         {TURN_LEFT, CD_NONE},
         {FORWARD, CD_NONE},
         {PAINT_BLUE, CD_NONE},
-        {F1, CD_NONE}};
+        {F1, CD_NONE}};*/
+
+    char programArray[7][2] = {
+        {FORWARD, CD_RED},
+        {F2, CD_NONE},
+        {F1, CD_NONE},
+        {TURN_LEFT, CD_ORANGE},
+        {FORWARD, CD_NONE},
+        {F2, CD_RED},
+        {TURN_LEFT, CD_NONE}};
 
     Program p = getProgramFromVerboseArray(programArray);
 
@@ -93,7 +101,7 @@ int main() {
     for (unsigned long long i = 0; i < 1; i++) {
         printf("Tested programs: %llu\r", i);
         resetStatus();
-        Program program = generateNextProgram();
+        Program program = p;  // generateNextProgram();
 
         for (int step = 0; step < 100 && !gameLost() && !gameWon() && !gameTerminated(); step++) {
             struct Instruction instruction = program[programCase];
