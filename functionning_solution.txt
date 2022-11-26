@@ -2,10 +2,22 @@ Actions : 0 5 6 1 0 4 5
 Conditions : 0 1 0 0 0 0 0
 
 Program : 0 21 24 4 0 16 20
-according to The guy
+[FRWRD;R] [F2;_] [F1;_]   [TRN_LFT;O] [FRWRD;_] [F2;R] [TRN_LFT;_]
+according to The guy On Youtube
 
 
 
-FOUND:
-Actions:    2 6 1 0 0 5 5
-Conditions: 2 1 0 2 0 1 0
+Found by us :)
+
+[F2;O] [FRWRD;R] [F1;_]   [TRN_LFT;O] [FRWRD;_] [F2;R] [TRN_LFT;_] 
+[FRWRD;R] [F2;O] [F1;_]   [TRN_LFT;O] [FRWRD;_] [F2;R] [TRN_LFT;_]
+[F2;O] [FRWRD;R] [F1;O]   [TRN_LFT;O] [FRWRD;_] [F2;R] [TRN_LFT;_]
+[FRWRD;R] [F2;_] [F1;O]   [TRN_LFT;O] [FRWRD;_] [F2;R] [TRN_LFT;_]
+[FRWRD;R] [F2;O] [F1;O]   [TRN_LFT;O] [FRWRD;_] [F2;R] [TRN_LFT;_]
+
+[F2;O] [FRWRD;R] [F1;_]   [TRN_LFT;O] [FRWRD;_] [F2;R] [TRN_LFT;O]
+[FRWRD;R] [F2;_] [F1;_]   [TRN_LFT;O] [FRWRD;_] [F2;R] [TRN_LFT;O] 
+[FRWRD;R] [F2;O] [F1;_]   [TRN_LFT;O] [FRWRD;_] [F2;R] [TRN_LFT;O]
+[F2;O] [FRWRD;R] [F1;O]   [TRN_LFT;O] [FRWRD;_] [F2;R] [TRN_LFT;O] 
+[FRWRD;R] [F2;_] [F1;O]   [TRN_LFT;O] [FRWRD;_] [F2;R] [TRN_LFT;O]
+[FRWRD;R] [F2;O] [F1;O]   [TRN_LFT;O] [FRWRD;_] [F2;R] [TRN_LFT;O]
