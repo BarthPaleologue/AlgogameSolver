@@ -21,9 +21,11 @@ char doAction(enum Action action) {
             return 0;
         case PAINT_RED:
             paintRed();
+            declareWasPainted();
             return 0;
         case PAINT_BLUE:
             paintBlue();
+            declareWasPainted();
             return 0;
         case F1:
             lastNode = jumpInProgram(0, &programCase);
@@ -57,12 +59,8 @@ void resetStatus() {
     coords.x = 5;
     coords.y = 10;
     direction = RIGHT;
-    resetMatrix();  // pas necessaire a chaque fois...
-    for (int i = 0; i < 12; i++) {
-        for (int j = 0; j < 10; j++) {
-            printf("%d", matrix[i][j]);
-        }
-        printf("\n");
+    if (wasPainted()) {
+        resetMatrix();  // pas necessaire a chaque fois...
     }
     while (lastNode != NULL) {
         jumpBack(&programCase);  // permet de free tous les nodes
@@ -98,13 +96,13 @@ int main() {
     printMatrix(matrix);
 
     unsigned long long n = 28ll * 28ll * 28ll * 28ll * 28ll * 28ll * 28ll;
-    for (unsigned long long i = 0; i < 1; i++) {
+    for (unsigned long long i = 0; i < n; i++) {
         printf("Tested programs: %llu\r", i);
         resetStatus();
         
-        Program program = p;  // generateNextProgram();
+        Program program = generateNextProgram();
 
-        for (int step = 0; step < 150 && !gameLost() && !gameWon() && !gameTerminated(); step++) {
+        for (int step = 0; step < 120 && !gameLost() && !gameWon() && !gameTerminated(); step++) {
             struct Instruction instruction = program[programCase];
 
             switch (instruction.condition) {
@@ -135,20 +133,20 @@ int main() {
             }
             updateProgramCase(hasJumped);
 
-            printf("\n");
-            printCoords();
-            printf("\n%d\n\n", direction);
-            printMatrix(matrix);
+            //printf("\n");
+            //printCoords();
+            //printf("\n%d\n\n", direction);
+            //printMatrix(matrix);
         }
 
         if (gameWon()) {
             printf("this program succeeded\n\n\n");
             printProgramVerbose(program);
         } else if (gameLost()) {
-            printf("this program failed\n\n\n");
+            //printf("this program failed\n\n\n");
             // printf("f-");
         } else if (gameTerminated()) {
-            printf("this program terminated without finding the star\n\n\n");
+            //printf("this program terminated without finding the star\n\n\n");
             // printf("i-");
         }
         // printf("\n");

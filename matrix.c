@@ -21,6 +21,7 @@ char matrix[12][10];
 struct Coords coords = {5, 10};
 enum Direction direction = RIGHT;
 char _gameTerminated = 0;
+char _WasPainted = 0;
 
 void printCoords() {
     if (coords.x == 5 && coords.y == 10) {
@@ -111,6 +112,18 @@ char gameLost() {
 
 char gameWon() {
     return matrix[coords.y][coords.x] == CASE_STAR;
+}
+
+void declareWasPainted() {
+    _WasPainted = 1;
+}
+
+char wasPainted() {
+    if (!_WasPainted) {
+        return 0;
+    }
+    _WasPainted = 0;
+    return 1;
 }
 
 void declareGameTerminated() {

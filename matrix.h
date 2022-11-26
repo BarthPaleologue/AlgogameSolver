@@ -46,6 +46,8 @@ char gameLost();
 char gameWon();
 void declareGameTerminated();
 char gameTerminated();
+void declareWasPainted();
+char wasPainted();
 
 
 
