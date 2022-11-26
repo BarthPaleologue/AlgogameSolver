@@ -6,30 +6,51 @@
 #include "stack.h"
 
 unsigned char programCase;
+char hasJumped;
 
-void doAction(enum Action action) {
+
+char doAction(enum Action action) {
     switch (action) {
         case FORWARD:
             move();
-            break;
+            return 0;
         case TURN_LEFT:
             turnLeft();
-            break;
+            return 0;
         case TURN_RIGHT:
             turnRight();
-            break;
+            return 0;
         case PAINT_RED:
             paintRed();
-            break;
+            return 0;
         case PAINT_BLUE:
             paintBlue();
-            break;
+            return 0;
         case F1:
             lastNode = jumpInProgram(0, &programCase);
-            break;
+            return 1;
         case F2:
             lastNode = jumpInProgram(3, &programCase);
-            break;
+            return 1;
+    }
+    return 0;
+}
+
+void updateProgramCase(char hasJumped) {
+    if (hasJumped) {
+        return;
+    }
+    if (programCase == PROGRAM_LENGTH - 1 || programCase == 2) {
+        // 2 correspond a F1_LENGTH - 1
+        if (lastNode == NULL) {
+            //printf("t");
+            //printProgram(program);
+            declareGameTerminated();
+        } else {
+            jumpBack(&programCase);
+        }
+    } else {
+        programCase = programCase + 1;
     }
 }
 
@@ -38,6 +59,12 @@ void resetStatus() {
     coords.y = 10;
     direction = RIGHT;
     resetMatrix();  // pas necessaire a chaque fois...
+    for (int i = 0; i < 12; i++) {
+        for (int j = 0; j < 10; j++) {
+            printf("%d", matrix[i][j]);
+        }
+        printf("\n");
+    }
     while (lastNode != NULL) {
         jumpBack(&programCase);  // permet de free tous les nodes
     }
@@ -63,47 +90,45 @@ int main() {
     printMatrix(matrix);
 
     unsigned long long n = 28ll * 28ll * 28ll * 28ll * 28ll * 28ll * 28ll;
-    for (unsigned long long i = 0; i < n; i++) {
+    for (unsigned long long i = 0; i < 1; i++) {
         printf("Tested programs: %llu\r", i);
         resetStatus();
         Program program = generateNextProgram();
 
-        for (int step = 0; step < 100 && !gameLost() && !gameWon(); step++) {
+        for (int step = 0; step < 100 && !gameLost() && !gameWon() && !gameTerminated(); step++) {
             struct Instruction instruction = program[programCase];
 
             switch (instruction.condition) {
                 case CD_NONE:
-                    doAction(instruction.action);
+                    hasJumped = doAction(instruction.action);
                     break;
                 case CD_RED:
-                    if (isRed()) {
-                        doAction(instruction.action);
+                    if (isRed() != 0) {
+                        hasJumped = doAction(instruction.action);
+                    } else {
+                        hasJumped = 0;
                     }
                     break;
                 case CD_ORANGE:
                     if (isOrange()) {
-                        doAction(instruction.action);
+                        hasJumped = doAction(instruction.action);
+                    } else {
+                        hasJumped = 0;
                     }
                     break;
                 case CD_BLUE:
                     if (isBlue()) {
-                        doAction(instruction.action);
+                        hasJumped = doAction(instruction.action);
+                    } else {
+                        hasJumped = 0;
                     }
                     break;
             }
-            if (programCase == PROGRAM_LENGTH - 1 || programCase == 2) {
-                // 2 correspond a F1_LENGTH - 1
-                if (lastNode == NULL) {
-                    // printf("t");
-                    // printProgram(program);
-                    break;
-                } else {
-                    jumpBack(&programCase);
-                }
-            } else {
-                programCase = programCase + 1;
-            }
-            // printCoords();
+            updateProgramCase(hasJumped);
+
+            printf("\n");
+            printCoords();
+            printf("\n%d\n\n", direction);
         }
 
         if (gameWon()) {
