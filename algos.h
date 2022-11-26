@@ -1,11 +1,15 @@
-#ifndef ALGOS
-#define ALGOS
+#ifndef GENERATOR_H
+#define GENERATOR_H
 
 #define PROGRAM_LENGTH 7
 
 #define NB_ACTIONS 7
 
 #define NB_CONDITIONS 4
+
+#define F1_LENGTH 3
+
+#define F2_LENGTH 4
 
 enum Action {
     FORWARD,
