@@ -1,5 +1,6 @@
-#include <stdio.h>
 #include "matrix.h"
+
+#include <stdio.h>
 
 char matrixBase[12][10] = {
     {CASE_WHITE, CASE_WHITE, CASE_WHITE, CASE_WHITE, CASE_WHITE, CASE_WHITE, CASE_WHITE, CASE_WHITE, CASE_WHITE, CASE_WHITE},
@@ -13,11 +14,9 @@ char matrixBase[12][10] = {
     {CASE_WHITE, CASE_WHITE, CASE_WHITE, CASE_WHITE, CASE_ORANGE, CASE_RED, CASE_RED, CASE_RED, CASE_ORANGE, CASE_WHITE},
     {CASE_WHITE, CASE_WHITE, CASE_WHITE, CASE_WHITE, CASE_WHITE, CASE_WHITE, CASE_RED, CASE_WHITE, CASE_WHITE, CASE_WHITE},
     {CASE_WHITE, CASE_WHITE, CASE_WHITE, CASE_WHITE, CASE_WHITE, CASE_RED, CASE_ORANGE, CASE_WHITE, CASE_WHITE, CASE_WHITE},
-    {CASE_WHITE, CASE_WHITE, CASE_WHITE, CASE_WHITE, CASE_WHITE, CASE_WHITE, CASE_WHITE, CASE_WHITE, CASE_WHITE, CASE_WHITE}
-};
+    {CASE_WHITE, CASE_WHITE, CASE_WHITE, CASE_WHITE, CASE_WHITE, CASE_WHITE, CASE_WHITE, CASE_WHITE, CASE_WHITE, CASE_WHITE}};
 
 char matrix[12][10];
-
 
 struct Coords coords = {5, 10};
 enum Direction direction = RIGHT;
@@ -27,6 +26,37 @@ void printCoords() {
         return;
     }
     printf("x : %d; y : %d\n", coords.x, coords.y);
+}
+
+void printMatrix(char matrix[12][10]) {
+    for (int i = 0; i < 12; i++) {
+        for (int j = 0; j < 10; j++) {
+            if (i == coords.y && j == coords.x) {
+                printf("X");
+                continue;
+            }
+            switch (matrix[i][j]) {
+                case CASE_WHITE:
+                    printf(" ");
+                    break;
+                case CASE_RED:
+                    printf("R");
+                    break;
+                case CASE_ORANGE:
+                    printf("O");
+                    break;
+                case CASE_BLUE:
+                    printf("B");
+                    break;
+                case CASE_STAR:
+                    printf("*");
+                    break;
+                default:
+                    printf("?");  // should never happen
+            }
+        }
+        printf("\n");
+    }
 }
 
 void move() {
@@ -55,24 +85,15 @@ void turnLeft() {
 }
 
 char isRed() {
-    if (matrix[coords.y][coords.x] == CASE_RED) {
-        return 1;
-    }
-    return 0;
+    return matrix[coords.y][coords.x] == CASE_RED;
 }
 
 char isOrange() {
-    if (matrix[coords.y][coords.x] == CASE_ORANGE) {
-        return 1;
-    }
-    return 0;
+    return matrix[coords.y][coords.x] == CASE_ORANGE;
 }
 
 char isBlue() {
-    if (matrix[coords.y][coords.x] == CASE_BLUE) {
-        return 1;
-    }
-    return 0;
+    return matrix[coords.y][coords.x] == CASE_BLUE;
 }
 
 void paintRed() {
