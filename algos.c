@@ -5,8 +5,12 @@
 
 const char NB_INSTRUCTIONS = NB_CONDITIONS * NB_ACTIONS;
 
-char programState[PROGRAM_LENGTH] = {0, 0, 0, 0, 0, 0, 0};
+char programState[PROGRAM_LENGTH];
 
+/**
+ * @brief print the state of the generator to stdout
+ *
+ */
 void printProgramState() {
     printf("Program state: {%d, %d, %d, %d, %d, %d, %d}\n", programState[0], programState[1], programState[2], programState[3], programState[4], programState[5], programState[6]);
 }
@@ -99,6 +103,13 @@ void printProgramVerbose(Program p) {
  * - Si y a pas (tourner à droite || tourner à gauche)
  * - Si y a peindre en rouge sur rouge || peindre en bleu sur bleu
  */
+
+/**
+ * @brief Check if a program is worth testing according to arbitrary rules
+ *
+ * @param p The program to check
+ * @return char 1 if the program is worth testing, 0 otherwise
+ */
 char isProgramWorthTesting(Program p) {
     char nbForwardActions = 0;
     char nbTurnActions = 0;
@@ -138,7 +149,13 @@ char isProgramWorthTesting(Program p) {
     return 1;
 }
 
-Program getProgramFromVerboseArray(char programArray[7][2]) {
+/**
+ * @brief Generate a program from an array of array2[action, condition]
+ *
+ * @param programArray
+ * @return Program
+ */
+Program getProgramFromVerboseArray(char programArray[PROGRAM_LENGTH][2]) {
     Program p = malloc(sizeof(struct Instruction) * PROGRAM_LENGTH);
     for (unsigned char i = 0; i < PROGRAM_LENGTH; i++) {
         char action = programArray[i][0];
