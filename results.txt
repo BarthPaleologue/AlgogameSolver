@@ -1,0 +1,237 @@
+[F2;O] [FRWRD;_] [F1;_]   [TRN_LFT;O] [FRWRD;_] [F2;R] [TRN_LFT;_] 
+FALSE, devrait faire gameLost
+
+
+[F2;O] [FRWRD;R] [F1;_]   [TRN_LFT;O] [FRWRD;_] [F2;R] [TRN_LFT;_] 
+TRUE ORIGINAL SOLUCE YIHIII
+
+
+[FRWRD;_] [F2;_] [F1;_]   [TRN_LFT;O] [FRWRD;_] [F2;R] [TRN_LFT;_] 
+FALSE
+
+
+[FRWRD;R] [F2;_] [F1;_]   [TRN_LFT;O] [FRWRD;_] [F2;R] [TRN_LFT;_] 
+YOUTUBE SOLUCE !
+
+
+[FRWRD;_] [F2;O] [F1;_]   [TRN_LFT;O] [FRWRD;_] [F2;R] [TRN_LFT;_] 
+ça marche pas déso
+
+
+[FRWRD;R] [F2;O] [F1;_]   [TRN_LFT;O] [FRWRD;_] [F2;R] [TRN_LFT;_] 
+NEW SOLUCE !
+
+
+it terminates wtf
+
+
+[FRWRD;R] [F2;_] [F1;R]   [TRN_LFT;O] [FRWRD;_] [F2;R] [TRN_LFT;_] 
+it terminates wtf
+
+
+[FRWRD;_] [F2;O] [F1;R]   [TRN_LFT;O] [FRWRD;_] [F2;R] [TRN_LFT;_] 
+it also fucking terminates
+
+
+[FRWRD;R] [F2;O] [F1;R]   [TRN_LFT;O] [FRWRD;_] [F2;R] [TRN_LFT;_] 
+it also effing terminates
+
+
+[F2;O] [FRWRD;_] [F1;O]   [TRN_LFT;O] [FRWRD;_] [F2;R] [TRN_LFT;_] 
+it fails you moron
+
+
+[F2;O] [FRWRD;R] [F1;O]   [TRN_LFT;O] [FRWRD;_] [F2;R] [TRN_LFT;_] 
+IT WORKS BABY !!
+
+
+[FRWRD;_] [F2;_] [F1;O]   [TRN_LFT;O] [FRWRD;_] [F2;R] [TRN_LFT;_] 
+it fucking fails you dum-dum
+
+
+[FRWRD;R] [F2;_] [F1;O]   [TRN_LFT;O] [FRWRD;_] [F2;R] [TRN_LFT;_] 
+it succeeds !!!
+
+
+[FRWRD;_] [F2;O] [F1;O]   [TRN_LFT;O] [FRWRD;_] [F2;R] [TRN_LFT;_] 
+AGAIIIIIN FAIL
+
+
+[FRWRD;R] [F2;O] [F1;O]   [TRN_LFT;O] [FRWRD;_] [F2;R] [TRN_LFT;_] 
+SUCCESS !!!
+
+
+[FRWRD;_] [F2;_] [F1;B]   [TRN_LFT;O] [FRWRD;_] [F2;R] [TRN_LFT;_] 
+obviously terminates
+
+
+[FRWRD;R] [F2;_] [F1;B]   [TRN_LFT;O] [FRWRD;_] [F2;R] [TRN_LFT;_] 
+terminates
+
+
+[FRWRD;_] [F2;O] [F1;B]   [TRN_LFT;O] [FRWRD;_] [F2;R] [TRN_LFT;_] 
+terminates
+
+
+[FRWRD;R] [F2;O] [F1;B]   [TRN_LFT;O] [FRWRD;_] [F2;R] [TRN_LFT;_] 
+terminates
+
+
+[FRWRD;_] [F1;R] [F2;_]   [TRN_LFT;O] [FRWRD;_] [F2;R] [TRN_LFT;_] 
+terminates
+
+
+[FRWRD;R] [F1;R] [F2;_]   [TRN_LFT;O] [FRWRD;_] [F2;R] [TRN_LFT;_] 
+terminates
+
+
+[FRWRD;_] [F1;B] [F2;_]   [TRN_LFT;O] [FRWRD;_] [F2;R] [TRN_LFT;_] 
+terminates
+
+
+[FRWRD;R] [F1;B] [F2;_]   [TRN_LFT;O] [FRWRD;_] [F2;R] [TRN_LFT;_] 
+terminates
+
+
+[FRWRD;_] [F1;R] [F2;O]   [TRN_LFT;O] [FRWRD;_] [F2;R] [TRN_LFT;_] 
+terminates
+
+
+[FRWRD;R] [F1;R] [F2;O]   [TRN_LFT;O] [FRWRD;_] [F2;R] [TRN_LFT;_] 
+terminates
+
+
+[FRWRD;_] [F1;B] [F2;O]   [TRN_LFT;O] [FRWRD;_] [F2;R] [TRN_LFT;_] 
+terminates
+
+
+[FRWRD;R] [F1;B] [F2;O]   [TRN_LFT;O] [FRWRD;_] [F2;R] [TRN_LFT;_] 
+terminates
+
+
+[F2;O] [FRWRD;_] [F1;_]   [TRN_LFT;O] [FRWRD;_] [F2;R] [TRN_LFT;O] 
+fails
+
+
+[F2;O] [FRWRD;R] [F1;_]   [TRN_LFT;O] [FRWRD;_] [F2;R] [TRN_LFT;O] 
+SUCCESS !
+
+
+[FRWRD;_] [F2;_] [F1;_]   [TRN_LFT;O] [FRWRD;_] [F2;R] [TRN_LFT;O] 
+fails!
+
+
+[FRWRD;R] [F2;_] [F1;_]   [TRN_LFT;O] [FRWRD;_] [F2;R] [TRN_LFT;O] 
+success!!!
+
+
+[FRWRD;_] [F2;O] [F1;_]   [TRN_LFT;O] [FRWRD;_] [F2;R] [TRN_LFT;O] 
+fails
+
+
+[FRWRD;R] [F2;O] [F1;_]   [TRN_LFT;O] [FRWRD;_] [F2;R] [TRN_LFT;O] 
+success
+
+
+[FRWRD;_] [F2;_] [F1;R]   [TRN_LFT;O] [FRWRD;_] [F2;R] [TRN_LFT;O] 
+terminates
+
+
+[FRWRD;R] [F2;_] [F1;R]   [TRN_LFT;O] [FRWRD;_] [F2;R] [TRN_LFT;O] 
+terminates
+
+
+[FRWRD;_] [F2;O] [F1;R]   [TRN_LFT;O] [FRWRD;_] [F2;R] [TRN_LFT;O] 
+terminates
+
+
+[FRWRD;R] [F2;O] [F1;R]   [TRN_LFT;O] [FRWRD;_] [F2;R] [TRN_LFT;O] 
+terminates
+
+
+[F2;O] [FRWRD;_] [F1;O]   [TRN_LFT;O] [FRWRD;_] [F2;R] [TRN_LFT;O] 
+fails
+
+
+[F2;O] [FRWRD;R] [F1;O]   [TRN_LFT;O] [FRWRD;_] [F2;R] [TRN_LFT;O] 
+success
+
+
+[FRWRD;_] [F2;_] [F1;O]   [TRN_LFT;O] [FRWRD;_] [F2;R] [TRN_LFT;O] 
+fails
+
+
+[FRWRD;R] [F2;_] [F1;O]   [TRN_LFT;O] [FRWRD;_] [F2;R] [TRN_LFT;O] 
+success
+
+
+[FRWRD;_] [F2;O] [F1;O]   [TRN_LFT;O] [FRWRD;_] [F2;R] [TRN_LFT;O] 
+fails
+
+
+[FRWRD;R] [F2;O] [F1;O]   [TRN_LFT;O] [FRWRD;_] [F2;R] [TRN_LFT;O] 
+success
+
+
+[FRWRD;_] [F2;_] [F1;B]   [TRN_LFT;O] [FRWRD;_] [F2;R] [TRN_LFT;O] 
+can't work for obvious reasons
+
+
+[FRWRD;R] [F2;_] [F1;B]   [TRN_LFT;O] [FRWRD;_] [F2;R] [TRN_LFT;O] 
+can't work for obvious reasons
+
+
+[FRWRD;_] [F2;O] [F1;B]   [TRN_LFT;O] [FRWRD;_] [F2;R] [TRN_LFT;O] 
+can't work for obvious reasons
+
+
+[FRWRD;R] [F2;O] [F1;B]   [TRN_LFT;O] [FRWRD;_] [F2;R] [TRN_LFT;O] 
+can't work for obvious reasons
+
+
+[FRWRD;_] [F1;R] [F2;_]   [TRN_LFT;O] [FRWRD;_] [F2;R] [TRN_LFT;O] 
+just no
+
+
+[FRWRD;R] [F1;R] [F2;_]   [TRN_LFT;O] [FRWRD;_] [F2;R] [TRN_LFT;O] 
+well still no bitch
+
+
+[FRWRD;_] [F1;B] [F2;_]   [TRN_LFT;O] [FRWRD;_] [F2;R] [TRN_LFT;O] 
+can't work for obvious reasons
+
+
+[FRWRD;R] [F1;B] [F2;_]   [TRN_LFT;O] [FRWRD;_] [F2;R] [TRN_LFT;O] 
+can't work for obvious reasons
+
+
+[FRWRD;_] [F1;R] [F2;O]   [TRN_LFT;O] [FRWRD;_] [F2;R] [TRN_LFT;O] 
+nooooo
+
+
+[FRWRD;R] [F1;R] [F2;O]   [TRN_LFT;O] [FRWRD;_] [F2;R] [TRN_LFT;O] 
+noooooo
+
+
+[FRWRD;_] [F1;B] [F2;O]   [TRN_LFT;O] [FRWRD;_] [F2;R] [TRN_LFT;O] 
+can't work for obvious reasons
+
+
+[FRWRD;R] [F1;B] [F2;O]   [TRN_LFT;O] [FRWRD;_] [F2;R] [TRN_LFT;O]
+can't work for obvious reasons
+
+
+[F2;R] [TRN_LFT;_] [F2;O]   [FRWRD;_] [F1;O] [FRWRD;_] [TRN_RGHT;O] 
+no
+
+
+[F2;R] [TRN_LFT;O] [F2;O]   [FRWRD;_] [F1;O] [FRWRD;_] [TRN_RGHT;O] 
+no
+
+
+[F2;R] [TRN_LFT;_] [F2;O]   [FRWRD;_] [F1;O] [FRWRD;R] [TRN_RGHT;O] 
+no
+
+
+[F2;R] [TRN_LFT;O] [F2;O]   [FRWRD;_] [F1;O] [FRWRD;R] [TRN_RGHT;O]
+no
