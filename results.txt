@@ -21,9 +21,8 @@ YOUTUBE SOLUCE !
 [FRWRD;R] [F2;O] [F1;_]   [TRN_LFT;O] [FRWRD;_] [F2;R] [TRN_LFT;_] 
 NEW SOLUCE !
 
-
+[FRWRD;_] [F2;_] [F1;R]   [TRN_LFT;O] [FRWRD;_] [F2;R] [TRN_LFT;_] 
 it terminates wtf
-
 
 [FRWRD;R] [F2;_] [F1;R]   [TRN_LFT;O] [FRWRD;_] [F2;R] [TRN_LFT;_] 
 it terminates wtf
