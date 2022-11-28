@@ -173,15 +173,6 @@ Program getProgramFromVerboseArray(char programArray[PROGRAM_LENGTH][2]) {
     return p;
 }
 
-Program getProgramFromArray(char* array) {
-    Program p = malloc(sizeof(struct Instruction) * PROGRAM_LENGTH);
-    for (unsigned char i = 0; i < PROGRAM_LENGTH; i++) {
-        p[i].action = array[i] / NB_CONDITIONS;
-        p[i].condition = array[i] % NB_CONDITIONS;
-    }
-    return p;
-}
-
 /**
  * @brief Generate the next program worthy of testing
  *
