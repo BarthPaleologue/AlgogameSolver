@@ -7,50 +7,40 @@
 #include "matrix.h"
 #include "stack.h"
 
-unsigned char programCase;
-char hasJumped;
+char programCase;
 
-char doAction(enum Action action) {
+void doAction(enum Action action) {
     switch (action) {
         case FORWARD:
             move();
-            return 0;
+            return;
         case TURN_LEFT:
             turnLeft();
-            return 0;
+            return;
         case TURN_RIGHT:
             turnRight();
-            return 0;
+            return;
         case PAINT_RED:
             paintRed();
             declareWasPainted();
-            return 0;
+            return;
         case PAINT_BLUE:
             paintBlue();
             declareWasPainted();
-            return 0;
+            return;
         case F1:
             lastNode = jumpInProgram(0, &programCase);
-            return 1;
+            return;
         case F2:
             lastNode = jumpInProgram(F1_LENGTH, &programCase);
-            return 1;
+            return;
     }
-    return 0;
+    return;
 }
 
-void updateProgramCase(char hasJumped) {
-    if (hasJumped) {
-        return;
-    }
+void updateProgramCase() {
     if (programCase == PROGRAM_LENGTH - 1 || programCase == F1_LENGTH - 1) {
-        if (lastNode == NULL) {
-            // printf("t");
-            // printProgram(program);
-            declareGameTerminated();
-        } else {
-            jumpBack(&programCase);
-        }
+        programCase = -1;
     } else {
         programCase = programCase + 1;
     }
@@ -84,8 +74,8 @@ int main() {
     readProgramStateFromFile("./program_state.txt");
 
     /*char programArray[7][2] = {
+        {F2, CD_ORANGE},
         {FORWARD, CD_RED},
-        {F2, CD_NONE},
         {F1, CD_NONE},
         {TURN_LEFT, CD_ORANGE},
         {FORWARD, CD_NONE},
@@ -98,7 +88,7 @@ int main() {
 
     resetMatrix();
 
-    printMatrix(matrix);
+    //printMatrix(matrix);
 
     unsigned long long n = 0;
 
@@ -110,38 +100,42 @@ int main() {
         for (int step = 0; step < 120 && !gameLost() && !gameWon() && !gameTerminated(); step++) {
             struct Instruction instruction = program[programCase];
 
+            updateProgramCase();
+
             switch (instruction.condition) {
                 case CD_NONE:
-                    hasJumped = doAction(instruction.action);
+                    doAction(instruction.action);
                     break;
                 case CD_RED:
                     if (isRed() != 0) {
-                        hasJumped = doAction(instruction.action);
-                    } else {
-                        hasJumped = 0;
+                        doAction(instruction.action);
                     }
                     break;
                 case CD_ORANGE:
                     if (isOrange()) {
-                        hasJumped = doAction(instruction.action);
-                    } else {
-                        hasJumped = 0;
+                        doAction(instruction.action);
                     }
                     break;
                 case CD_BLUE:
                     if (isBlue()) {
-                        hasJumped = doAction(instruction.action);
-                    } else {
-                        hasJumped = 0;
+                        doAction(instruction.action);
                     }
                     break;
             }
-            updateProgramCase(hasJumped);
+            while (programCase == -1) {
+                if (lastNode == NULL) {
+                    // printf("t");
+                    // printProgram(program);
+                    declareGameTerminated();
+                    break;
+                }
+                jumpBack(&programCase);
+            }
 
-            // printf("\n");
-            // printCoords();
-            // printf("\n%d\n\n", direction);
-            // printMatrix(matrix);
+            /*printf("instruction : %d %d", instruction.action, instruction.condition);
+            printCoords();
+            printf("\ndirection : %d\n\n", direction);
+            printMatrix(matrix);*/
         }
 
         if (gameWon()) {

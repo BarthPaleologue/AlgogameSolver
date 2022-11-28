@@ -5,5 +5,5 @@ typedef struct node {
 
 extern node_t *lastNode;
 
-node_t *jumpInProgram(unsigned char newProgramCase, unsigned char * programCasePointer);
-void jumpBack(unsigned char * programCasePointer);
+node_t *jumpInProgram(char newProgramCase, char * programCasePointer);
+void jumpBack(char * programCasePointer);
