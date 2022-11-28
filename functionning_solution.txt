@@ -1,7 +1,7 @@
-Actions : 0 5 6 1 0 4 5
-Conditions : 0 1 0 0 0 0 0
+Actions : 0 5 6 1 0 5 1
+Conditions : 1 0 0 2 0 1 0
 
-Program : 0 21 24 4 0 16 20
+Program : 1 20 24 6 0 21 4
 [FRWRD;R] [F2;_] [F1;_]   [TRN_LFT;O] [FRWRD;_] [F2;R] [TRN_LFT;_]
 according to The guy On Youtube
 

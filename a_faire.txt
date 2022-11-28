@@ -1,1 +1,4 @@
-Mettre la taille de F1 et de F2 en paramètres globaux
+écrire fichier texte map32 (changer resetMatrix pour une lecture du fichier)
+afficher le pourcentage de complétion
+
+readme : padding sur le bord des maps, isWorthTesting, probas, generator (levelspecifics?), 
