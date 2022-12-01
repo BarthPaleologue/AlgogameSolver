@@ -30,11 +30,9 @@ void doInstruction(enum Action action, enum Condition condition) {
             paintBlue();
             return declareWasPainted();
         case F1:
-            lastNode = jumpInProgram(0, &programPointer);
-            return;
+            return jumpInProgram(0, &programPointer);
         case F2:
-            lastNode = jumpInProgram(F1_LENGTH, &programPointer);
-            return;
+            return jumpInProgram(F1_LENGTH, &programPointer);
     }
 }
 
@@ -61,7 +59,7 @@ void resetStatus() {
     if (wasPainted()) {
         resetMatrix();  // pas necessaire a chaque fois...
     }
-    while (lastNode != NULL) {
+    while (stackPointer != NULL) {
         jumpBack(&programPointer);  // permet de free tous les nodes
     }
     programPointer = 0;
@@ -78,7 +76,7 @@ void executeProgram(Program program) {
         doInstruction(instruction.action, instruction.condition);
 
         while (programPointer == -1) {
-            if (lastNode == NULL) {
+            if (stackPointer == NULL) {
                 declareGameTerminated();
                 break;
             }
