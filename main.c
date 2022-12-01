@@ -4,6 +4,7 @@
 #include <unistd.h>
 
 #include "generator.h"
+#include "level_specifics.h"
 #include "matrix.h"
 #include "stack.h"
 
@@ -50,6 +51,7 @@ void resetStatus() {
     coords.x = 5;
     coords.y = 10;
     direction = RIGHT;
+    numberOfStars = 1;
     if (wasPainted()) {
         resetMatrix();  // pas necessaire a chaque fois...
     }
@@ -74,11 +76,11 @@ int main() {
     readProgramStateFromFile("./program_state.txt");
 
     /*char programArray[7][2] = {
-        {F2, CD_ORANGE},
-        {FORWARD, CD_RED},
+        {F2, CD_NONE},
+        {PAINT_BLUE, CD_NONE},
         {F1, CD_NONE},
-        {TURN_LEFT, CD_ORANGE},
-        {FORWARD, CD_NONE},
+        {FORWARD, CD_RED},
+        {PAINT_RED, CD_BLUE},
         {F2, CD_RED},
         {TURN_LEFT, CD_NONE}};
 
@@ -86,7 +88,10 @@ int main() {
 
     printProgramVerbose(p);*/
 
+    initPath();
+    initMatrix();
     resetMatrix();
+    printf("\n\n\n");
 
     //printMatrix(matrix);
 
@@ -97,10 +102,14 @@ int main() {
     while ((program = generateNextProgram()) != NULL) {
         resetStatus();
 
-        for (int step = 0; step < 120 && !gameLost() && !gameWon() && !gameTerminated(); step++) {
+        for (int step = 0; step < 120 && !gameLost() && !gameTerminated() && !gameWon(); step++) {
             struct Instruction instruction = program[programCase];
 
             updateProgramCase();
+
+            if (isStar()) {
+                numberOfStars--;
+            }
 
             switch (instruction.condition) {
                 case CD_NONE:
@@ -131,7 +140,6 @@ int main() {
                 }
                 jumpBack(&programCase);
             }
-
             /*printf("instruction : %d %d", instruction.action, instruction.condition);
             printCoords();
             printf("\ndirection : %d\n\n", direction);

@@ -1,6 +1,8 @@
-#include "matrix.h"
-
 #include <stdio.h>
+#include "matrix.h"
+#include "level_specifics.h"
+
+static char isConform();
 
 char matrixBase[12][10] = {
     {CASE_WHITE, CASE_WHITE, CASE_WHITE, CASE_WHITE, CASE_WHITE, CASE_WHITE, CASE_WHITE, CASE_WHITE, CASE_WHITE, CASE_WHITE},
@@ -98,6 +100,10 @@ char isBlue() {
     return matrix[coords.y][coords.x] == CASE_BLUE;
 }
 
+char isStar() {
+    return matrix[coords.y][coords.x] == CASE_STAR;
+}
+
 void paintRed() {
     matrix[coords.y][coords.x] = CASE_RED;
 }
@@ -111,7 +117,7 @@ char gameLost() {
 }
 
 char gameWon() {
-    return matrix[coords.y][coords.x] == CASE_STAR;
+    return (numberOfStars == 0);
 }
 
 void declareWasPainted() {
@@ -139,6 +145,38 @@ char gameTerminated() {
     _gameTerminated = 0;
     return 1;
 }
+
+void initMatrix() {
+    if (!isConform()) {
+        return;
+    }
+
+}
+
+static char isConform() {
+    FILE* map = fopen(pathMap, "r");
+    FILE* starsMap = fopen(pathStarsMap, "r");
+    if (map && starsMap) {
+        //compares every character in map and starsMap
+        char c1, c2;
+        while ((c1 = fgetc(map)) != EOF && (c2 = fgetc(starsMap)) != EOF) {
+            if (c2 != '*' && c1 != c2) {
+                printf("Error : map and starsMap are not conform\n");
+                return 0;
+            }
+            
+        }
+
+
+        printf("Correspondance between the two files is correct\n");
+
+        return 1;
+    } else {
+        printf("Error while reading map files");
+        return 0;
+    }
+}
+
 
 void resetMatrix() {
     for (int i = 0; i < 12; i++) {

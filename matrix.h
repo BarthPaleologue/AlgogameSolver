@@ -13,6 +13,7 @@ enum Color {
 
 extern char matrix[12][10];
 void resetMatrix();
+void initMatrix();
 
 enum Direction {
     RIGHT,
@@ -40,6 +41,7 @@ void turnLeft();
 char isRed();
 char isOrange();
 char isBlue();
+char isStar();
 void paintRed();
 void paintBlue();
 char gameLost();
