@@ -11,6 +11,10 @@
 
 #define F2_LENGTH 4
 
+#define F3_LENGTH 0
+
+#define F4_LENGTH 0
+
 #define MAX_EXECUTION_ITERATIONS 120
 
 enum Action {

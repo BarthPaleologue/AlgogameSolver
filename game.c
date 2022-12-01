@@ -37,7 +37,7 @@ void doInstruction(enum Action action, enum Condition condition) {
 }
 
 void updateProgramPointer() {
-    if (programPointer == PROGRAM_LENGTH - 1 || programPointer == F1_LENGTH - 1)
+    if (programPointer == PROGRAM_LENGTH - 1 || programPointer == F1_LENGTH - 1 || programPointer == F1_LENGTH + F2_LENGTH - 1 || programPointer == F1_LENGTH + F2_LENGTH + F3_LENGTH - 1 || programPointer == F1_LENGTH + F2_LENGTH + F3_LENGTH + F4_LENGTH - 1)
         programPointer = -1;
     else
         programPointer = programPointer + 1;
