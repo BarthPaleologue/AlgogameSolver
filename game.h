@@ -10,7 +10,7 @@
 
 extern int programCase;
 
-void doAction(enum Action action);
+void doInstruction(enum Action action, enum Condition condition);
 
 void updateProgramCase();
 

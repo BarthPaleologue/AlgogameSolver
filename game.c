@@ -2,25 +2,33 @@
 
 int programCase;
 
-void doAction(enum Action action) {
+void doInstruction(enum Action action, enum Condition condition) {
+    switch (condition) {
+        case CD_NONE:
+            break;
+        case CD_RED:
+            if (isRed()) break;
+            return;
+        case CD_ORANGE:
+            if (isOrange()) break;
+            return;
+        case CD_BLUE:
+            if (isBlue()) break;
+            return;
+    }
     switch (action) {
         case FORWARD:
-            move();
-            return;
+            return move();
         case TURN_LEFT:
-            turnLeft();
-            return;
+            return turnLeft();
         case TURN_RIGHT:
-            turnRight();
-            return;
+            return turnRight();
         case PAINT_RED:
             paintRed();
-            declareWasPainted();
-            return;
+            return declareWasPainted();
         case PAINT_BLUE:
             paintBlue();
-            declareWasPainted();
-            return;
+            return declareWasPainted();
         case F1:
             lastNode = jumpInProgram(0, &programCase);
             return;
@@ -28,29 +36,27 @@ void doAction(enum Action action) {
             lastNode = jumpInProgram(F1_LENGTH, &programCase);
             return;
     }
-    return;
 }
 
 void updateProgramCase() {
-    if (programCase == PROGRAM_LENGTH - 1 || programCase == F1_LENGTH - 1) {
+    if (programCase == PROGRAM_LENGTH - 1 || programCase == F1_LENGTH - 1)
         programCase = -1;
-    } else {
+    else
         programCase = programCase + 1;
-    }
 }
 
 void resetStatus() {
-    //coords.x = startingCoords.x;
-    //startingCoords defini dans matrix
+    // coords.x = startingCoords.x;
+    // startingCoords defini dans matrix
     coords.x = 5;
     coords.y = 10;
 
-    //direction doit etre set dans level_specific
-    //direction = startingDirection;
+    // direction doit etre set dans level_specific
+    // direction = startingDirection;
     direction = RIGHT;
 
     numberOfStars = 1;
-    //starsCounter = numberOfStars;
+    // starsCounter = numberOfStars;
 
     if (wasPainted()) {
         resetMatrix();  // pas necessaire a chaque fois...
@@ -67,42 +73,16 @@ void executeProgram(Program program) {
 
         updateProgramCase();
 
-        if (isStar()) {
-            numberOfStars--;
-        }
+        if (isStar()) numberOfStars--;
 
-        switch (instruction.condition) {
-            case CD_NONE:
-                doAction(instruction.action);
-                break;
-            case CD_RED:
-                if (isRed() != 0) {
-                    doAction(instruction.action);
-                }
-                break;
-            case CD_ORANGE:
-                if (isOrange()) {
-                    doAction(instruction.action);
-                }
-                break;
-            case CD_BLUE:
-                if (isBlue()) {
-                    doAction(instruction.action);
-                }
-                break;
-        }
+        doInstruction(instruction.action, instruction.condition);
+
         while (programCase == -1) {
             if (lastNode == NULL) {
-                // printf("t");
-                // printProgram(program);
                 declareGameTerminated();
                 break;
             }
             jumpBack(&programCase);
         }
-        /*printf("instruction : %d %d", instruction.action, instruction.condition);
-        printCoords();
-        printf("\ndirection : %d\n\n", direction);
-        printMatrix(matrix);*/
     }
 }
