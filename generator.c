@@ -65,11 +65,11 @@ void readProgramStateFromFile(char* filename) {
     }
 }
 
-void printProgram(Program p) {
-    printf("Actions:    %d %d %d %d %d %d %d\n", p[0].action, p[1].action, p[2].action, p[3].action, p[4].action, p[5].action, p[6].action);
-    printf("Conditions: %d %d %d %d %d %d %d\n\n", p[0].condition, p[1].condition, p[2].condition, p[3].condition, p[4].condition, p[5].condition, p[6].condition);
-}
-
+/**
+ * @brief prints the given program as a sequence of readable instructions [Action;Condition]
+ *
+ * @param p the program to print
+ */
 void printProgramVerbose(Program p) {
     for (int i = 0; i < PROGRAM_LENGTH; i++) {
         char* actionStr;
@@ -116,14 +116,6 @@ void printProgramVerbose(Program p) {
     }
     printf("\n\n");
 }
-
-/**
- * A ne pas tester: (évaluer la stratégie avant de la soumettre)
- * - Si y a pas avancer
- * - Si y a pas F1 & F2
- * - Si y a pas (tourner à droite || tourner à gauche)
- * - Si y a peindre en rouge sur rouge || peindre en bleu sur bleu
- */
 
 /**
  * @brief Check if a program is worth testing according to arbitrary rules

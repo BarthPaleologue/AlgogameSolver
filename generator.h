@@ -24,8 +24,6 @@ Program getProgramFromVerboseArray(char programArray[PROGRAM_LENGTH][2]);
 
 char isProgramWorthTesting(Program p);
 
-void printProgram(Program p);
-
 void printProgramVerbose(Program p);
 
 #endif
