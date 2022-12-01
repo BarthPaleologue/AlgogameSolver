@@ -68,7 +68,7 @@ void resetStatus() {
 }
 
 void executeProgram(Program program) {
-    for (int step = 0; step < 120 && !gameLost() && !gameTerminated() && !gameWon(); step++) {
+    for (int step = 0; step < MAX_EXECUTION_ITERATIONS && !gameLost() && !gameTerminated() && !gameWon(); step++) {
         struct Instruction instruction = program[programPointer];
 
         updateProgramPointer();

@@ -11,6 +11,8 @@
 
 #define F2_LENGTH 4
 
+#define MAX_EXECUTION_ITERATIONS 120
+
 enum Action {
     FORWARD,
     TURN_LEFT,
