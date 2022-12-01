@@ -7,10 +7,6 @@ const char NB_INSTRUCTIONS = (sizeof(possibleConditions) / sizeof(possibleCondit
 
 char programState[PROGRAM_LENGTH];
 
-/**
- * @brief print the state of the generator to stdout
- *
- */
 void printProgramState() {
     printf("Program State: {");
     for (int i = 0; i < PROGRAM_LENGTH; i++) {
@@ -21,11 +17,6 @@ void printProgramState() {
     printf("}\n");
 }
 
-/**
- * @brief Write the state of the generator to a file
- *
- * @param filename The name of the file to write to
- */
 void writeProgramStateToFile(char* filename) {
     FILE* file = fopen(filename, "w");
     if (file == NULL)
@@ -46,11 +37,6 @@ void writeProgramStateToFile(char* filename) {
     fclose(file);
 }
 
-/**
- * @brief Read the generation state from a file and init the generator. Will init to 0 if no file is found.
- *
- * @param filename The file to read from
- */
 void readProgramStateFromFile(char* filename) {
     FILE* file = fopen(filename, "r");
     if (file) {
@@ -65,11 +51,6 @@ void readProgramStateFromFile(char* filename) {
     }
 }
 
-/**
- * @brief prints the given program as a sequence of readable instructions [Action;Condition]
- *
- * @param p the program to print
- */
 void printProgramVerbose(Program p) {
     for (int i = 0; i < PROGRAM_LENGTH; i++) {
         char* actionStr;
@@ -117,12 +98,6 @@ void printProgramVerbose(Program p) {
     printf("\n\n");
 }
 
-/**
- * @brief Check if a program is worth testing according to arbitrary rules
- *
- * @param p The program to check
- * @return char 1 if the program is worth testing, 0 otherwise
- */
 char isProgramWorthTesting(Program p) {
     char nbForwardActions = 0;
     char nbTurnActions = 0;
@@ -162,12 +137,6 @@ char isProgramWorthTesting(Program p) {
     return 1;
 }
 
-/**
- * @brief Generate a program from an array of array2[action, condition]
- *
- * @param programArray
- * @return Program
- */
 Program getProgramFromVerboseArray(char programArray[PROGRAM_LENGTH][2]) {
     Program p = malloc(sizeof(struct Instruction) * PROGRAM_LENGTH);
     for (unsigned char i = 0; i < PROGRAM_LENGTH; i++) {
@@ -177,11 +146,6 @@ Program getProgramFromVerboseArray(char programArray[PROGRAM_LENGTH][2]) {
     return p;
 }
 
-/**
- * @brief Generate the next program worthy of testing
- *
- * @return Program The next program
- */
 Program generateNextProgram() {
     Program program = malloc(sizeof(struct Instruction) * PROGRAM_LENGTH);
 
