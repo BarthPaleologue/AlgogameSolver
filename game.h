@@ -3,6 +3,7 @@
 
 #include <stdlib.h>
 
+#include "generator.h"
 #include "level_specifics.h"
 #include "matrix.h"
 #include "stack.h"
@@ -14,5 +15,7 @@ void doAction(enum Action action);
 void updateProgramCase();
 
 void resetStatus();
+
+void executeProgram(Program program);
 
 #endif

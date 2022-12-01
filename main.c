@@ -47,49 +47,7 @@ int main() {
     while ((program = generateNextProgram()) != NULL) {
         resetStatus();
 
-        for (int step = 0; step < 120 && !gameLost() && !gameTerminated() && !gameWon(); step++) {
-            struct Instruction instruction = program[programCase];
-
-            updateProgramCase();
-
-            if (isStar()) {
-                numberOfStars--;
-            }
-
-            switch (instruction.condition) {
-                case CD_NONE:
-                    doAction(instruction.action);
-                    break;
-                case CD_RED:
-                    if (isRed() != 0) {
-                        doAction(instruction.action);
-                    }
-                    break;
-                case CD_ORANGE:
-                    if (isOrange()) {
-                        doAction(instruction.action);
-                    }
-                    break;
-                case CD_BLUE:
-                    if (isBlue()) {
-                        doAction(instruction.action);
-                    }
-                    break;
-            }
-            while (programCase == -1) {
-                if (lastNode == NULL) {
-                    // printf("t");
-                    // printProgram(program);
-                    declareGameTerminated();
-                    break;
-                }
-                jumpBack(&programCase);
-            }
-            /*printf("instruction : %d %d", instruction.action, instruction.condition);
-            printCoords();
-            printf("\ndirection : %d\n\n", direction);
-            printMatrix(matrix);*/
-        }
+        executeProgram(program);
 
         if (gameWon()) {
             printf("this program succeeded\n\n\n");

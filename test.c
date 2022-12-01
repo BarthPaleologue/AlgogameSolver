@@ -31,45 +31,7 @@ int main() {
 
         resetStatus();
 
-        for (int step = 0; step < 120 && !gameLost() && !gameTerminated() && !gameWon(); step++) {
-            struct Instruction instruction = program[programCase];
-
-            updateProgramCase();
-
-            if (isStar()) {
-                numberOfStars--;
-            }
-
-            switch (instruction.condition) {
-                case CD_NONE:
-                    doAction(instruction.action);
-                    break;
-                case CD_RED:
-                    if (isRed() != 0) {
-                        doAction(instruction.action);
-                    }
-                    break;
-                case CD_ORANGE:
-                    if (isOrange()) {
-                        doAction(instruction.action);
-                    }
-                    break;
-                case CD_BLUE:
-                    if (isBlue()) {
-                        doAction(instruction.action);
-                    }
-                    break;
-            }
-            while (programCase == -1) {
-                if (lastNode == NULL) {
-                    // printf("t");
-                    // printProgram(program);
-                    declareGameTerminated();
-                    break;
-                }
-                jumpBack(&programCase);
-            }
-        }
+        executeProgram(program);
 
         if (gameWon()) {
             printf("Tests passed: %d/%d\r", i + 1, NB_PROGRAMS);
