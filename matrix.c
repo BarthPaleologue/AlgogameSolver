@@ -2,7 +2,7 @@
 #include "matrix.h"
 #include "level_specifics.h"
 
-static char isConform();
+static char isConformAndWhatSize(char nbOfLines, char nbOfColumns);
 
 char matrixBase[12][10] = {
     {CASE_WHITE, CASE_WHITE, CASE_WHITE, CASE_WHITE, CASE_WHITE, CASE_WHITE, CASE_WHITE, CASE_WHITE, CASE_WHITE, CASE_WHITE},
@@ -147,30 +147,57 @@ char gameTerminated() {
 }
 
 void initMatrix() {
-    if (!isConform()) {
+    char nbOfLines;
+    char nbOfColunms;
+
+    if (!isConformAndWhatSize(nbOfLines, nbOfColunms)) {
         return;
     }
 
+
 }
 
-static char isConform() {
+static char isConformAndWhatSize(char nbOfLines, char nbOfColumns) {
     FILE* map = fopen(pathMap, "r");
     FILE* starsMap = fopen(pathStarsMap, "r");
     if (map && starsMap) {
-        //compares every character in map and starsMap
+
         char c1, c2;
+        nbOfColumns = 0;
+        int columnsCounter = 0;
+        nbOfLines = 0;
+
         while ((c1 = fgetc(map)) != EOF && (c2 = fgetc(starsMap)) != EOF) {
-            if (c2 != '*' && c1 != c2) {
-                printf("Error : map and starsMap are not conform\n");
+            
+            if (c2 != ' ' && c2 != '\n' && c2 != '\r') {
+                columnsCounter++;
+            } else if (c2 == ' ' || c2 == '\r') {
+                printf("There are spaces or tabs in the stars map file. Please remove them.\n");
                 return 0;
+            } else {
+                if (nbOfColumns != 0 && columnsCounter != nbOfColumns) {
+                    printf("Check that there's the same number of symbols on each line of the star map.\n");
+                    return 0;
+                } else {
+                    nbOfColumns = columnsCounter;
+                    columnsCounter = 0;
+                }
             }
             
+            if (c2 != '*' && c1 != c2) {
+                if (c1 == ' ' || c1 == '\r') {
+                    printf("There are spaces or tabs in the map file. Please remove them.\n");
+                    return 0;
+                } else {
+                    printf("The map and the star map are not conform. Please check that the symbols are the same.\n");
+                    return 0;
+                }
+            } 
         }
 
-
         printf("Correspondance between the two files is correct\n");
-
         return 1;
+        
     } else {
         printf("Error while reading map files");
         return 0;
