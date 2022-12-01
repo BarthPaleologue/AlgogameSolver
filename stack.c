@@ -4,17 +4,17 @@
 
 node_t *lastNode = NULL;
 
-node_t *jumpInProgram(int newProgramCase, int *programCasePointer) {
+node_t *jumpInProgram(int newprogramPointer, int *programPointerPointer) {
     node_t *newNode = (node_t *)malloc(sizeof(node_t));
     newNode->oldNode = lastNode;
-    newNode->programCase = *programCasePointer;
-    *programCasePointer = newProgramCase;
+    newNode->programPointer = *programPointerPointer;
+    *programPointerPointer = newprogramPointer;
     return newNode;
 }
 
-void jumpBack(int *programCasePointer) {
+void jumpBack(int *programPointerPointer) {
     node_t *temp = lastNode->oldNode;
-    *programCasePointer = lastNode->programCase;
+    *programPointerPointer = lastNode->programPointer;
     free(lastNode);
     lastNode = temp;
 }

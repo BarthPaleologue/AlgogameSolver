@@ -1,9 +1,9 @@
 typedef struct node {
     struct node *oldNode;
-    unsigned int programCase;
+    unsigned int programPointer;
 } node_t;
 
 extern node_t *lastNode;
 
-node_t *jumpInProgram(int newProgramCase, int *programCasePointer);
-void jumpBack(int *programCasePointer);
+node_t *jumpInProgram(int newprogramPointer, int *programPointerPointer);
+void jumpBack(int *programPointerPointer);

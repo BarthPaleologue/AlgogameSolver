@@ -1,6 +1,6 @@
 #include "game.h"
 
-int programCase;
+int programPointer;
 
 void doInstruction(enum Action action, enum Condition condition) {
     switch (condition) {
@@ -30,19 +30,19 @@ void doInstruction(enum Action action, enum Condition condition) {
             paintBlue();
             return declareWasPainted();
         case F1:
-            lastNode = jumpInProgram(0, &programCase);
+            lastNode = jumpInProgram(0, &programPointer);
             return;
         case F2:
-            lastNode = jumpInProgram(F1_LENGTH, &programCase);
+            lastNode = jumpInProgram(F1_LENGTH, &programPointer);
             return;
     }
 }
 
-void updateProgramCase() {
-    if (programCase == PROGRAM_LENGTH - 1 || programCase == F1_LENGTH - 1)
-        programCase = -1;
+void updateProgramPointer() {
+    if (programPointer == PROGRAM_LENGTH - 1 || programPointer == F1_LENGTH - 1)
+        programPointer = -1;
     else
-        programCase = programCase + 1;
+        programPointer = programPointer + 1;
 }
 
 void resetStatus() {
@@ -62,27 +62,27 @@ void resetStatus() {
         resetMatrix();  // pas necessaire a chaque fois...
     }
     while (lastNode != NULL) {
-        jumpBack(&programCase);  // permet de free tous les nodes
+        jumpBack(&programPointer);  // permet de free tous les nodes
     }
-    programCase = 0;
+    programPointer = 0;
 }
 
 void executeProgram(Program program) {
     for (int step = 0; step < 120 && !gameLost() && !gameTerminated() && !gameWon(); step++) {
-        struct Instruction instruction = program[programCase];
+        struct Instruction instruction = program[programPointer];
 
-        updateProgramCase();
+        updateProgramPointer();
 
         if (isStar()) numberOfStars--;
 
         doInstruction(instruction.action, instruction.condition);
 
-        while (programCase == -1) {
+        while (programPointer == -1) {
             if (lastNode == NULL) {
                 declareGameTerminated();
                 break;
             }
-            jumpBack(&programCase);
+            jumpBack(&programPointer);
         }
     }
 }

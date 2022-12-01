@@ -8,11 +8,11 @@
 #include "matrix.h"
 #include "stack.h"
 
-extern int programCase;
+extern int programPointer;
 
 void doInstruction(enum Action action, enum Condition condition);
 
-void updateProgramCase();
+void updateProgramPointer();
 
 void resetStatus();
 
