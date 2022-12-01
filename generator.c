@@ -71,11 +71,20 @@ void printProgramVerbose(Program p) {
             case PAINT_BLUE:
                 actionStr = "PNT_B";
                 break;
+            case PAINT_ORANGE:
+                actionStr = "PNT_O";
+                break;
             case F1:
                 actionStr = "F1";
                 break;
             case F2:
                 actionStr = "F2";
+                break;
+            case F3:
+                actionStr = "F3";
+                break;
+            case F4:
+                actionStr = "F4";
                 break;
         }
         switch (p[i].condition) {
@@ -92,7 +101,10 @@ void printProgramVerbose(Program p) {
                 conditionStr = "B";
                 break;
         }
-        if (i == 3) printf("  ");
+        if (i == F1_LENGTH) printf("  ");
+        if (i == F1_LENGTH + F2_LENGTH) printf("  ");
+        if (i == F1_LENGTH + F2_LENGTH + F3_LENGTH) printf("  ");
+        if (i == F1_LENGTH + F2_LENGTH + F3_LENGTH + F4_LENGTH) printf("  ");
         printf("[%s;%s] ", actionStr, conditionStr);
     }
     printf("\n\n");
@@ -121,7 +133,7 @@ char isProgramWorthTesting(Program p) {
                 nbF1Calls++;
                 break;
             case F2:
-                if (i < 3) {
+                if (i < F1_LENGTH) {
                     nbF2Calls++;
                 }
                 break;
