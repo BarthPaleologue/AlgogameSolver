@@ -54,7 +54,9 @@ void writeProgramStateToFile(char* filename) {
 void readProgramStateFromFile(char* filename) {
     FILE* file = fopen(filename, "r");
     if (file) {
-        fscanf(file, "%hhd %hhd %hhd %hhd %hhd %hhd %hhd", &programState[0], &programState[1], &programState[2], &programState[3], &programState[4], &programState[5], &programState[6]);
+        for (int i = 0; i < PROGRAM_LENGTH; i++) {
+            fscanf(file, "%hhd", &programState[i]);
+        }
     } else {
         printf("Error while reading file %s\nThe generator will be initialized at 0", filename);
         for (unsigned char i = 0; i < PROGRAM_LENGTH; i++) {
