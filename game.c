@@ -40,10 +40,18 @@ void updateProgramCase() {
 }
 
 void resetStatus() {
+    //coords.x = startingCoords.x;
+    //startingCoords defini dans matrix
     coords.x = 5;
     coords.y = 10;
+
+    //direction doit etre set dans level_specific
+    //direction = startingDirection;
     direction = RIGHT;
+
     numberOfStars = 1;
+    //starsCounter = numberOfStars;
+
     if (wasPainted()) {
         resetMatrix();  // pas necessaire a chaque fois...
     }
