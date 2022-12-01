@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-const char NB_INSTRUCTIONS = NB_CONDITIONS * NB_ACTIONS;
+const char NB_INSTRUCTIONS = (sizeof(possibleConditions) / sizeof(possibleConditions[0]) * sizeof(possibleActions) / sizeof(possibleActions[0]));
 
 char programState[PROGRAM_LENGTH];
 
@@ -184,8 +184,8 @@ Program generateNextProgram() {
     do {
         // generate program using this state
         for (unsigned char i = 0; i < PROGRAM_LENGTH; i++) {
-            program[i].action = programState[i] / NB_CONDITIONS;
-            program[i].condition = programState[i] % NB_CONDITIONS;
+            program[i].action = possibleActions[programState[i] / NB_CONDITIONS];
+            program[i].condition = possibleConditions[programState[i] % NB_CONDITIONS];
         }
 
         // increment state
