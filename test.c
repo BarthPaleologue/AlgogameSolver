@@ -44,7 +44,7 @@ int main() {
         free(program);
 
         if (gameWon()) {
-            printf("Tests passed: %d/%d\r", i + 1, NB_PROGRAMS);
+            printf("Tests passed: %d/%d\n", i + 1, NB_PROGRAMS);
         } else {
             successful = 0;
             printf("\nERROR: Test n°%d failed\n", i + 1);

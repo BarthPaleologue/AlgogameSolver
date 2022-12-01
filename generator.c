@@ -51,6 +51,7 @@ void readProgramStateFromFile(char* filename) {
             programState[i] = 0;
         }
     }
+    fclose(file);
 }
 
 void printProgram(Program p) {

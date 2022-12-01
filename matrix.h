@@ -1,6 +1,9 @@
 #ifndef matrix_h
 #define matrix_h
 
+extern char numberOfStars;
+extern char starsCounter;
+
 enum Color {
     CASE_WHITE,
     CASE_RED,
@@ -11,7 +14,7 @@ enum Color {
 // if you're on CASE_WHITE, you lose
 // if you're on CASE_STAR, you win
 
-extern char matrix[12][10];
+extern char ** matrix;
 void resetMatrix();
 void initMatrix();
 
@@ -29,11 +32,12 @@ struct Coords {
 // careful, the position is at matrix[y][x]
 
 extern struct Coords coords;
+extern struct Coords startingCoords;
 extern enum Direction direction;
 
 void printCoords();
 
-void printMatrix(char matrix[12][10]);
+void printMatrix(char ** matrix);
 
 void move();
 void turnRight();
@@ -41,13 +45,11 @@ void turnLeft();
 char isRed();
 char isOrange();
 char isBlue();
-char isStar();
+void eatStar();
 void paintRed();
 void paintBlue();
 char gameLost();
 char gameWon();
-void declareGameTerminated();
-char gameTerminated();
 void declareWasPainted();
 char wasPainted();
 

@@ -19,8 +19,6 @@ const enum Condition possibleConditions[NB_CONDITIONS] = {
     CD_BLUE,
 };
 
-int numberOfStars;
-
 int levelNumber = 38;
 
 //creation of paths 

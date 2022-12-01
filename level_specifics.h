@@ -32,8 +32,6 @@ extern const enum Action possibleActions[NB_ACTIONS];
 
 extern const enum Condition possibleConditions[NB_CONDITIONS];
 
-extern int numberOfStars;
-
 extern int levelNumber;
 
 extern char pathStarsMap[22];

@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include "game.h"
 
 int programCase;
@@ -49,8 +50,7 @@ void resetStatus() {
     //direction = startingDirection;
     direction = RIGHT;
 
-    numberOfStars = 1;
-    //starsCounter = numberOfStars;
+    starsCounter = numberOfStars;
 
     if (wasPainted()) {
         resetMatrix();  // pas necessaire a chaque fois...
@@ -62,14 +62,11 @@ void resetStatus() {
 }
 
 void executeProgram(Program program) {
-    for (int step = 0; step < 120 && !gameLost() && !gameTerminated() && !gameWon(); step++) {
+    for (int step = 0; step < 120 && !gameLost(); step++) {
         struct Instruction instruction = program[programCase];
 
         updateProgramCase();
 
-        if (isStar()) {
-            numberOfStars--;
-        }
 
         switch (instruction.condition) {
             case CD_NONE:
@@ -93,16 +90,20 @@ void executeProgram(Program program) {
         }
         while (programCase == -1) {
             if (lastNode == NULL) {
-                // printf("t");
-                // printProgram(program);
-                declareGameTerminated();
-                break;
+                return;
             }
             jumpBack(&programCase);
         }
-        /*printf("instruction : %d %d", instruction.action, instruction.condition);
+        printf("instruction : %d %d", instruction.action, instruction.condition);
         printCoords();
         printf("\ndirection : %d\n\n", direction);
-        printMatrix(matrix);*/
+        printf("%d\n", starsCounter);
+        printMatrix(matrix);
+
+        eatStar();
+
+        if (gameWon()) {
+            return;
+        }
     }
 }
