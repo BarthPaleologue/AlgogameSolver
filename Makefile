@@ -1,6 +1,10 @@
 CFLAGS = -Wall -Wextra -g -o3
 LDFLAGS = -g
 
+build-check: run-test
+	make clean
+	make main
+
 main: main.o generator.o game.o matrix.o stack.o level_specifics.o
 
 run-build: clean
