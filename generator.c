@@ -31,8 +31,18 @@ void writeProgramStateToFile(char* filename) {
     if (file == NULL)
         printf("Error opening file! Could not write the program state.\n");
 
-    fprintf(file, "%d %d %d %d %d %d %d\n", programState[0], programState[1], programState[2], programState[3], programState[4], programState[5], programState[6]);
-    fprintf(file, "Program state: {%d, %d, %d, %d, %d, %d, %d}\n", programState[0], programState[1], programState[2], programState[3], programState[4], programState[5], programState[6]);
+    for (int i = 0; i < PROGRAM_LENGTH; i++) {
+        fprintf(file, "%d", programState[i]);
+        if (i < PROGRAM_LENGTH - 1)
+            fprintf(file, " ");
+    }
+    fprintf(file, "\nProgram State: {");
+    for (int i = 0; i < PROGRAM_LENGTH; i++) {
+        fprintf(file, "%d", programState[i]);
+        if (i < PROGRAM_LENGTH - 1)
+            fprintf(file, ", ");
+    }
+    fprintf(file, "}\n");
     fclose(file);
 }
 
@@ -43,9 +53,9 @@ void writeProgramStateToFile(char* filename) {
  */
 void readProgramStateFromFile(char* filename) {
     FILE* file = fopen(filename, "r");
-    if (file)
+    if (file) {
         fscanf(file, "%hhd %hhd %hhd %hhd %hhd %hhd %hhd", &programState[0], &programState[1], &programState[2], &programState[3], &programState[4], &programState[5], &programState[6]);
-    else {
+    } else {
         printf("Error while reading file %s\nThe generator will be initialized at 0", filename);
         for (unsigned char i = 0; i < PROGRAM_LENGTH; i++) {
             programState[i] = 0;
