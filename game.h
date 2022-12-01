@@ -8,14 +8,37 @@
 #include "matrix.h"
 #include "stack.h"
 
-extern int programCase;
+/**
+ * @brief The index of the current instruction in the program
+ *
+ */
+extern int programPointer;
 
-void doAction(enum Action action);
+/**
+ * @brief Will filter the conditions and then do the given action which will update the game state
+ *
+ * @param action The action of the instruction
+ * @param condition The condition that is applied to the action
+ */
+void doInstruction(enum Action action, enum Condition condition);
 
-void updateProgramCase();
+/**
+ * @brief Updates the program pointer and takes care of the size of the different functions accordingly
+ *
+ */
+void updateProgramPointer();
 
+/**
+ * @brief Resets the game state : map and coordinates
+ *
+ */
 void resetStatus();
 
+/**
+ * @brief Will execute the given program and update the game state until it is finished or a certain limit of instructions is reached
+ *
+ * @param program The given program to be executed
+ */
 void executeProgram(Program program);
 
 #endif

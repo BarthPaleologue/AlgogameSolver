@@ -7,10 +7,6 @@ const char NB_INSTRUCTIONS = (sizeof(possibleConditions) / sizeof(possibleCondit
 
 char programState[PROGRAM_LENGTH];
 
-/**
- * @brief print the state of the generator to stdout
- *
- */
 void printProgramState() {
     printf("Program State: {");
     for (int i = 0; i < PROGRAM_LENGTH; i++) {
@@ -21,42 +17,39 @@ void printProgramState() {
     printf("}\n");
 }
 
-/**
- * @brief Write the state of the generator to a file
- *
- * @param filename The name of the file to write to
- */
 void writeProgramStateToFile(char* filename) {
     FILE* file = fopen(filename, "w");
     if (file == NULL)
         printf("Error opening file! Could not write the program state.\n");
 
-    fprintf(file, "%d %d %d %d %d %d %d\n", programState[0], programState[1], programState[2], programState[3], programState[4], programState[5], programState[6]);
-    fprintf(file, "Program state: {%d, %d, %d, %d, %d, %d, %d}\n", programState[0], programState[1], programState[2], programState[3], programState[4], programState[5], programState[6]);
+    for (int i = 0; i < PROGRAM_LENGTH; i++) {
+        fprintf(file, "%d", programState[i]);
+        if (i < PROGRAM_LENGTH - 1)
+            fprintf(file, " ");
+    }
+    fprintf(file, "\nProgram State: {");
+    for (int i = 0; i < PROGRAM_LENGTH; i++) {
+        fprintf(file, "%d", programState[i]);
+        if (i < PROGRAM_LENGTH - 1)
+            fprintf(file, ", ");
+    }
+    fprintf(file, "}\n");
     fclose(file);
 }
 
-/**
- * @brief Read the generation state from a file and init the generator. Will init to 0 if no file is found.
- *
- * @param filename The file to read from
- */
 void readProgramStateFromFile(char* filename) {
     FILE* file = fopen(filename, "r");
-    if (file)
-        fscanf(file, "%hhd %hhd %hhd %hhd %hhd %hhd %hhd", &programState[0], &programState[1], &programState[2], &programState[3], &programState[4], &programState[5], &programState[6]);
-    else {
+    if (file) {
+        for (int i = 0; i < PROGRAM_LENGTH; i++) {
+            fscanf(file, "%hhd", &programState[i]);
+        }
+    } else {
         printf("Error while reading file %s\nThe generator will be initialized at 0", filename);
         for (unsigned char i = 0; i < PROGRAM_LENGTH; i++) {
             programState[i] = 0;
         }
     }
     fclose(file);
-}
-
-void printProgram(Program p) {
-    printf("Actions:    %d %d %d %d %d %d %d\n", p[0].action, p[1].action, p[2].action, p[3].action, p[4].action, p[5].action, p[6].action);
-    printf("Conditions: %d %d %d %d %d %d %d\n\n", p[0].condition, p[1].condition, p[2].condition, p[3].condition, p[4].condition, p[5].condition, p[6].condition);
 }
 
 void printProgramVerbose(Program p) {
@@ -79,11 +72,20 @@ void printProgramVerbose(Program p) {
             case PAINT_BLUE:
                 actionStr = "PNT_B";
                 break;
+            case PAINT_ORANGE:
+                actionStr = "PNT_O";
+                break;
             case F1:
                 actionStr = "F1";
                 break;
             case F2:
                 actionStr = "F2";
+                break;
+            case F3:
+                actionStr = "F3";
+                break;
+            case F4:
+                actionStr = "F4";
                 break;
         }
         switch (p[i].condition) {
@@ -100,26 +102,15 @@ void printProgramVerbose(Program p) {
                 conditionStr = "B";
                 break;
         }
-        if (i == 3) printf("  ");
+        if (i == F1_LENGTH) printf("  ");
+        if (i == F1_LENGTH + F2_LENGTH) printf("  ");
+        if (i == F1_LENGTH + F2_LENGTH + F3_LENGTH) printf("  ");
+        if (i == F1_LENGTH + F2_LENGTH + F3_LENGTH + F4_LENGTH) printf("  ");
         printf("[%s;%s] ", actionStr, conditionStr);
     }
     printf("\n\n");
 }
 
-/**
- * A ne pas tester: (évaluer la stratégie avant de la soumettre)
- * - Si y a pas avancer
- * - Si y a pas F1 & F2
- * - Si y a pas (tourner à droite || tourner à gauche)
- * - Si y a peindre en rouge sur rouge || peindre en bleu sur bleu
- */
-
-/**
- * @brief Check if a program is worth testing according to arbitrary rules
- *
- * @param p The program to check
- * @return char 1 if the program is worth testing, 0 otherwise
- */
 char isProgramWorthTesting(Program p) {
     char nbForwardActions = 0;
     char nbTurnActions = 0;
@@ -143,7 +134,7 @@ char isProgramWorthTesting(Program p) {
                 nbF1Calls++;
                 break;
             case F2:
-                if (i < 3) {
+                if (i < F1_LENGTH) {
                     nbF2Calls++;
                 }
                 break;
@@ -159,12 +150,6 @@ char isProgramWorthTesting(Program p) {
     return 1;
 }
 
-/**
- * @brief Generate a program from an array of array2[action, condition]
- *
- * @param programArray
- * @return Program
- */
 Program getProgramFromVerboseArray(char programArray[PROGRAM_LENGTH][2]) {
     Program p = malloc(sizeof(struct Instruction) * PROGRAM_LENGTH);
     for (unsigned char i = 0; i < PROGRAM_LENGTH; i++) {
@@ -174,11 +159,6 @@ Program getProgramFromVerboseArray(char programArray[PROGRAM_LENGTH][2]) {
     return p;
 }
 
-/**
- * @brief Generate the next program worthy of testing
- *
- * @return Program The next program
- */
 Program generateNextProgram() {
     Program program = malloc(sizeof(struct Instruction) * PROGRAM_LENGTH);
 

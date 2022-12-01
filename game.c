@@ -1,53 +1,57 @@
 #include <stdio.h>
 #include "game.h"
 
-int programCase;
+int programPointer;
 
-void doAction(enum Action action) {
+void doInstruction(enum Action action, enum Condition condition) {
+    switch (condition) {
+        case CD_NONE:
+            break;
+        case CD_RED:
+            if (isRed()) break;
+            return;
+        case CD_ORANGE:
+            if (isOrange()) break;
+            return;
+        case CD_BLUE:
+            if (isBlue()) break;
+            return;
+    }
     switch (action) {
         case FORWARD:
-            move();
-            return;
+            return move();
         case TURN_LEFT:
-            turnLeft();
-            return;
+            return turnLeft();
         case TURN_RIGHT:
-            turnRight();
-            return;
+            return turnRight();
         case PAINT_RED:
             paintRed();
-            declareWasPainted();
-            return;
+            return declareWasPainted();
         case PAINT_BLUE:
             paintBlue();
-            declareWasPainted();
-            return;
+            return declareWasPainted();
         case F1:
-            lastNode = jumpInProgram(0, &programCase);
-            return;
+            return jumpInProgram(0, &programPointer);
         case F2:
-            lastNode = jumpInProgram(F1_LENGTH, &programCase);
-            return;
+            return jumpInProgram(F1_LENGTH, &programPointer);
     }
-    return;
 }
 
-void updateProgramCase() {
-    if (programCase == PROGRAM_LENGTH - 1 || programCase == F1_LENGTH - 1) {
-        programCase = -1;
-    } else {
-        programCase = programCase + 1;
-    }
+void updateProgramPointer() {
+    if (programPointer == PROGRAM_LENGTH - 1 || programPointer == F1_LENGTH - 1 || programPointer == F1_LENGTH + F2_LENGTH - 1 || programPointer == F1_LENGTH + F2_LENGTH + F3_LENGTH - 1 || programPointer == F1_LENGTH + F2_LENGTH + F3_LENGTH + F4_LENGTH - 1)
+        programPointer = -1;
+    else
+        programPointer = programPointer + 1;
 }
 
 void resetStatus() {
-    //coords.x = startingCoords.x;
-    //startingCoords defini dans matrix
+    // coords.x = startingCoords.x;
+    // startingCoords defini dans matrix
     coords.x = 5;
     coords.y = 10;
 
-    //direction doit etre set dans level_specific
-    //direction = startingDirection;
+    // direction doit etre set dans level_specific
+    // direction = startingDirection;
     direction = RIGHT;
 
     starsCounter = numberOfStars;
@@ -55,50 +59,33 @@ void resetStatus() {
     if (wasPainted()) {
         resetMatrix();  // pas necessaire a chaque fois...
     }
-    while (lastNode != NULL) {
-        jumpBack(&programCase);  // permet de free tous les nodes
+    while (stackPointer != NULL) {
+        jumpBack(&programPointer);  // permet de free tous les nodes
     }
-    programCase = 0;
+    programPointer = 0;
 }
 
 void executeProgram(Program program) {
-    for (int step = 0; step < 120 && !gameLost(); step++) {
-        struct Instruction instruction = program[programCase];
 
-        updateProgramCase();
+    for (int step = 0; step < MAX_EXECUTION_ITERATIONS && !gameLost(); step++) {
+        struct Instruction instruction = program[programPointer];
 
 
-        switch (instruction.condition) {
-            case CD_NONE:
-                doAction(instruction.action);
-                break;
-            case CD_RED:
-                if (isRed() != 0) {
-                    doAction(instruction.action);
-                }
-                break;
-            case CD_ORANGE:
-                if (isOrange()) {
-                    doAction(instruction.action);
-                }
-                break;
-            case CD_BLUE:
-                if (isBlue()) {
-                    doAction(instruction.action);
-                }
-                break;
-        }
-        while (programCase == -1) {
-            if (lastNode == NULL) {
+        updateProgramPointer();
+
+        doInstruction(instruction.action, instruction.condition);
+
+        while (programPointer == -1) {
+            if (stackPointer == NULL) {
                 return;
             }
-            jumpBack(&programCase);
+            jumpBack(&programPointer);
         }
-        printf("instruction : %d %d", instruction.action, instruction.condition);
+        /*printf("instruction : %d %d", instruction.action, instruction.condition);
         printCoords();
         printf("\ndirection : %d\n\n", direction);
         printf("%d\n", starsCounter);
-        printMatrix(matrix);
+        printMatrix(matrix);*/
 
         eatStar();
 

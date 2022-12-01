@@ -2,19 +2,19 @@
 
 #include <stdlib.h>
 
-node_t *lastNode = NULL;
+node_t *stackPointer = NULL;
 
-node_t *jumpInProgram(int newProgramCase, int *programCasePointer) {
+void jumpInProgram(int newprogramPointer, int *programPointerPointer) {
     node_t *newNode = (node_t *)malloc(sizeof(node_t));
-    newNode->oldNode = lastNode;
-    newNode->programCase = *programCasePointer;
-    *programCasePointer = newProgramCase;
-    return newNode;
+    newNode->previousNode = stackPointer;
+    newNode->programPointer = *programPointerPointer;
+    *programPointerPointer = newprogramPointer;
+    stackPointer = newNode;
 }
 
-void jumpBack(int *programCasePointer) {
-    node_t *temp = lastNode->oldNode;
-    *programCasePointer = lastNode->programCase;
-    free(lastNode);
-    lastNode = temp;
+void jumpBack(int *programPointerPointer) {
+    node_t *temp = stackPointer->previousNode;
+    *programPointerPointer = stackPointer->programPointer;
+    free(stackPointer);
+    stackPointer = temp;
 }
