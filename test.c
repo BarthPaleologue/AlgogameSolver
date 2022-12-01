@@ -4,22 +4,30 @@
 #include "game.h"
 #include "generator.h"
 
-#define NB_PROGRAMS 1
+#define NB_PROGRAMS 12
 
 int main() {
     char programsToTest[NB_PROGRAMS][7][2] = {
-        {{F2, CD_NONE},
-         {PAINT_BLUE, CD_NONE},
-         {F1, CD_NONE},
-         {FORWARD, CD_RED},
-         {PAINT_RED, CD_BLUE},
-         {F2, CD_RED},
-         {TURN_LEFT, CD_NONE}}};
+        {{F2, CD_ORANGE}, {FORWARD, CD_RED}, {F1, CD_NONE}, {TURN_LEFT, CD_ORANGE}, {FORWARD, CD_NONE}, {F2, CD_RED}, {TURN_LEFT, CD_NONE}},
+        {{FORWARD, CD_RED}, {F2, CD_NONE}, {F1, CD_NONE}, {TURN_LEFT, CD_ORANGE}, {FORWARD, CD_NONE}, {F2, CD_RED}, {TURN_LEFT, CD_NONE}},
+        {{FORWARD, CD_RED}, {F2, CD_ORANGE}, {F1, CD_NONE}, {TURN_LEFT, CD_ORANGE}, {FORWARD, CD_NONE}, {F2, CD_RED}, {TURN_LEFT, CD_NONE}},
+
+        {{F2, CD_ORANGE}, {FORWARD, CD_RED}, {F1, CD_ORANGE}, {TURN_LEFT, CD_ORANGE}, {FORWARD, CD_NONE}, {F2, CD_RED}, {TURN_LEFT, CD_NONE}},
+        {{FORWARD, CD_RED}, {F2, CD_NONE}, {F1, CD_ORANGE}, {TURN_LEFT, CD_ORANGE}, {FORWARD, CD_NONE}, {F2, CD_RED}, {TURN_LEFT, CD_NONE}},
+        {{FORWARD, CD_RED}, {F2, CD_ORANGE}, {F1, CD_ORANGE}, {TURN_LEFT, CD_ORANGE}, {FORWARD, CD_NONE}, {F2, CD_RED}, {TURN_LEFT, CD_NONE}},
+
+        {{F2, CD_ORANGE}, {FORWARD, CD_RED}, {F1, CD_NONE}, {TURN_LEFT, CD_ORANGE}, {FORWARD, CD_NONE}, {F2, CD_RED}, {TURN_LEFT, CD_ORANGE}},
+        {{FORWARD, CD_RED}, {F2, CD_NONE}, {F1, CD_NONE}, {TURN_LEFT, CD_ORANGE}, {FORWARD, CD_NONE}, {F2, CD_RED}, {TURN_LEFT, CD_ORANGE}},
+        {{FORWARD, CD_RED}, {F2, CD_ORANGE}, {F1, CD_NONE}, {TURN_LEFT, CD_ORANGE}, {FORWARD, CD_NONE}, {F2, CD_RED}, {TURN_LEFT, CD_ORANGE}},
+
+        {{F2, CD_ORANGE}, {FORWARD, CD_RED}, {F1, CD_ORANGE}, {TURN_LEFT, CD_ORANGE}, {FORWARD, CD_NONE}, {F2, CD_RED}, {TURN_LEFT, CD_ORANGE}},
+        {{FORWARD, CD_RED}, {F2, CD_NONE}, {F1, CD_ORANGE}, {TURN_LEFT, CD_ORANGE}, {FORWARD, CD_NONE}, {F2, CD_RED}, {TURN_LEFT, CD_ORANGE}},
+        {{FORWARD, CD_RED}, {F2, CD_ORANGE}, {F1, CD_ORANGE}, {TURN_LEFT, CD_ORANGE}, {FORWARD, CD_NONE}, {F2, CD_RED}, {TURN_LEFT, CD_ORANGE}}};
 
     initPath();
     initMatrix();
     resetMatrix();
-    printf("\n\n\n");
+    printf("\n---------------------TESTING---------------------\n\n");
 
     // printMatrix(matrix);
 
@@ -27,65 +35,32 @@ int main() {
 
     for (unsigned char i = 0; i < NB_PROGRAMS; i++) {
         Program program = getProgramFromVerboseArray(programsToTest[i]);
-        printProgramVerbose(program);
+        // printProgramVerbose(program);
 
         resetStatus();
 
-        for (int step = 0; step < 120 && !gameLost() && !gameTerminated() && !gameWon(); step++) {
-            struct Instruction instruction = program[programCase];
+        executeProgram(program);
 
-            updateProgramCase();
-
-            if (isStar()) {
-                numberOfStars--;
-            }
-
-            switch (instruction.condition) {
-                case CD_NONE:
-                    doAction(instruction.action);
-                    break;
-                case CD_RED:
-                    if (isRed() != 0) {
-                        doAction(instruction.action);
-                    }
-                    break;
-                case CD_ORANGE:
-                    if (isOrange()) {
-                        doAction(instruction.action);
-                    }
-                    break;
-                case CD_BLUE:
-                    if (isBlue()) {
-                        doAction(instruction.action);
-                    }
-                    break;
-            }
-            while (programCase == -1) {
-                if (lastNode == NULL) {
-                    // printf("t");
-                    // printProgram(program);
-                    declareGameTerminated();
-                    break;
-                }
-                jumpBack(&programCase);
-            }
-        }
+        free(program);
 
         if (gameWon()) {
             printf("Tests passed: %d/%d\r", i + 1, NB_PROGRAMS);
         } else {
             successful = 0;
+            printf("\nERROR: Test n°%d failed\n", i + 1);
+            break;
         }
-        free(program);
     }
 
-    printf("\n\n\n");
+    printf("\n");
 
     if (successful) {
         printf("The tests were successful\n");
+        printf("\n-----------------END OF TESTING------------------\n");
         return EXIT_SUCCESS;
     } else {
         printf("The tests failed\n");
+        printf("\n-----------------END OF TESTING------------------\n");
         return EXIT_FAILURE;
     }
 }
