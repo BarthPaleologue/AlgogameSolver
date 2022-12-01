@@ -20,19 +20,6 @@ int main() {
     // read from program_state.txt and update programState
     readProgramStateFromFile("./program_state.txt");
 
-    /*char programArray[7][2] = {
-        {F2, CD_NONE},
-        {PAINT_BLUE, CD_NONE},
-        {F1, CD_NONE},
-        {FORWARD, CD_RED},
-        {PAINT_RED, CD_BLUE},
-        {F2, CD_RED},
-        {TURN_LEFT, CD_NONE}};
-
-    Program p = getProgramFromVerboseArray(programArray);
-
-    printProgramVerbose(p);*/
-
     initPath();
     initMatrix();
     resetMatrix();
@@ -52,13 +39,13 @@ int main() {
         if (gameWon()) {
             printf("this program succeeded\n\n\n");
             printProgramVerbose(program);
-        } else if (gameLost()) {
-            // printf("this program failed\n\n\n");
-            //  printf("f-");
+        } /*else if (gameLost()) {
+            printf("this program failed\n\n\n");
+            printf("f-");
         } else if (gameTerminated()) {
-            // printf("this program terminated without finding the star\n\n\n");
-            //  printf("i-");
-        }
+            printf("this program terminated without finding the star\n\n\n");
+            printf("i-");
+        }*/
 
         printf("Tested programs: %llu\r", ++n);
 
