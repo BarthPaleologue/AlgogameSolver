@@ -112,6 +112,10 @@ void paintBlue() {
     matrix[coords.y][coords.x] = CASE_BLUE;
 }
 
+void paintOrange() {
+    matrix[coords.y][coords.x] = CASE_ORANGE;
+}
+
 char gameLost() {
     return matrix[coords.y][coords.x] == CASE_WHITE;
 }

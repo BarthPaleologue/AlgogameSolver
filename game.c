@@ -29,6 +29,9 @@ void doInstruction(enum Action action, enum Condition condition) {
         case PAINT_BLUE:
             paintBlue();
             return declareWasPainted();
+        case PAINT_ORANGE:
+            paintOrange();
+            return declareWasPainted();
         case F1:
             return jumpInProgram(F1_START, &programPointer);
         case F2:

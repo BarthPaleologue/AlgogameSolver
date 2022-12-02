@@ -44,6 +44,7 @@ char isBlue();
 char isStar();
 void paintRed();
 void paintBlue();
+void paintOrange();
 char gameLost();
 char gameWon();
 void declareGameTerminated();
