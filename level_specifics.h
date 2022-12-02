@@ -3,13 +3,10 @@
 
 #define PROGRAM_LENGTH 7
 
-#define F1_LENGTH 3
-
-#define F2_LENGTH 4
-
-#define F3_LENGTH 0
-
-#define F4_LENGTH 0
+#define F1_START 0
+#define F2_START 3
+#define F3_START -1
+#define F4_START -1
 
 #define MAX_EXECUTION_ITERATIONS 120
 

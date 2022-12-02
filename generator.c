@@ -101,10 +101,7 @@ void printProgramVerbose(Program p) {
                 conditionStr = "B";
                 break;
         }
-        if (i == F1_LENGTH) printf("  ");
-        if (i == F1_LENGTH + F2_LENGTH) printf("  ");
-        if (i == F1_LENGTH + F2_LENGTH + F3_LENGTH) printf("  ");
-        if (i == F1_LENGTH + F2_LENGTH + F3_LENGTH + F4_LENGTH) printf("  ");
+        if (i == F2_START || i == F3_START || F4_START) printf("  ");
         printf("[%s;%s] ", actionStr, conditionStr);
     }
     printf("\n\n");
@@ -133,7 +130,7 @@ char isProgramWorthTesting(Program p) {
                 nbF1Calls++;
                 break;
             case F2:
-                if (i < F1_LENGTH) {
+                if (i < F2_START) {
                     nbF2Calls++;
                 }
                 break;
@@ -162,7 +159,7 @@ Program generateNextProgram() {
     Program program = malloc(sizeof(struct Instruction) * PROGRAM_LENGTH);
 
     do {
-        // generate program using this state
+        // generate program using the current state
         for (unsigned char i = 0; i < PROGRAM_LENGTH; i++) {
             program[i].action = possibleActions[programState[i] / NB_CONDITIONS];
             program[i].condition = possibleConditions[programState[i] % NB_CONDITIONS];
