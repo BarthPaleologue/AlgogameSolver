@@ -19,9 +19,9 @@ You will need to have installed two other tools to make the solver work.
 ### GCC
 
 You will need gcc to compile the code for your computer's hardware. There are many tutorials online for you available if you are on Windows. Linux users should already have gcc installed on their machine.
-### CMAKE
+### MAKE
 
-The second tool is CMake. As for GCC, there are many tutorials online on how to install CMake on your machine.
+The second tool is Make. As for GCC, there are many tutorials online on how to install Make on your machine so that we can use `make` later.
 
 ## Breaking a specific level
 
