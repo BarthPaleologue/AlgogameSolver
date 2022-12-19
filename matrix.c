@@ -8,8 +8,6 @@
 static char initMap();
 static char numberOfLines;
 static char numberOfColumns;
-
-
 static char** matrixBase;
 static char** matrixColorBase;
 
@@ -22,6 +20,8 @@ char _gameTerminated = 0;
 char _WasPainted = 0;
 char numberOfStars;
 char starsCounter;
+
+//TODO : noter quelles variables globales sont modifiées pendant l'initialisation
 
 void printCoords() {
     if (coords.x == startingCoords.x && coords.y == startingCoords.y) {
@@ -114,6 +114,10 @@ void paintRed() {
 
 void paintBlue() {
     matrix[coords.y][coords.x] = CASE_BLUE;
+}
+
+void paintOrange() {
+    matrix[coords.y][coords.x] = CASE_ORANGE;
 }
 
 char gameLost() {

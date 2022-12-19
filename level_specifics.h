@@ -3,13 +3,12 @@
 
 #define PROGRAM_LENGTH 7
 
-#define F1_LENGTH 3
+#define F2_START 3
 
-#define F2_LENGTH 4
+#define F3_START 8 //this length is never obtained !
+//we need to use a value that is impossible so the Solver doesn't misleadingly tells us F3 is reached
 
-#define F3_LENGTH 0
-
-#define F4_LENGTH 0
+#define F4_START 8 //this length is never obtained ! same comment as above
 
 #define MAX_EXECUTION_ITERATIONS 120
 

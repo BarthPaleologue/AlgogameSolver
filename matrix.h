@@ -48,6 +48,7 @@ char isBlue();
 void eatStar();
 void paintRed();
 void paintBlue();
+void paintOrange();
 char gameLost();
 char gameWon();
 void declareWasPainted();

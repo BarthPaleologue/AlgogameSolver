@@ -30,15 +30,22 @@ void doInstruction(enum Action action, enum Condition condition) {
         case PAINT_BLUE:
             paintBlue();
             return declareWasPainted();
+        case PAINT_ORANGE:
+            paintOrange();
+            return declareWasPainted();
         case F1:
             return jumpInProgram(0, &programPointer);
         case F2:
-            return jumpInProgram(F1_LENGTH, &programPointer);
+            return jumpInProgram(F2_START, &programPointer);
+        case F3:
+            return jumpInProgram(F3_START, &programPointer);
+        case F4:
+            return jumpInProgram(F4_START, &programPointer);
     }
 }
 
 void updateProgramPointer() {
-    if (programPointer == PROGRAM_LENGTH - 1 || programPointer == F1_LENGTH - 1 || programPointer == F1_LENGTH + F2_LENGTH - 1 || programPointer == F1_LENGTH + F2_LENGTH + F3_LENGTH - 1 || programPointer == F1_LENGTH + F2_LENGTH + F3_LENGTH + F4_LENGTH - 1)
+    if (programPointer == PROGRAM_LENGTH - 1 || programPointer == F2_START -1 || programPointer == F3_START -1 || programPointer == F4_START -1)
         programPointer = -1;
     else
         programPointer = programPointer + 1;
@@ -71,7 +78,8 @@ void executeProgram(Program program) {
         struct Instruction instruction = program[programPointer];
 
 
-        updateProgramPointer();
+        updateProgramPointer(); //programPointer was already used
+        //it is set for the next instruction fetch
 
         doInstruction(instruction.action, instruction.condition);
 
