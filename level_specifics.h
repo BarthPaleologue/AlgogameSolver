@@ -36,6 +36,12 @@ Please consult "levelspecifics.c" for all the details of adapting the code to di
 #define PROGRAM_LENGTH 7 
 
 
+///
+ ///@brief Position index of function F1 (always 0)
+ ///
+ ///
+#define F1_START 0
+
  ///@brief Position index of function F2 (number of instructions in function F1).
  ///
 #define F2_START 3

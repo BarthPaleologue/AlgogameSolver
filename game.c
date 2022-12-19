@@ -9,6 +9,7 @@ int programPointer;
 //it is updated before the execution
 //if the next instruction is unknown (end of a function), it is set to -1 temporally
 
+
 void updateProgramPointer() {
     //TOTHINK : always test for F3_START even when there's no F3 ???
     if (programPointer == PROGRAM_LENGTH - 1 || programPointer == F2_START -1 || programPointer == F3_START -1 || programPointer == F4_START -1) {
@@ -52,7 +53,7 @@ void doInstruction(enum Action action, enum Condition condition) {
             paintOrange();
             return declareWasPainted();
         case F1:
-            return jumpInProgram(0, &programPointer); //F1_START would be 0 if it existed
+            return jumpInProgram(F1_START, &programPointer);
         case F2:
             return jumpInProgram(F2_START, &programPointer);
         case F3:
