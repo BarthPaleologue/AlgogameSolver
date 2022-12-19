@@ -1,7 +1,24 @@
 #include <stdio.h>
 #include "game.h"
 
-int programPointer;
+
+
+
+int programPointer; 
+//the index of the next instruction to be fetched
+//it is updated before the execution
+//if the next instruction is unknown (end of a function), it is set to -1 temporally
+
+void updateProgramPointer() {
+    //TOTHINK : always test for F3_START even when there's no F3 ???
+    if (programPointer == PROGRAM_LENGTH - 1 || programPointer == F2_START -1 || programPointer == F3_START -1 || programPointer == F4_START -1) {
+        programPointer = -1;
+        //if we reach the end of a function, we set the pointer to a special value
+    } else {
+        programPointer = programPointer + 1;
+        //otherwise we set the pointer to the next instruction
+    }
+}
 
 void doInstruction(enum Action action, enum Condition condition) {
     switch (condition) {
@@ -9,7 +26,7 @@ void doInstruction(enum Action action, enum Condition condition) {
             break;
         case CD_RED:
             if (isRed()) break;
-            return;
+            return; //if the condition is ot respected the instruction is not executed
         case CD_ORANGE:
             if (isOrange()) break;
             return;
@@ -17,6 +34,7 @@ void doInstruction(enum Action action, enum Condition condition) {
             if (isBlue()) break;
             return;
     }
+
     switch (action) {
         case FORWARD:
             return move();
@@ -26,7 +44,7 @@ void doInstruction(enum Action action, enum Condition condition) {
             return turnRight();
         case PAINT_RED:
             paintRed();
-            return declareWasPainted();
+            return declareWasPainted(); //shortened syntax : declareWasPainted returns void
         case PAINT_BLUE:
             paintBlue();
             return declareWasPainted();
@@ -34,7 +52,7 @@ void doInstruction(enum Action action, enum Condition condition) {
             paintOrange();
             return declareWasPainted();
         case F1:
-            return jumpInProgram(0, &programPointer);
+            return jumpInProgram(0, &programPointer); //F1_START would be 0 if it existed
         case F2:
             return jumpInProgram(F2_START, &programPointer);
         case F3:
@@ -44,18 +62,11 @@ void doInstruction(enum Action action, enum Condition condition) {
     }
 }
 
-void updateProgramPointer() {
-    if (programPointer == PROGRAM_LENGTH - 1 || programPointer == F2_START -1 || programPointer == F3_START -1 || programPointer == F4_START -1)
-        programPointer = -1;
-    else
-        programPointer = programPointer + 1;
-}
-
 void resetStatus() {
-    // coords.x = startingCoords.x;
-    // startingCoords defini dans matrix
-    coords.x = 5;
-    coords.y = 10;
+    //this function resets all the nessecary parameters to test a new program
+
+    coords.x = startingCoords.x;
+    coords.y = startingCoords.y;
 
     // direction doit etre set dans level_specific
     // direction = startingDirection;
