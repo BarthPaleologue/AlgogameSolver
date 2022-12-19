@@ -1,4 +1,15 @@
-écrire fichier texte map32 (changer resetMatrix pour une lecture du fichier)
 afficher le pourcentage de complétion
 
-readme : padding sur le bord des maps, isWorthTesting, probas, generator (levelspecifics?), 
+
+readme : isWorthTesting, probas, generator (levelspecifics?), 
+
+
+mettre startingDirection dans levelspecifics
+
+
+deplacer Action et Condition de levemspecifics.h vers un endroit plus approprié?
+
+
+commenter tout
+
+
