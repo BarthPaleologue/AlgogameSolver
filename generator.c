@@ -46,13 +46,13 @@ void readProgramStateFromFile(char* filename) {
         for (int i = 0; i < PROGRAM_LENGTH; i++) {
             fscanf(file, "%hhd", &programState[i]);
         }
+        fclose(file);
     } else {
         printf("Error while reading file %s\nThe generator will be initialized at 0", filename);
         for (unsigned char i = 0; i < PROGRAM_LENGTH; i++) {
             programState[i] = 0;
         }
     }
-    fclose(file);
 }
 
 void printProgramVerbose(Program p) {
@@ -178,7 +178,7 @@ Program generateNextProgram() {
 
         // increment state
         int checkSum = 0;
-        for (unsigned char i = 0; i < NB_INSTRUCTIONS; i++) {
+        for (unsigned char i = 0; i < PROGRAM_LENGTH; i++) {
             if (programState[i] != NB_INSTRUCTIONS - 1) {
                 programState[i] += 1;
                 checkSum += programState[i];
