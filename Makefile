@@ -1,9 +1,9 @@
-CFLAGS = -Wall -Wextra -g -o3 -I ./levels/38 -I .
+CFLAGS = -Wall -Wextra -g -o3 -I ./levels/* -I .
 LDFLAGS = -g
 
-LVL =./levels/38/
+SPECIFICS =./levels/*/
 
-OBJ = generator.o executeProgram.o matrix.o instructionsImplementations.o stack.o $(LVL)level_specifics.o print.o
+OBJ = generator.o executeProgram.o matrix.o instructionsImplementations.o stack.o $(SPECIFICS)level_specifics.o print.o
 
 
 build-check: run-test
