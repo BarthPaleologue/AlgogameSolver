@@ -108,7 +108,7 @@ static void initGame() {
     if (wasPainted()) {
         resetMatrix();  // pas necessaire a chaque fois...
     }
-    while (stackPointer != NULL) {
+    while (!stackEmpty()) {
         jumpBack(&programPointer);  // permet de free tous les nodes
     }
     programPointer = 0;
@@ -132,7 +132,7 @@ void executeProgram(Program program) {
         doInstruction(instruction.action, instruction.condition);
 
         while (programPointer == -1) {
-            if (stackPointer == NULL) {
+            if (stackEmpty()) {
                 return;
             }
             jumpBack(&programPointer);
