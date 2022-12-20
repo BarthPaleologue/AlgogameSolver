@@ -5,6 +5,7 @@
 
 #include "game.h"
 #include "generator.h"
+#include "matrix.h"
 
 void kill_handler(int signo) {
     if (signo == SIGINT) {
@@ -32,7 +33,6 @@ int main() {
     Program program = NULL;
 
     while ((program = generateNextProgram()) != NULL) {
-        resetStatus();
 
         executeProgram(program);
 

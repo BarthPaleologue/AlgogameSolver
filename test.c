@@ -3,6 +3,7 @@
 
 #include "game.h"
 #include "generator.h"
+#include "matrix.h"
 
 #define NB_PROGRAMS 12
 
@@ -36,8 +37,6 @@ int main() {
     for (unsigned char i = 0; i < NB_PROGRAMS; i++) {
         Program program = getProgramFromVerboseArray(programsToTest[i]);
         // printProgramVerbose(program);
-
-        resetStatus();
 
         executeProgram(program);
 
