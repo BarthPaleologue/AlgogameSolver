@@ -1,6 +1,8 @@
 #ifndef LEVEL_SPECIFICS_H
 #define LEVEL_SPECIFICS_H
 
+#include "matrix.h"
+
 //TODO : peut etre déplacer Action et Condition vu que ça devrait surtout pas etre changé par l'utilisateur ??
 enum Action {
     FORWARD,
@@ -86,6 +88,8 @@ extern const enum Condition possibleConditions[NB_CONDITIONS];
 
 
 //EXPORTING GLOBAL VARIABLES AND FUNCTIONS
+
+extern enum Direction startingDirection;
 
 extern char pathStarsMap[22];
 

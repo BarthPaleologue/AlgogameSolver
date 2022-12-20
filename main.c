@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-#include "game.h"
+#include "executeProgram.h"
 #include "generator.h"
 #include "matrix.h"
 

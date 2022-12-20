@@ -3,6 +3,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+
+static char isProgramWorthTesting(Program p);
+
 const char NB_INSTRUCTIONS = (sizeof(possibleConditions) / sizeof(possibleConditions[0]) * sizeof(possibleActions) / sizeof(possibleActions[0]));
 
 char programState[PROGRAM_LENGTH];
@@ -108,7 +111,14 @@ void printProgramVerbose(Program p) {
     printf("\n\n");
 }
 
-char isProgramWorthTesting(Program p) {
+
+/**
+ * @brief Check if a program is worth testing according to arbitrary rules
+ *
+ * @param p The program to check
+ * @return char 1 if the program is worth testing, 0 otherwise
+ */
+static char isProgramWorthTesting(Program p) {
     char nbForwardActions = 0;
     char nbTurnActions = 0;
     char nbF1Calls = 0;

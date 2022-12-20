@@ -1,11 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "level_specifics.h"
+#include "matrix.h"
 
 /*This file AND its header contain all the info that needs to be changed according to the level you're testing.
 
 More precisely, you will need to :
 - precise all the instructions that can be used to solve the level (this file : INSTRUCTIONS)
+- precise the starting direction : RIGHT, DOWN, LEFT or UP (this file : START)
 - create two maps conforming to the instructions given in this file (see MORE ON MAPS)
 - precise the paths to these maps (this file : PATHS TO MAP FILES)
 - precise the length of the program and of its functions (header file : NUMBER OF INSTRUCTIONS)
@@ -33,7 +35,9 @@ const enum Condition possibleConditions[NB_CONDITIONS] = {
     CD_BLUE,
 };
 
+//START
 
+enum Direction startingDirection = RIGHT;
 
 //MORE ON MAPS
 

@@ -3,6 +3,17 @@
 #include "matrix.h"
 #include "level_specifics.h"
 
+enum Color {
+    CASE_WHITE,
+    CASE_RED,
+    CASE_ORANGE,
+    CASE_BLUE,
+    CASE_STAR
+};
+// if you're on CASE_WHITE, you lose
+// if you're on CASE_STAR, you win a star
+
+
 //checks that the two maps are equivalent in terms of color
 //sets the number of columns and lines
 static char initMap();
@@ -15,9 +26,9 @@ char** matrix;
 
 struct Coords coords;
 struct Coords startingCoords;
-enum Direction direction = RIGHT;
+enum Direction direction;
 char _gameTerminated = 0;
-char _WasPainted = 0;
+char _MapWasPainted = 0;
 char numberOfStars;
 char starsCounter;
 
@@ -129,15 +140,15 @@ char gameWon() {
 }
 
 void declareWasPainted() {
-    _WasPainted = 1;
+    _MapWasPainted = 1;
 }
 
 char wasPainted() {
     //reads and resets the flag
-    if (!_WasPainted) {
+    if (!_MapWasPainted) {
         return 0;
     }
-    _WasPainted = 0;
+    _MapWasPainted = 0;
     return 1;
 }
 

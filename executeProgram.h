@@ -1,5 +1,5 @@
-#ifndef GAME_H
-#define GAME_H
+#ifndef EXECPROG_H
+#define EXECPROG_H
 
 #include "generator.h"
 

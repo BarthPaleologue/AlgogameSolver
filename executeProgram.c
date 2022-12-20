@@ -1,11 +1,9 @@
 #include <stdio.h>
-#include "game.h"
+#include "executeProgram.h"
 #include "level_specifics.h"
 #include "matrix.h"
 #include "stack.h"
 #include "print.h"
-
-/*This file executes a given program*/
 
 /**
  * @brief Index of the next instruction to be fetched in the program.<br>
@@ -17,7 +15,7 @@ static int programPointer;
 static void updateProgramPointer();
 static void doInstruction(enum Action action, enum Condition condition);
 static void initGame();
-static void printExecutionInfo(enum Action action, enum Condition condition);
+static void printExecutionInfo();
 
 void executeProgram(Program program);
 
@@ -90,6 +88,8 @@ static void doInstruction(enum Action action, enum Condition condition) {
 }
 
 
+
+
 /**
  * @brief Resets the game state : map, coordinates, number of stars, function call stack.µ
  * Necessary before executing a new program.
@@ -100,9 +100,7 @@ static void initGame() {
     coords.x = startingCoords.x;
     coords.y = startingCoords.y;
 
-    // direction doit etre set dans level_specific
-    // direction = startingDirection;
-    direction = RIGHT;
+    direction = startingDirection;
 
     starsCounter = numberOfStars;
 
@@ -115,9 +113,11 @@ static void initGame() {
     programPointer = 0;
 }
 
+
+
+
+
 void executeProgram(Program program) {
-    //this function executes a program until it loses, wins finishes
-    //or reaches MAX_EXECUTION_ITERATIONS
 
     initGame();
 
@@ -137,7 +137,7 @@ void executeProgram(Program program) {
             jumpBack(&programPointer);
         }
 
-        printExecutionInfo(instruction.action, instruction.condition);
+        printExecutionInfo();
 
         eatStar();
 
@@ -147,12 +147,14 @@ void executeProgram(Program program) {
     }
 }
 
-static void printExecutionInfo(enum Action action, enum Condition condition) {
+
+/** @brief prints the position, direction, number of stars and matrix after each execution
+*/
+static void printExecutionInfo() {
     if (PRINT_EXEC_INFO) {
-        printf("instruction : %d %d", action, condition);
         printCoords();
         printf("\ndirection : %d\n\n", direction);
-        printf("%d\n", starsCounter);
+        printf("%d\nnumber of stars", starsCounter);
         printMatrix(matrix);
     }
 }

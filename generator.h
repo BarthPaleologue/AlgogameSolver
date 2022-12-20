@@ -12,7 +12,6 @@ struct Instruction {
 
 /**
  * @brief An array of instructions is called a program
- *
  */
 typedef struct Instruction* Program;
 
@@ -50,14 +49,6 @@ void readProgramStateFromFile(char* filename);
  * @return Program
  */
 Program getProgramFromVerboseArray(char programArray[PROGRAM_LENGTH][2]);
-
-/**
- * @brief Check if a program is worth testing according to arbitrary rules
- *
- * @param p The program to check
- * @return char 1 if the program is worth testing, 0 otherwise
- */
-char isProgramWorthTesting(Program p);
 
 /**
  * @brief prints the given program as a sequence of readable instructions [Action;Condition]
