@@ -1,12 +1,12 @@
-#include "generator.h"
-
 #include <stdio.h>
 #include <stdlib.h>
+
+#include "generator.h"
 
 
 static char isProgramWorthTesting(Program p);
 
-const char NB_INSTRUCTIONS = (sizeof(possibleConditions) / sizeof(possibleConditions[0]) * sizeof(possibleActions) / sizeof(possibleActions[0]));
+const char NB_INSTRUCTIONS = NB_CONDITIONS * NB_ACTIONS;
 
 char programState[PROGRAM_LENGTH];
 
