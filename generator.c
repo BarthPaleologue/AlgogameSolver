@@ -124,9 +124,9 @@ static char isProgramWorthTesting(Program p) {
     char nbF1Calls = 0;
     char nbF2Calls = 0;
 
-    if (p[0].action == F1) {
+    /*if (p[0].action == F1) {
         return 0;
-    }
+    }*/
 
     for (unsigned char i = 0; i < PROGRAM_LENGTH; i++) {
         switch (p[i].action) {
