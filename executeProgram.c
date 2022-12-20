@@ -2,6 +2,7 @@
 #include "executeProgram.h"
 #include "level_specifics.h"
 #include "matrix.h"
+#include "instructionsImplementations.h"
 #include "stack.h"
 #include "print.h"
 

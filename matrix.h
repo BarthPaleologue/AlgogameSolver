@@ -2,8 +2,21 @@
 #define matrix_h
 
 
-//MOUVEMENTS ON THE MATRIX' IMPLEMENTATION
+/*The matrix knows where you are and how close you're to the goal. It also knows how to erase all you work to retry.*/
+extern char numberOfLines;
+extern char numberOfColumns;
 
+enum Color {
+    CASE_WHITE,
+    CASE_RED,
+    CASE_ORANGE,
+    CASE_BLUE,
+    CASE_STAR
+};
+// if you're on CASE_WHITE, you lose
+// if you're on CASE_STAR, you win a star
+
+//MOUVEMENTS ON THE MATRIX' IMPLEMENTATION
 
 /**
  * @brief Direction in the map.
@@ -14,6 +27,11 @@ enum Direction {
     LEFT,
     UP
 };
+
+/**
+ * Current direction of the cursor.
+*/
+extern enum Direction direction;
 
 /**
  * Coordinates on the map.
@@ -34,41 +52,12 @@ extern struct Coords coords;
 */
 extern struct Coords startingCoords;
 
-/**
- * Current direction of the cursor.
-*/
-extern enum Direction direction;
-
-void printCoords();
-
-/**
- * @brief Prints the given matrix.
- * 
- * @param matrix
-*/
-void printMatrix(char ** matrix);
 
 /**
  * @brief Current matrix modified by the program being executed.
 */
 extern char ** matrix;
 
-
-
-//INSTRUCTIONS' IMPLEMENTATION
-
-//6 possible instructions' actions
-void move();
-void turnRight();
-void turnLeft();
-void paintRed();
-void paintBlue();
-void paintOrange();
-
-//3 possible conditions on instructions
-char isRed();
-char isOrange();
-char isBlue();
 
 
 //GAME SUCCESS' WATCHERS

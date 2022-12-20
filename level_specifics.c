@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "level_specifics.h"
-#include "matrix.h"
+#include "matrix.h" //this file contains the definition of enum Direction
 
 /*This file AND its header contain all the info that needs to be changed according to the level you're testing.
 

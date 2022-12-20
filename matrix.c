@@ -3,22 +3,12 @@
 #include "matrix.h"
 #include "level_specifics.h"
 
-enum Color {
-    CASE_WHITE,
-    CASE_RED,
-    CASE_ORANGE,
-    CASE_BLUE,
-    CASE_STAR
-};
-// if you're on CASE_WHITE, you lose
-// if you're on CASE_STAR, you win a star
-
 
 //checks that the two maps are equivalent in terms of color
 //sets the number of columns and lines
 static char initMap();
-static char numberOfLines;
-static char numberOfColumns;
+char numberOfLines;
+char numberOfColumns;
 static char** matrixBase;
 static char** matrixColorBase;
 
@@ -34,80 +24,6 @@ char starsCounter;
 
 //TODO : noter quelles variables globales sont modifiées pendant l'initialisation
 
-void printCoords() {
-    if (coords.x == startingCoords.x && coords.y == startingCoords.y) {
-        return;
-    }
-    printf("x : %d; y : %d\n", coords.x, coords.y);
-}
-
-void printMatrix(char** matrix) {
-    for (int i = 0; i < numberOfLines; i++) {
-        for (int j = 0; j < numberOfColumns; j++) {
-            if (i == coords.y && j == coords.x) {
-                printf("X");
-                continue;
-            }
-            switch (matrix[i][j]) {
-                case CASE_WHITE:
-                    printf("_");
-                    break;
-                case CASE_RED:
-                    printf("R");
-                    break;
-                case CASE_ORANGE:
-                    printf("O");
-                    break;
-                case CASE_BLUE:
-                    printf("B");
-                    break;
-                case CASE_STAR:
-                    printf("*");
-                    break;
-                default:
-                    printf("?");  // should never happen
-            }
-        }
-        printf("\n");
-    }
-}
-
-void move() {
-    switch (direction) {
-        case UP:
-            coords.y--;
-            break;
-        case DOWN:
-            coords.y++;
-            break;
-        case LEFT:
-            coords.x--;
-            break;
-        case RIGHT:
-            coords.x++;
-            break;
-    }
-}
-
-void turnRight() {
-    direction = (direction + 1) % 4;
-}
-
-void turnLeft() {
-    direction = (direction + 3) % 4;
-}
-
-char isRed() {
-    return matrix[coords.y][coords.x] == CASE_RED;
-}
-
-char isOrange() {
-    return matrix[coords.y][coords.x] == CASE_ORANGE;
-}
-
-char isBlue() {
-    return matrix[coords.y][coords.x] == CASE_BLUE;
-}
 
 void eatStar() {
     if (matrix[coords.y][coords.x] != CASE_STAR) {
@@ -117,18 +33,6 @@ void eatStar() {
     declareWasPainted();
     starsCounter--;
     printf("%d\n", starsCounter);
-}
-
-void paintRed() {
-    matrix[coords.y][coords.x] = CASE_RED;
-}
-
-void paintBlue() {
-    matrix[coords.y][coords.x] = CASE_BLUE;
-}
-
-void paintOrange() {
-    matrix[coords.y][coords.x] = CASE_ORANGE;
 }
 
 char gameLost() {
