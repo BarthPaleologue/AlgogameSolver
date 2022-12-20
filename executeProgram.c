@@ -122,7 +122,7 @@ void executeProgram(Program program) {
 
     initGame();
 
-    for (int step = 0; step < MAX_EXECUTION_ITERATIONS && !gameLost(); step++) {
+    for (int step = 0; step < MAX_EXECUTION_ITERATIONS; step++) {
         struct Instruction instruction = program[programPointer];
 
 
@@ -142,7 +142,7 @@ void executeProgram(Program program) {
 
         eatStar();
 
-        if (gameWon()) {
+        if (gameWon() | gameLost()) {
             return;
         }
     }
@@ -155,7 +155,7 @@ static void printExecutionInfo() {
     if (PRINT_EXEC_INFO) {
         printCoords();
         printf("\ndirection : %d\n\n", direction);
-        printf("%d\nnumber of stars", starsCounter);
+        printf("number of stars : %d\n", starsCounter);
         printMatrix(matrix);
     }
 }

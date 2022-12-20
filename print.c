@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include "matrix.h"
 
 void printMatrix(char** matrix) {

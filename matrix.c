@@ -32,7 +32,6 @@ void eatStar() {
     matrix[coords.y][coords.x] = matrixColorBase[coords.y][coords.x];
     declareWasPainted();
     starsCounter--;
-    printf("%d\n", starsCounter);
 }
 
 char gameLost() {
