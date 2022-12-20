@@ -3,9 +3,9 @@
 #include "level_specifics.h"
 #include "matrix.h"
 #include "stack.h"
+#include "print.h"
 
-
-
+/*This file executes a given program*/
 
 /**
  * @brief Index of the next instruction to be fetched in the program.<br>
@@ -17,6 +17,7 @@ static int programPointer;
 static void updateProgramPointer();
 static void doInstruction(enum Action action, enum Condition condition);
 static void initGame();
+static void printExecutionInfo(enum Action action, enum Condition condition);
 
 void executeProgram(Program program);
 
@@ -135,16 +136,23 @@ void executeProgram(Program program) {
             }
             jumpBack(&programPointer);
         }
-        /*printf("instruction : %d %d", instruction.action, instruction.condition);
-        printCoords();
-        printf("\ndirection : %d\n\n", direction);
-        printf("%d\n", starsCounter);
-        printMatrix(matrix);*/
+
+        printExecutionInfo(instruction.action, instruction.condition);
 
         eatStar();
 
         if (gameWon()) {
             return;
         }
+    }
+}
+
+static void printExecutionInfo(enum Action action, enum Condition condition) {
+    if (PRINT_EXEC_INFO) {
+        printf("instruction : %d %d", action, condition);
+        printCoords();
+        printf("\ndirection : %d\n\n", direction);
+        printf("%d\n", starsCounter);
+        printMatrix(matrix);
     }
 }

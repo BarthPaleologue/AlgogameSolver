@@ -7,6 +7,7 @@
 #include "generator.h"
 #include "matrix.h"
 
+
 void kill_handler(int signo) {
     if (signo == SIGINT) {
         printProgramState();
