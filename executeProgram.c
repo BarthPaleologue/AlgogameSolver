@@ -1,17 +1,19 @@
-#include <stdio.h>
 #include "executeProgram.h"
+
+#include <stdio.h>
+
+#include "debug.h"
+#include "instructionsImplementations.h"
 #include "level_specifics.h"
 #include "matrix.h"
-#include "instructionsImplementations.h"
 #include "stack.h"
-#include "print.h"
 
 /**
  * @brief Index of the next instruction to be fetched in the program.<br>
  * It is updated before the execution (thus its value changes twice if a function call is executed).
  * If the next instruction is unknown (end of a function), it is set to -1 temporally.
  */
-static int programPointer; 
+static int programPointer;
 
 static void updateProgramPointer();
 static void doInstruction(enum Action action, enum Condition condition);
@@ -20,25 +22,21 @@ static void printExecutionInfo();
 
 void executeProgram(Program program);
 
-
-
 /**
  * @brief Updates the program pointer (in case the function ends, it is temporally set to -1).<br>
  * The program pointer is also modified : during the execution when a jump takes place;
  * after the execution to replace -1 by the right value.
  */
 static void updateProgramPointer() {
-    //TOTHINK : always test for F3_START even when there's no F3 ???
-    if (programPointer == PROGRAM_LENGTH - 1 || programPointer == F2_START -1 || programPointer == F3_START -1 || programPointer == F4_START -1) {
+    // TOTHINK : always test for F3_START even when there's no F3 ???
+    if (programPointer == PROGRAM_LENGTH - 1 || programPointer == F2_START - 1 || programPointer == F3_START - 1 || programPointer == F4_START - 1) {
         programPointer = -1;
-        //if we reach the end of a function, we set the pointer to a special value
+        // if we reach the end of a function, we set the pointer to a special value
     } else {
         programPointer = programPointer + 1;
-        //otherwise we set the pointer to the next instruction
+        // otherwise we set the pointer to the next instruction
     }
 }
-
-
 
 /**
  * @brief Will filter the conditions and then do the given action which will update the game state.
@@ -52,7 +50,7 @@ static void doInstruction(enum Action action, enum Condition condition) {
             break;
         case CD_RED:
             if (isRed()) break;
-            return; //if the condition is ot respected the instruction is not executed
+            return;  // if the condition is ot respected the instruction is not executed
         case CD_ORANGE:
             if (isOrange()) break;
             return;
@@ -70,7 +68,7 @@ static void doInstruction(enum Action action, enum Condition condition) {
             return turnRight();
         case PAINT_RED:
             paintRed();
-            return declareWasPainted(); //shortened syntax : declareWasPainted returns void
+            return declareWasPainted();  // shortened syntax : declareWasPainted returns void
         case PAINT_BLUE:
             paintBlue();
             return declareWasPainted();
@@ -88,15 +86,12 @@ static void doInstruction(enum Action action, enum Condition condition) {
     }
 }
 
-
-
-
 /**
  * @brief Resets the game state : map, coordinates, number of stars, function call stack.µ
  * Necessary before executing a new program.
  */
 static void initGame() {
-    //this function resets all the nessecary parameters to test a new program
+    // this function resets all the nessecary parameters to test a new program
 
     coords.x = startingCoords.x;
     coords.y = startingCoords.y;
@@ -114,20 +109,14 @@ static void initGame() {
     programPointer = 0;
 }
 
-
-
-
-
 void executeProgram(Program program) {
-
     initGame();
 
     for (int step = 0; step < MAX_EXECUTION_ITERATIONS; step++) {
         struct Instruction instruction = program[programPointer];
 
-
-        updateProgramPointer(); //programPointer was already used
-        //it is set for the next instruction fetch
+        updateProgramPointer();  // programPointer was already used
+        // it is set for the next instruction fetch
 
         doInstruction(instruction.action, instruction.condition);
 
@@ -148,9 +137,8 @@ void executeProgram(Program program) {
     }
 }
 
-
 /** @brief prints the position, direction, number of stars and matrix after each execution
-*/
+ */
 static void printExecutionInfo() {
     if (PRINT_EXEC_INFO) {
         printCoords();

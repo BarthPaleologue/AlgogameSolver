@@ -4,7 +4,7 @@ LDFLAGS = -g
 
 SPECIFICS =./levels/$(LEVEL)/
 
-OBJ = colors.h generator.o executeProgram.o matrix.o instructionsImplementations.o stack.o $(SPECIFICS)level_specifics.o print.o
+OBJ = colors.h generator.o executeProgram.o matrix.o instructionsImplementations.o stack.o $(SPECIFICS)level_specifics.o debug.o
 
 
 build-check: run-test
