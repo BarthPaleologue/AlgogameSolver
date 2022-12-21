@@ -1,4 +1,4 @@
-LEVEL=12
+LEVEL?=38#the default level is 38, to use level 12, add "LEVEL=12" at the end of your command
 CFLAGS = -Wall -Wextra -g -o3 -I ./levels/$(LEVEL) -I .
 LDFLAGS = -g
 
