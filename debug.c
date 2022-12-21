@@ -15,7 +15,7 @@ void printMatrix(char** matrix, unsigned int matrixHeight, unsigned int matrixWi
                     printf(RED "R" RESET);
                     break;
                 case CASE_ORANGE:
-                    printf(YELLOW "O" RESET);
+                    printf(ORANGE "O" RESET);
                     break;
                 case CASE_BLUE:
                     printf(CYAN "B" RESET);

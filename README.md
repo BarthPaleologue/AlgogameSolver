@@ -25,14 +25,14 @@ The second tool is Make. As for GCC, there are many tutorials online on how to i
 
 ## Breaking a specific level
 
-First, you need to procure a map of the level (see level38.txt for the color conventions). 
+You need to copy paste a folder from `./levels` and follow the instructions given in `./levels/*/level_specifics.c`.
 
-Note that it's important for the solver's functionment that you add a padding of "white cases" on each border.
+In short, you need to provide sufficient information about the level (a map of the level, the instructions provided, how many instructions are in the program, etc.). You can also provide informations to reduce the number of tests : a successful program must have at least one TURN_RIGHT intruction or one PAINT_RED...
 
 
 ## Run it!
 
-When you have completed all the above steps, you should be able to run the program by entering the command `make` in your terminal in the directory of the solver. If you made no mistake, all tests will pass and the solver will start brute forcing the level.
-You might have to wait for a few hours depending on the complexity of the level and the effectiveness of your constraints.
+When you have completed all the above steps, you should be able to run the program by entering the command `make anew` in your terminal in the directory of the solver. If you made no mistake, the solver will start brute forcing the level.
+You might have to wait for a few hours depending on the complexity of the level (ie the number of instructions in the program) and the effectiveness of your constraints.
 The program will output all the solutions in the console as you run it.
-You can stop at anytime and start back where you left it thanks to the program's autosave system.
+You can stop at anytime with ^C and start back where you left it thanks to the program's autosave system.
