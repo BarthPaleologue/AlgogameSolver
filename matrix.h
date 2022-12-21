@@ -85,14 +85,14 @@ char gameWon();
 
 //INITIALIZATIONS OF THE MATRIX
 
-/**
- * @brief Sets the matrix using the paths to the maps.
-*/
-void resetMatrix();
-
 
 /**
  * @brief Sets the matrix to pre-execution state.
+*/
+void resetMatrix();
+
+/**
+ * @brief Sets the matrix using the paths to the maps.
 */
 void initMatrix();
 

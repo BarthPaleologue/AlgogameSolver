@@ -6,12 +6,13 @@
 #include "executeProgram.h"
 #include "generator.h"
 #include "matrix.h"
+#include "level_specifics.h"
 
 
 void kill_handler(int signo) {
     if (signo == SIGINT) {
         printProgramState();
-        writeProgramStateToFile("./program_state.txt");
+        writeProgramStateToFile(pathProgramState);
         exit(0);
     }
 }
@@ -19,10 +20,12 @@ void kill_handler(int signo) {
 int main() {
     signal(SIGINT, kill_handler);
 
-    // read from program_state.txt and update programState
-    readProgramStateFromFile("./program_state.txt");
-
     initPath();
+
+    // read from program_state.txt and update programState
+    readProgramStateFromFile(pathProgramState);
+
+
     initMatrix();
     resetMatrix();
     printf("\n\n\n");

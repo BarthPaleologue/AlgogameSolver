@@ -2,18 +2,10 @@
 #define GENERATOR_H
 
 #include "level_specifics.h"
+#include "utils_struct.h"
+
 
 extern char programState[PROGRAM_LENGTH];
-
-struct Instruction {
-    enum Action action;
-    enum Condition condition;
-};
-
-/**
- * @brief An array of instructions is called a program
- */
-typedef struct Instruction* Program;
 
 /**
  * @brief Generate the next program worthy of testing

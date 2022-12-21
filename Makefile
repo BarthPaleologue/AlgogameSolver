@@ -1,4 +1,4 @@
-LEVEL=38
+LEVEL=12
 CFLAGS = -Wall -Wextra -g -o3 -I ./levels/$(LEVEL) -I .
 LDFLAGS = -g
 
@@ -16,7 +16,8 @@ main: main.o $(OBJ)
 run-build: build-check
 	./main
 
-test: test.o $(OBJ)
+test: $(SPECIFICS)test.o $(OBJ)
+	cc -g $^ -o test
 
 run-test: clean 
 	make test
@@ -28,5 +29,9 @@ new: clean
 anew: new
 	./main
 
+new-test: clean
+	make test
+
 clean:
-	rm -f *.o main
+	rm -f *.o main test
+	rm -f ./levels/*/*.o

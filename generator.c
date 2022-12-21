@@ -2,9 +2,8 @@
 #include <stdlib.h>
 
 #include "generator.h"
-
-
-static char isProgramWorthTesting(Program p);
+#include "level_specifics.h"
+#include "utils_struct.h"
 
 const char NB_INSTRUCTIONS = NB_CONDITIONS * NB_ACTIONS;
 
@@ -111,51 +110,6 @@ void printProgramVerbose(Program p) {
     printf("\n\n");
 }
 
-
-/**
- * @brief Check if a program is worth testing according to arbitrary rules
- *
- * @param p The program to check
- * @return char 1 if the program is worth testing, 0 otherwise
- */
-static char isProgramWorthTesting(Program p) {
-    char nbForwardActions = 0;
-    char nbTurnActions = 0;
-    char nbF1Calls = 0;
-    char nbF2Calls = 0;
-
-    /*if (p[0].action == F1) {
-        return 0;
-    }*/
-
-    for (unsigned char i = 0; i < PROGRAM_LENGTH; i++) {
-        switch (p[i].action) {
-            case FORWARD:
-                nbForwardActions++;
-                break;
-            case TURN_RIGHT:
-            case TURN_LEFT:
-                nbTurnActions++;
-                break;
-            case F1:
-                nbF1Calls++;
-                break;
-            case F2:
-                if (i < F2_START) {
-                    nbF2Calls++;
-                }
-                break;
-            default:
-                break;
-        }
-    }
-
-    if (nbForwardActions == 0) return 0;
-    if (nbTurnActions == 0) return 0;
-    if (nbF1Calls == 0) return 0;
-    if (nbF2Calls == 0) return 0;
-    return 1;
-}
 
 Program getProgramFromVerboseArray(char programArray[PROGRAM_LENGTH][2]) {
     Program p = malloc(sizeof(struct Instruction) * PROGRAM_LENGTH);
