@@ -10,6 +10,7 @@ OBJ = generator.o executeProgram.o matrix.o instructionsImplementations.o stack.
 build-check: run-test
 	make clean
 	make main
+	make print-level
 
 main: main.o $(OBJ)
 
@@ -32,6 +33,11 @@ anew: new
 new-test: clean
 	make test
 
+print-level: 
+	@echo
+	@echo LEVEL set to $(LEVEL)
+
+
 clean:
 	rm -f *.o main test
-	rm -f ./levels/*/*.o
+	rm -f $(SPECIFICS)*.o
