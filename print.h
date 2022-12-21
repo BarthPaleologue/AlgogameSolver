@@ -5,9 +5,6 @@
 #define PRINT_EXEC_INFO 0
 
 
-#define PRINT_PROGRAM_ID 0
-
-
 /**
  * @brief Prints the given matrix.
  * 
