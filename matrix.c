@@ -118,10 +118,10 @@ void initMatrix() {
     for (int j = 0; j < numberOfColumns; j++) {
         matrixBase[0][j] = CASE_WHITE;
     }
-    for (int i = 0; i < numberOfLines; i++) {
+    for (int i = 1; i < numberOfLines-1; i++) {
 
         matrixBase[i][0] = CASE_WHITE;
-        for (int j = 0; j < numberOfColumns; j++) {
+        for (int j = 1; j < numberOfColumns-1; j++) {
             char cell = fgetc(starsMap);
 
             if (cell == '\n') {
@@ -163,7 +163,7 @@ void initMatrix() {
 
     fclose(starsMap);
     numberOfStars = starsCounter;
-    printf("%daza\n", numberOfStars);
+    //printf("%d\n", numberOfStars);
 }
 
 static char initMap() {
