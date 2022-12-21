@@ -4,6 +4,7 @@
 #include "executeProgram.h"
 #include "generator.h"
 #include "matrix.h"
+#include "path.h"
 
 #define NB_PROGRAMS 12
 
@@ -25,7 +26,7 @@ int main() {
         {{FORWARD, CD_RED}, {F2, CD_NONE}, {F1, CD_ORANGE}, {TURN_LEFT, CD_ORANGE}, {FORWARD, CD_NONE}, {F2, CD_RED}, {TURN_LEFT, CD_ORANGE}},
         {{FORWARD, CD_RED}, {F2, CD_ORANGE}, {F1, CD_ORANGE}, {TURN_LEFT, CD_ORANGE}, {FORWARD, CD_NONE}, {F2, CD_RED}, {TURN_LEFT, CD_ORANGE}}};
 
-    initPath();
+    initPath(LEVEL);
     initMatrix();
     resetMatrix();
     printf("\n---------------------TESTING---------------------\n\n");

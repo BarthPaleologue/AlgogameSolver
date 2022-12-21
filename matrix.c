@@ -5,6 +5,7 @@
 
 #include "colors.h"
 #include "level_specifics.h"
+#include "path.h"
 
 // checks that the two maps are equivalent in terms of color
 // sets the number of columns and lines
@@ -173,7 +174,7 @@ static char areMapsWellFormatted() {
         unsigned int columnsCounter = 0;
 
         while ((c1 = fgetc(map)) != EOF && (c2 = fgetc(starsMap)) != EOF) {
-            printf("%c%c  ", c1, c2);
+            printf("%c%c", c1, c2);
 
             // check if the starmap is well formatted
             if (c2 == '_' || c2 == 'O' || c2 == 'R' || c2 == 'B' || c2 == 'X' || c2 == '*') {
@@ -219,6 +220,8 @@ static char areMapsWellFormatted() {
                 fclose(starsMap);
                 return 0;
             }
+
+            if (c2 != '\n') printf(" ");
         }
 
         printf(BOLDGREEN "\n\nThe map formatting is correct\n" RESET);

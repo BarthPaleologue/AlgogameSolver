@@ -4,7 +4,9 @@
 #include "colors.h"
 #include "executeProgram.h"
 #include "generator.h"
+#include "level_specifics.h"
 #include "matrix.h"
+#include "path.h"
 
 #define NB_PROGRAMS 7
 
@@ -18,7 +20,7 @@ int main() {
         {{FORWARD, CD_NONE}, {TURN_RIGHT, CD_RED}, {PAINT_ORANGE, CD_RED}, {F1, CD_ORANGE}},
         {{FORWARD, CD_NONE}, {TURN_RIGHT, CD_RED}, {PAINT_BLUE, CD_NONE}, {F1, CD_BLUE}}};
 
-    initPath();
+    initPath(LEVEL);
     initMatrix();
     resetMatrix();
     printf(BOLDCYAN "\n---------------------TESTING---------------------\n\n" RESET);

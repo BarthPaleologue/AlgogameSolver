@@ -8,6 +8,7 @@
 #include "generator.h"
 #include "level_specifics.h"
 #include "matrix.h"
+#include "path.h"
 
 void kill_handler(int signo) {
     if (signo == SIGINT) {
@@ -20,7 +21,7 @@ void kill_handler(int signo) {
 int main() {
     signal(SIGINT, kill_handler);
 
-    initPath();
+    initPath(LEVEL);
     printf("\n");
 
     // read from program_state.txt and update programState

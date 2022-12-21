@@ -1,7 +1,9 @@
+#include "level_specifics.h"
+
 #include <stdio.h>
 #include <stdlib.h>
-#include "level_specifics.h"
-#include "matrix.h" //this file contains the definition of enum Direction
+
+#include "matrix.h"  //this file contains the definition of enum Direction
 #include "utils_struct.h"
 
 /*This file AND its header contain all the info that needs to be changed according to the level you're testing.
@@ -15,9 +17,7 @@ More precisely, you will need to :
 - precise the number of different instructions that can be used (header file : NUMBER OF INSTRUCTIONS)
 */
 
-
-
-//INSTRUCTIONS
+// INSTRUCTIONS
 
 const enum Action possibleActions[NB_ACTIONS] = {
     FORWARD,
@@ -27,7 +27,7 @@ const enum Action possibleActions[NB_ACTIONS] = {
     PAINT_BLUE,
     F1,
     F2,
-}; //check for PAINT_ORANGE and the number of functions
+};  // check for PAINT_ORANGE and the number of functions
 
 const enum Condition possibleConditions[NB_CONDITIONS] = {
     CD_NONE,
@@ -36,11 +36,11 @@ const enum Condition possibleConditions[NB_CONDITIONS] = {
     CD_BLUE,
 };
 
-//START
+// START
 
 enum Direction startingDirection = RIGHT;
 
-//MORE ON MAPS
+// MORE ON MAPS
 
 /*In our code, we rely on two maps named levelxxmap.txt and levelxxstarsMap.txt.
 
@@ -62,7 +62,7 @@ __________
 
 
 _ : no case ; R : red case ; O : orange case ; B : blue case
-Try only to use these 4 characters and '\n'. 
+Try only to use these 4 characters and '\n'.
 Make sure your map is rectangular and IMPORTANT : that's there's a padding of _ on each border.
 
 
@@ -84,36 +84,15 @@ __________
 
 Try only to use the 5 above mentionned characters, plus '*' and 'X'. Careful it's a higher case X.*/
 
+// PATHS TO MAP FILES
 
+int LEVEL = 38;
+// the level number is only used when getting the map files right below
+// careful, we supposed that it was a number with two digits
 
-//PATHS TO MAP FILES
+// TESTING
 
-static int levelNumber = 38;
-//the level number is only used when getting the map files right below 
-//careful, we supposed that it was a number with two digits
-
-//creation of paths 
-char pathStarsMap[30]; //30 is for two digits in levelNumber
-char pathMap[25]; //same
-char pathProgramState[30];
-
-void initPath() {
-    char starsMap[] = "./levels/%d/levelStarsMap.txt";
-    char map[] = "./levels/%d/levelMap.txt";
-    char programState[] = "./levels/%d/program_state.txt";
-
-    sprintf(pathStarsMap, starsMap, levelNumber);
-    sprintf(pathMap, map, levelNumber);
-    sprintf(pathProgramState, programState, levelNumber);
-
-    printf("pathStarsMap: %s\n", pathStarsMap);
-    printf("pathMap: %s\n", pathMap);
-    printf("pathProgramState: %s\n", pathProgramState);
-}
-
-//TESTING
-
-//TESTING
+// TESTING
 
 /**
  * @brief Check if a program is worth testing according to arbitrary rules

@@ -84,28 +84,9 @@ Try only to use the 5 above mentionned characters, plus '*' and 'X'. Careful it'
 
 // PATHS TO MAP FILES
 
-static int levelNumber = 12;
+int LEVEL = 12;
 // the level number is only used when getting the map files right below
 // careful, we supposed that it was a number with two digits
-
-// creation of paths
-char pathStarsMap[30];  // 30 is for two digits in levelNumber
-char pathMap[25];       // same
-char pathProgramState[30];
-
-void initPath() {
-    char starsMap[] = "./levels/%d/levelStarsMap.txt";
-    char map[] = "./levels/%d/levelMap.txt";
-    char programState[] = "./levels/%d/program_state.txt";
-
-    sprintf(pathStarsMap, starsMap, levelNumber);
-    sprintf(pathMap, map, levelNumber);
-    sprintf(pathProgramState, programState, levelNumber);
-
-    printf("pathStarsMap: %s\n", pathStarsMap);
-    printf("pathMap: %s\n", pathMap);
-    printf("pathProgramState: %s\n", pathProgramState);
-}
 
 // TESTING
 
