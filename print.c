@@ -1,9 +1,11 @@
 #include <stdio.h>
+
+#include "colors.h"
 #include "matrix.h"
 
 void printMatrix(char** matrix) {
-    for (int i = 0; i < numberOfLines; i++) {
-        for (int j = 0; j < numberOfColumns; j++) {
+    for (unsigned int i = 0; i < numberOfLines; i++) {
+        for (unsigned int j = 0; j < numberOfColumns; j++) {
             if (i == coords.y && j == coords.x) {
                 printf("X");
                 continue;
@@ -13,25 +15,24 @@ void printMatrix(char** matrix) {
                     printf("_");
                     break;
                 case CASE_RED:
-                    printf("R");
+                    printf(RED "R" RESET);
                     break;
                 case CASE_ORANGE:
-                    printf("O");
+                    printf(YELLOW "O" RESET);
                     break;
                 case CASE_BLUE:
-                    printf("B");
+                    printf(CYAN "B" RESET);
                     break;
                 case CASE_STAR:
-                    printf("*");
+                    printf(BOLDGREEN "*" RESET);
                     break;
                 default:
-                    printf("?");  // should never happen
+                    printf(BOLDRED "?" RESET);  // should never happen
             }
         }
         printf("\n");
     }
 }
-
 
 void printCoords() {
     if (coords.x == startingCoords.x && coords.y == startingCoords.y) {

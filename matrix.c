@@ -8,9 +8,9 @@
 
 // checks that the two maps are equivalent in terms of color
 // sets the number of columns and lines
-static char checkMaps();
-char numberOfLines;
-char numberOfColumns;
+static char areMapsWellFormatted();
+unsigned int numberOfLines;
+unsigned int numberOfColumns;
 
 static char** matrixBackup;
 static char** matrixColorBackup;
@@ -57,7 +57,7 @@ char wasPainted() {
 }
 
 void initMatrix() {
-    if (!checkMaps()) return;
+    if (!areMapsWellFormatted()) return;
 
     // allocate memory for the matrices
     matrixColorBackup = malloc(numberOfLines * sizeof(char*));
@@ -111,7 +111,8 @@ void initMatrix() {
                     matrixColorBackup[i][j] = CASE_BLUE;
                     break;
                 default:
-                    return printf(RED "Error : invalid character in map file : %c\n" RESET, cell);
+                    printf(RED "Error : invalid character in map file : %c\n" RESET, cell);
+                    return;
             }
         }
         matrixColorBackup[i][numberOfColumns - 1] = CASE_WHITE;
@@ -122,8 +123,8 @@ void initMatrix() {
     // fill the starmap from file
     FILE* starsMap = fopen(pathStarsMap, "r");
 
-    for (int i = 1; i < numberOfLines - 1; i++) {
-        for (int j = 1; j < numberOfColumns - 1; j++) {
+    for (unsigned int i = 1; i < numberOfLines - 1; i++) {
+        for (unsigned int j = 1; j < numberOfColumns - 1; j++) {
             char cell = fgetc(starsMap);
 
             if (cell == '\n') cell = fgetc(starsMap);
@@ -162,13 +163,13 @@ void initMatrix() {
     // printf("%d\n", numberOfStars);
 }
 
-static char checkMaps() {
+static char areMapsWellFormatted() {
     FILE* map = fopen(pathMap, "r");
     FILE* starsMap = fopen(pathStarsMap, "r");
 
     if (map && starsMap) {
         char c1, c2;
-        int columnsCounter = 0;
+        unsigned int columnsCounter = 0;
 
         while ((c1 = fgetc(map)) != EOF && (c2 = fgetc(starsMap)) != EOF) {
             printf("%c%c  ", c1, c2);
@@ -236,8 +237,8 @@ static char checkMaps() {
 }
 
 void resetMatrix() {
-    for (int i = 0; i < numberOfLines; i++) {
-        for (int j = 0; j < numberOfColumns; j++) {
+    for (unsigned int i = 0; i < numberOfLines; i++) {
+        for (unsigned int j = 0; j < numberOfColumns; j++) {
             matrix[i][j] = matrixBackup[i][j];
         }
     }
