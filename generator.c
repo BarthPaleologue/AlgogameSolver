@@ -1,7 +1,9 @@
+#include "generator.h"
+
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "generator.h"
+#include "colors.h"
 #include "level_specifics.h"
 #include "utils_struct.h"
 
@@ -47,7 +49,7 @@ void readProgramStateFromFile(char* filename) {
         }
         fclose(file);
     } else {
-        printf("Error while reading file %s\nThe generator will be initialized at 0", filename);
+        printf(YELLOW "Error while reading file %s\nThe generator will be initialized at 0\n" RESET, filename);
         for (unsigned char i = 0; i < PROGRAM_LENGTH; i++) {
             programState[i] = 0;
         }
@@ -69,13 +71,13 @@ void printProgramVerbose(Program p) {
                 actionStr = "TRN_RGHT";
                 break;
             case PAINT_RED:
-                actionStr = "PNT_R";
+                actionStr = RED "PNT_R" RESET;
                 break;
             case PAINT_BLUE:
-                actionStr = "PNT_B";
+                actionStr = CYAN "PNT_B" RESET;
                 break;
             case PAINT_ORANGE:
-                actionStr = "PNT_O";
+                actionStr = YELLOW "PNT_O" RESET;
                 break;
             case F1:
                 actionStr = "F1";
@@ -95,13 +97,13 @@ void printProgramVerbose(Program p) {
                 conditionStr = "_";
                 break;
             case CD_RED:
-                conditionStr = "R";
+                conditionStr = RED "R" RESET;
                 break;
             case CD_ORANGE:
-                conditionStr = "O";
+                conditionStr = YELLOW "O" RESET;
                 break;
             case CD_BLUE:
-                conditionStr = "B";
+                conditionStr = CYAN "B" RESET;
                 break;
         }
         if (i == F2_START || i == F3_START || i == F4_START) printf("  ");
@@ -109,7 +111,6 @@ void printProgramVerbose(Program p) {
     }
     printf("\n\n");
 }
-
 
 Program getProgramFromVerboseArray(char programArray[PROGRAM_LENGTH][2]) {
     Program p = malloc(sizeof(struct Instruction) * PROGRAM_LENGTH);
