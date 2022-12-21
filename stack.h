@@ -1,21 +1,19 @@
-typedef struct node {
-    struct node *previousNode;
-    unsigned int programPointer;
-} node_t;
-
-extern node_t *stackPointer;
+/**
+ * @brief Uses the stack to store the programPointer value before assigning the new one.
+ *
+ * @param newProgramPointer New value for the programPointer
+ * @param programPointer the programPointer itself
+ */
+void jumpInProgram(int newProgramPointer, int *programPointer);
 
 /**
- * @brief Updates the stack pointer and the given programPointer with the new programPointer value
+ * @brief Uses the stack to restore the precent value of the programPointer.
  *
- * @param newprogramPointer The new value for the programPointer
- * @param programPointerPointer A pointer to the global programPointer
+ * @param programPointer the programPointer itself
  */
-void jumpInProgram(int newprogramPointer, int *programPointerPointer);
+void jumpBack(int *programPointer);
 
 /**
- * @brief Unstack the stack pointer and updates the given pointer to programPointer accordingly
- *
- * @param programPointerPointer A pointer to the global programPointer
- */
-void jumpBack(int *programPointerPointer);
+ * @brief Returns 1 iff the stack is empty.
+*/
+char stackEmpty();

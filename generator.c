@@ -1,9 +1,11 @@
-#include "generator.h"
-
 #include <stdio.h>
 #include <stdlib.h>
 
-const char NB_INSTRUCTIONS = (sizeof(possibleConditions) / sizeof(possibleConditions[0]) * sizeof(possibleActions) / sizeof(possibleActions[0]));
+#include "generator.h"
+#include "level_specifics.h"
+#include "utils_struct.h"
+
+const char NB_INSTRUCTIONS = NB_CONDITIONS * NB_ACTIONS;
 
 char programState[PROGRAM_LENGTH];
 
@@ -43,6 +45,7 @@ void readProgramStateFromFile(char* filename) {
         for (int i = 0; i < PROGRAM_LENGTH; i++) {
             fscanf(file, "%hhd", &programState[i]);
         }
+        fclose(file);
     } else {
         printf("Error while reading file %s\nThe generator will be initialized at 0", filename);
         for (unsigned char i = 0; i < PROGRAM_LENGTH; i++) {
@@ -101,50 +104,12 @@ void printProgramVerbose(Program p) {
                 conditionStr = "B";
                 break;
         }
-        if (i == F2_START || i == F3_START || F4_START) printf("  ");
+        if (i == F2_START || i == F3_START || i == F4_START) printf("  ");
         printf("[%s;%s] ", actionStr, conditionStr);
     }
     printf("\n\n");
 }
 
-char isProgramWorthTesting(Program p) {
-    char nbForwardActions = 0;
-    char nbTurnActions = 0;
-    char nbF1Calls = 0;
-    char nbF2Calls = 0;
-
-    if (p[0].action == F1) {
-        return 0;
-    }
-
-    for (unsigned char i = 0; i < PROGRAM_LENGTH; i++) {
-        switch (p[i].action) {
-            case FORWARD:
-                nbForwardActions++;
-                break;
-            case TURN_RIGHT:
-            case TURN_LEFT:
-                nbTurnActions++;
-                break;
-            case F1:
-                nbF1Calls++;
-                break;
-            case F2:
-                if (i < F2_START) {
-                    nbF2Calls++;
-                }
-                break;
-            default:
-                break;
-        }
-    }
-
-    if (nbForwardActions == 0) return 0;
-    if (nbTurnActions == 0) return 0;
-    if (nbF1Calls == 0) return 0;
-    if (nbF2Calls == 0) return 0;
-    return 1;
-}
 
 Program getProgramFromVerboseArray(char programArray[PROGRAM_LENGTH][2]) {
     Program p = malloc(sizeof(struct Instruction) * PROGRAM_LENGTH);
@@ -167,7 +132,7 @@ Program generateNextProgram() {
 
         // increment state
         int checkSum = 0;
-        for (unsigned char i = 0; i < NB_INSTRUCTIONS; i++) {
+        for (unsigned char i = 0; i < PROGRAM_LENGTH; i++) {
             if (programState[i] != NB_INSTRUCTIONS - 1) {
                 programState[i] += 1;
                 checkSum += programState[i];

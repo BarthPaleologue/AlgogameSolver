@@ -1,7 +1,10 @@
 *
+!*/
 !*.*
 *.o
+.vscode
 !Makefile
 program_state.txt
 .gdb_history
 peda-session-main.txt
+

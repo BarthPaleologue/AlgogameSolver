@@ -1,6 +1,11 @@
 #ifndef matrix_h
 #define matrix_h
 
+
+/*The matrix knows where you are and how close you're to the goal. It also knows how to erase all you work to retry.*/
+extern char numberOfLines;
+extern char numberOfColumns;
+
 enum Color {
     CASE_WHITE,
     CASE_RED,
@@ -9,12 +14,13 @@ enum Color {
     CASE_STAR
 };
 // if you're on CASE_WHITE, you lose
-// if you're on CASE_STAR, you win
+// if you're on CASE_STAR, you win a star
 
-extern char matrix[12][10];
-void resetMatrix();
-void initMatrix();
+//MOUVEMENTS ON THE MATRIX' IMPLEMENTATION
 
+/**
+ * @brief Direction in the map.
+*/
 enum Direction {
     RIGHT,
     DOWN,
@@ -22,35 +28,86 @@ enum Direction {
     UP
 };
 
+/**
+ * Current direction of the cursor.
+*/
+extern enum Direction direction;
+
+/**
+ * Coordinates on the map.
+ * Careful, the position is at matrix[y][x].
+*/
 struct Coords {
     unsigned char x;
     unsigned char y;
 };
-// careful, the position is at matrix[y][x]
 
+/**
+ * Current position of the cursor.
+*/
 extern struct Coords coords;
-extern enum Direction direction;
 
-void printCoords();
+/**
+ * Starting position.
+*/
+extern struct Coords startingCoords;
 
-void printMatrix(char matrix[12][10]);
 
-void move();
-void turnRight();
-void turnLeft();
-char isRed();
-char isOrange();
-char isBlue();
-char isStar();
-void paintRed();
-void paintBlue();
-void paintOrange();
-char gameLost();
+/**
+ * @brief Current matrix modified by the program being executed.
+*/
+extern char ** matrix;
+
+
+
+//GAME SUCCESS' WATCHERS
+
+/**
+ * @brief Total number of stars in the map.
+*/
+extern char numberOfStars;
+
+/**
+ * @brief Remaining stars.
+*/
+extern char starsCounter;
+
+
+/**
+ * Updates the map and the stars' counter if on a star.
+*/
+void eatStar();
+
+char gameLost(); 
 char gameWon();
-void declareGameTerminated();
-char gameTerminated();
+
+
+
+//INITIALIZATIONS OF THE MATRIX
+
+
+/**
+ * @brief Sets the matrix to pre-execution state.
+*/
+void resetMatrix();
+
+/**
+ * @brief Sets the matrix using the paths to the maps.
+*/
+void initMatrix();
+
+//other useful functions
+
+/**
+ * Sets the flag _MapWasPainted to 1.
+*/
 void declareWasPainted();
+
+/**
+ * Returns the flag _MapWasPainted and sets the flag to 0.
+*/
 char wasPainted();
+
 
 
 

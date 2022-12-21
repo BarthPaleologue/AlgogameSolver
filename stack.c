@@ -1,20 +1,28 @@
+#include <stdlib.h>
 #include "stack.h"
 
-#include <stdlib.h>
+typedef struct node {
+    struct node *previousNode;
+    unsigned int programPointer;
+} node_t;
 
 node_t *stackPointer = NULL;
 
-void jumpInProgram(int newprogramPointer, int *programPointerPointer) {
+void jumpInProgram(int newProgramPointer, int *programPointer) {
     node_t *newNode = (node_t *)malloc(sizeof(node_t));
     newNode->previousNode = stackPointer;
-    newNode->programPointer = *programPointerPointer;
-    *programPointerPointer = newprogramPointer;
+    newNode->programPointer = *programPointer;
+    *programPointer = newProgramPointer;
     stackPointer = newNode;
 }
 
-void jumpBack(int *programPointerPointer) {
+void jumpBack(int *programPointer) {
     node_t *temp = stackPointer->previousNode;
-    *programPointerPointer = stackPointer->programPointer;
+    *programPointer = stackPointer->programPointer;
     free(stackPointer);
     stackPointer = temp;
+}
+
+char stackEmpty() {
+    return (stackPointer == NULL);
 }

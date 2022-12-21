@@ -1,8 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "game.h"
+#include "executeProgram.h"
 #include "generator.h"
+#include "matrix.h"
 
 #define NB_PROGRAMS 12
 
@@ -37,14 +38,12 @@ int main() {
         Program program = getProgramFromVerboseArray(programsToTest[i]);
         // printProgramVerbose(program);
 
-        resetStatus();
-
         executeProgram(program);
 
         free(program);
 
         if (gameWon()) {
-            printf("Tests passed: %d/%d\r", i + 1, NB_PROGRAMS);
+            printf("Tests passed: %d/%d\n", i + 1, NB_PROGRAMS);
         } else {
             successful = 0;
             printf("\nERROR: Test n°%d failed\n", i + 1);
