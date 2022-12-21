@@ -7,7 +7,7 @@ according to The guy On Youtube
 
 
 
-All solutions found by us :) there are 12, among circa 1.3 billions of tested possibilities, it took less than 2 hours :)
+All solutions found by us for level 38:) there are 12, among circa 1.3 billions of tested possibilities, it took less than 2 hours :)
 
 [F2;O] [FRWRD;R] [F1;_]   [TRN_LFT;O] [FRWRD;_] [F2;R] [TRN_LFT;_] 
 [FRWRD;R] [F2;_] [F1;_]   [TRN_LFT;O] [FRWRD;_] [F2;R] [TRN_LFT;_] 

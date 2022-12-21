@@ -4,12 +4,13 @@ afficher le pourcentage de complétion
 readme : isWorthTesting, probas, generator (levelspecifics?), 
 
 
-mettre startingDirection dans levelspecifics
-
-
-deplacer Action et Condition de levemspecifics.h vers un endroit plus approprié?
-
-
 commenter tout
+
+
+passer le level en argument cmd line?
+
+
+
+mettre tous les prints dans print.c et .h
 
 

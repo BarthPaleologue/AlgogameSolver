@@ -6,7 +6,7 @@
 
 //checks that the two maps are equivalent in terms of color
 //sets the number of columns and lines
-static char initMap();
+static char checkMaps();
 char numberOfLines;
 char numberOfColumns;
 static char** matrixBase;
@@ -57,7 +57,7 @@ char wasPainted() {
 
 void initMatrix() {
 
-    if (!initMap()) {
+    if (!checkMaps()) {
         return;
     }
 
@@ -166,7 +166,7 @@ void initMatrix() {
     //printf("%d\n", numberOfStars);
 }
 
-static char initMap() {
+static char checkMaps() {
     FILE* map = fopen(pathMap, "r");
     FILE* starsMap = fopen(pathStarsMap, "r");
     if (map && starsMap) {
@@ -175,17 +175,16 @@ static char initMap() {
         int columnsCounter = 0;
 
         while ((c1 = fgetc(map)) != EOF && (c2 = fgetc(starsMap)) != EOF) {
-            //ne pas se prendre la tete : juste regarder si les char appartiennent au 4 / 5 permis... 
             printf("%c%c  ", c1, c2);
 
-            if (c2 != ' ' && c2 != '\n' && c2 != '\r') {
+            if (c2 == '_' || c2 == 'O' || c2 == 'R' || c2 == 'B' || c2 == 'X' || c2 == '*') {
                 columnsCounter++;
             } else if (c2 == ' ' || c2 == '\r') {
                 printf("There are spaces or tabs in the stars map file. Please remove them.\n");
                 fclose(map);
                 fclose(starsMap);
                 return 0;
-            } else {
+            } else if (c2 == '\n') {
                 if (numberOfColumns != 0 && columnsCounter != numberOfColumns) {
                     printf("Check that there's the same number of symbols on each line of the star map.\n");
                     fclose(map);
@@ -196,6 +195,11 @@ static char initMap() {
                     numberOfColumns = columnsCounter;
                     columnsCounter = 0;
                 }
+            } else {
+                printf("There are other characters than _, O, R, B, *, X or \\n.Please remove them.\n");
+                fclose(map);
+                fclose(starsMap);
+                return 0;
             }
             
             if (c2 != '*' && c2 != 'X' && c1 != c2) {
@@ -210,8 +214,8 @@ static char initMap() {
                     fclose(starsMap);
                     return 0;
                 }
-            } else if (c2 == 'X' && c1 == 'X') {
-                printf("There is an 'X' in the map file, only write one 'X' in the stars' map file.\n");
+            } else if (c1 == '*' || c1 == 'X') {
+                printf("There is an X or a * in the map file, only write * and one X in the stars' map file.\n");
                 fclose(map);
                 fclose(starsMap);
                 return 0;
