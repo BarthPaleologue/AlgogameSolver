@@ -1,5 +1,9 @@
+#include "dartAgent.h"
+
 #include "matrix.h"
-#include "instructionsImplementations.h"
+
+struct Coords coords;
+enum Direction direction;
 
 void move() {
     switch (direction) {

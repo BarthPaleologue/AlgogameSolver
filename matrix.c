@@ -13,36 +13,17 @@ static char areMapsWellFormatted();
 unsigned int numberOfLines;
 unsigned int numberOfColumns;
 
-static char** matrixBackup;
-static char** matrixColorBackup;
+char** matrixBackup;
+char** matrixColorBackup;
 char** matrix;
 
-struct Coords coords;
+char starsCounter;
 struct Coords startingCoords;
-enum Direction direction;
 char _gameTerminated = 0;
 char _MapWasPainted = 0;
 char numberOfStars;
-char starsCounter;
 
 // TODO: noter quelles variables globales sont modifiées pendant l'initialisation
-
-void eatStar() {
-    if (matrix[coords.y][coords.x] != CASE_STAR) {
-        return;
-    }
-    matrix[coords.y][coords.x] = matrixColorBackup[coords.y][coords.x];
-    declareWasPainted();
-    starsCounter--;
-}
-
-char gameLost() {
-    return matrix[coords.y][coords.x] == CASE_WHITE;
-}
-
-char gameWon() {
-    return (starsCounter == 0);
-}
 
 void declareWasPainted() {
     _MapWasPainted = 1;

@@ -5,11 +5,17 @@
 
 #include "colors.h"
 #include "executeProgram.h"
+#include "game.h"
 #include "generator.h"
 #include "level_specifics.h"
 #include "matrix.h"
 #include "path.h"
 
+/**
+ * @brief Saves the generator state to a file when the program is killed
+ *
+ * @param signo the signal number
+ */
 void kill_handler(int signo) {
     if (signo == SIGINT) {
         printProgramState();

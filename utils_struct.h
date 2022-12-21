@@ -1,6 +1,21 @@
 #ifndef UTILS_STRUCT
 #define UTILS_STRUCT
 
+/**
+ * @brief Direction in the map.
+ */
+enum Direction {
+    RIGHT,
+    DOWN,
+    LEFT,
+    UP
+};
+
+struct Coords {
+    unsigned char x;
+    unsigned char y;
+};
+
 enum Action {
     FORWARD,
     TURN_LEFT,

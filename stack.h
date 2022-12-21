@@ -1,3 +1,6 @@
+#ifndef STACK_H
+#define STACK_H
+
 /**
  * @brief Uses the stack to store the programPointer value before assigning the new one.
  *
@@ -15,5 +18,7 @@ void jumpBack(int *programPointer);
 
 /**
  * @brief Returns 1 iff the stack is empty.
-*/
+ */
 char stackEmpty();
+
+#endif

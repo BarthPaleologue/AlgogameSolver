@@ -1,7 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include "colors.h"
 #include "executeProgram.h"
+#include "game.h"
 #include "generator.h"
 #include "matrix.h"
 #include "path.h"
@@ -29,7 +31,7 @@ int main() {
     initPath(LEVEL);
     initMatrix();
     resetMatrix();
-    printf("\n---------------------TESTING---------------------\n\n");
+    printf(BOLDCYAN "\n---------------------TESTING---------------------\n\n" RESET);
 
     // printMatrix(matrix);
 
@@ -44,10 +46,10 @@ int main() {
         free(program);
 
         if (gameWon()) {
-            printf("Tests passed: %d/%d\n", i + 1, NB_PROGRAMS);
+            printf(GREEN "Tests passed: %d/%d\n" RESET, i + 1, NB_PROGRAMS);
         } else {
             successful = 0;
-            printf("\nERROR: Test n°%d failed\n", i + 1);
+            printf(RED "\nERROR: Test n°%d failed\n" RESET, i + 1);
             break;
         }
     }
@@ -55,12 +57,12 @@ int main() {
     printf("\n");
 
     if (successful) {
-        printf("The tests were successful\n");
-        printf("\n-----------------END OF TESTING------------------\n");
+        printf(BOLDGREEN "The tests were successful\n" RESET);
+        printf(BOLDCYAN "\n-----------------END OF TESTING------------------\n" RESET);
         return EXIT_SUCCESS;
     } else {
-        printf("The tests failed\n");
-        printf("\n-----------------END OF TESTING------------------\n");
+        printf(BOLDRED "The tests failed\n" RESET);
+        printf(BOLDCYAN "\n-----------------END OF TESTING------------------\n" RESET);
         return EXIT_FAILURE;
     }
 }

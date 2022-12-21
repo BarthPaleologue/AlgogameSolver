@@ -1,6 +1,8 @@
 #ifndef matrix_h
 #define matrix_h
 
+#include "utils_struct.h"
+
 /*The matrix knows where you are and how close you're to the goal. It also knows how to erase all you work to retry.*/
 extern unsigned int numberOfLines;
 extern unsigned int numberOfColumns;
@@ -15,37 +17,6 @@ enum Color {
 // if you're on CASE_WHITE, you lose
 // if you're on CASE_STAR, you win a star
 
-// MOUVEMENTS ON THE MATRIX' IMPLEMENTATION
-
-/**
- * @brief Direction in the map.
- */
-enum Direction {
-    RIGHT,
-    DOWN,
-    LEFT,
-    UP
-};
-
-/**
- * Current direction of the cursor.
- */
-extern enum Direction direction;
-
-/**
- * Coordinates on the map.
- * Careful, the position is at matrix[y][x].
- */
-struct Coords {
-    unsigned char x;
-    unsigned char y;
-};
-
-/**
- * Current position of the cursor.
- */
-extern struct Coords coords;
-
 /**
  * Starting position.
  */
@@ -56,25 +27,21 @@ extern struct Coords startingCoords;
  */
 extern char** matrix;
 
-// GAME SUCCESS' WATCHERS
+extern char** matrixBackup;
 
-/**
- * @brief Total number of stars in the map.
- */
-extern char numberOfStars;
+extern char** matrixColorBackup;
 
 /**
  * @brief Remaining stars.
  */
 extern char starsCounter;
 
-/**
- * Updates the map and the stars' counter if on a star.
- */
-void eatStar();
+// GAME SUCCESS' WATCHERS
 
-char gameLost();
-char gameWon();
+/**
+ * @brief Total number of stars in the map.
+ */
+extern char numberOfStars;
 
 // INITIALIZATIONS OF THE MATRIX
 

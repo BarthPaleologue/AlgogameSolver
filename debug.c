@@ -1,15 +1,12 @@
 #include <stdio.h>
 
 #include "colors.h"
+#include "dartAgent.h"
 #include "matrix.h"
 
 void printMatrix(char** matrix) {
     for (unsigned int i = 0; i < numberOfLines; i++) {
         for (unsigned int j = 0; j < numberOfColumns; j++) {
-            if (i == coords.y && j == coords.x) {
-                printf("X");
-                continue;
-            }
             switch (matrix[i][j]) {
                 case CASE_WHITE:
                     printf("_");

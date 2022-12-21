@@ -3,6 +3,7 @@
 
 #include "colors.h"
 #include "executeProgram.h"
+#include "game.h"
 #include "generator.h"
 #include "level_specifics.h"
 #include "matrix.h"

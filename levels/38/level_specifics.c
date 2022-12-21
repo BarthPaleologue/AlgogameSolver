@@ -86,11 +86,7 @@ Try only to use the 5 above mentionned characters, plus '*' and 'X'. Careful it'
 
 // PATHS TO MAP FILES
 
-int LEVEL = 38;
-// the level number is only used when getting the map files right below
-// careful, we supposed that it was a number with two digits
-
-// TESTING
+int LEVEL = 38;  // careful, we supposed that it was a number with two digits
 
 // TESTING
 
@@ -106,9 +102,7 @@ char isProgramWorthTesting(Program p) {
     char nbF1Calls = 0;
     char nbF2Calls = 0;
 
-    if (p[0].action == F1) {
-        return 0;
-    }
+    if (p[0].action == F1) return 0;
 
     for (unsigned char i = 0; i < PROGRAM_LENGTH; i++) {
         switch (p[i].action) {
