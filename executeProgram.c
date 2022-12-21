@@ -18,10 +18,14 @@ static int programPointer;
 
 static void updateProgramPointer();
 static void doInstruction(enum Action action, enum Condition condition);
-static void initGame();
 static void printExecutionInfo();
 
-void executeProgram(Program program);
+void resetExecution() {
+    while (!stackEmpty()) {
+        jumpBack(&programPointer);  // permet de free tous les nodes
+    }
+    programPointer = 0;
+}
 
 /**
  * @brief Updates the program pointer (in case the function ends, it is temporally set to -1).<br>
@@ -87,29 +91,6 @@ static void doInstruction(enum Action action, enum Condition condition) {
     }
 }
 
-/**
- * @brief Resets the game state : map, coordinates, number of stars, function call stack.µ
- * Necessary before executing a new program.
- */
-static void initGame() {
-    // this function resets all the nessecary parameters to test a new program
-
-    coords.x = startingCoords.x;
-    coords.y = startingCoords.y;
-
-    direction = startingDirection;
-
-    starsCounter = numberOfStars;
-
-    if (wasPainted()) {
-        resetMatrix();  // pas necessaire a chaque fois...
-    }
-    while (!stackEmpty()) {
-        jumpBack(&programPointer);  // permet de free tous les nodes
-    }
-    programPointer = 0;
-}
-
 void executeProgram(Program program) {
     initGame();
 
@@ -144,7 +125,7 @@ static void printExecutionInfo() {
     if (PRINT_EXEC_INFO) {
         printCoords();
         printf("\ndirection : %d\n\n", direction);
-        printf("number of stars : %d\n", starsCounter);
-        printMatrix(matrix);
+        printf("number of stars : %d\n", nbRemainingStars);
+        printMatrix(matrix, matrixHeight, matrixWidth);
     }
 }

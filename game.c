@@ -1,7 +1,30 @@
 #include "game.h"
 
 #include "dartAgent.h"
+#include "executeProgram.h"
+#include "level_specifics.h"
 #include "matrix.h"
+
+char nbRemainingStars;
+
+void initGlobals() {
+    initMatrix();
+    nbRemainingStars = numberOfStars;
+}
+
+void initGame() {
+    // this function resets all the nessecary parameters to test a new program
+
+    coords.x = startingCoords.x;
+    coords.y = startingCoords.y;
+
+    direction = startingDirection;
+
+    nbRemainingStars = numberOfStars;
+
+    if (wasPainted()) resetMatrix();
+    resetExecution();
+}
 
 void eatStar() {
     if (matrix[coords.y][coords.x] != CASE_STAR) {
@@ -9,7 +32,7 @@ void eatStar() {
     }
     matrix[coords.y][coords.x] = matrixColorBackup[coords.y][coords.x];
     declareWasPainted();
-    starsCounter--;
+    nbRemainingStars--;
 }
 
 char gameLost() {
@@ -17,5 +40,5 @@ char gameLost() {
 }
 
 char gameWon() {
-    return (starsCounter == 0);
+    return (nbRemainingStars == 0);
 }

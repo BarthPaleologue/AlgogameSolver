@@ -4,6 +4,7 @@
 #include <unistd.h>
 
 #include "colors.h"
+#include "debug.h"
 #include "executeProgram.h"
 #include "game.h"
 #include "generator.h"
@@ -34,8 +35,12 @@ int main() {
     readProgramStateFromFile(pathProgramState);
     printf("\n");
 
-    initMatrix();
+    initGlobals();
+
     resetMatrix();
+
+    printMatrix(matrix, matrixHeight, matrixWidth);
+
     printf(BOLDCYAN
            "\n"
            "-----------------------------------------------------------\n"

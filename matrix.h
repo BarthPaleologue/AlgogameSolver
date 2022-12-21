@@ -3,10 +3,6 @@
 
 #include "utils_struct.h"
 
-/*The matrix knows where you are and how close you're to the goal. It also knows how to erase all you work to retry.*/
-extern unsigned int numberOfLines;
-extern unsigned int numberOfColumns;
-
 enum Color {
     CASE_WHITE,
     CASE_RED,
@@ -22,21 +18,23 @@ enum Color {
  */
 extern struct Coords startingCoords;
 
+extern unsigned int matrixHeight;
+extern unsigned int matrixWidth;
+
 /**
  * @brief Current matrix modified by the program being executed.
  */
 extern char** matrix;
 
+/**
+ * @brief The unaltered level matrix with stars.
+ */
 extern char** matrixBackup;
 
-extern char** matrixColorBackup;
-
 /**
- * @brief Remaining stars.
+ * @brief The unaltered level matrix with colors.
  */
-extern char starsCounter;
-
-// GAME SUCCESS' WATCHERS
+extern char** matrixColorBackup;
 
 /**
  * @brief Total number of stars in the map.

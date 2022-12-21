@@ -4,12 +4,12 @@
 #include "dartAgent.h"
 #include "matrix.h"
 
-void printMatrix(char** matrix) {
-    for (unsigned int i = 0; i < numberOfLines; i++) {
-        for (unsigned int j = 0; j < numberOfColumns; j++) {
+void printMatrix(char** matrix, unsigned int matrixHeight, unsigned int matrixWidth) {
+    for (unsigned int i = 0; i < matrixHeight; i++) {
+        for (unsigned int j = 0; j < matrixWidth; j++) {
             switch (matrix[i][j]) {
                 case CASE_WHITE:
-                    printf("_");
+                    printf(" ");
                     break;
                 case CASE_RED:
                     printf(RED "R" RESET);
@@ -32,8 +32,5 @@ void printMatrix(char** matrix) {
 }
 
 void printCoords() {
-    if (coords.x == startingCoords.x && coords.y == startingCoords.y) {
-        return;
-    }
     printf("x : %d; y : %d\n", coords.x, coords.y);
 }

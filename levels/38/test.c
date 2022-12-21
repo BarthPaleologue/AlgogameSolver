@@ -29,7 +29,7 @@ int main() {
         {{FORWARD, CD_RED}, {F2, CD_ORANGE}, {F1, CD_ORANGE}, {TURN_LEFT, CD_ORANGE}, {FORWARD, CD_NONE}, {F2, CD_RED}, {TURN_LEFT, CD_ORANGE}}};
 
     initPath(LEVEL);
-    initMatrix();
+    initGlobals();
     resetMatrix();
     printf(BOLDCYAN "\n---------------------TESTING---------------------\n\n" RESET);
 
