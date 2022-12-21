@@ -71,5 +71,15 @@ int main() {
 
         free(program);
     }
+    printf(BOLDCYAN
+           "\n"
+           "-------------------------------------------\n"
+           "Algogame Solver has found all the solutions\n"
+           "-------------------------------------------\n\n" RESET);
+    
+    printf(BLUE "Erasing program_state.txt...\n");
+    char command[36];
+    sprintf(command, "rm -f ./levels/%d/program_state.txt", LEVEL);
+    system(command);
     return 0;
 }

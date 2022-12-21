@@ -44,6 +44,7 @@ void writeProgramStateToFile(char* filename) {
 void readProgramStateFromFile(char* filename) {
     FILE* file = fopen(filename, "r");
     if (file) {
+        printf(GREEN "File %s read successfully\nThe generator will be initialized at the given value\n" RESET, filename);
         for (int i = 0; i < PROGRAM_LENGTH; i++) {
             fscanf(file, "%hhd", &programState[i]);
         }
@@ -78,6 +79,7 @@ void printProgramVerbose(Program p) {
                 break;
             case PAINT_ORANGE:
                 actionStr = YELLOW "PNT_O" RESET;
+                actionStr = ORANGE "PNT_O" RESET;
                 break;
             case F1:
                 actionStr = "F1";
@@ -101,6 +103,7 @@ void printProgramVerbose(Program p) {
                 break;
             case CD_ORANGE:
                 conditionStr = YELLOW "O" RESET;
+                conditionStr = ORANGE "O" RESET;
                 break;
             case CD_BLUE:
                 conditionStr = CYAN "B" RESET;
