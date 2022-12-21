@@ -47,6 +47,6 @@ Program getProgramFromVerboseArray(char programArray[PROGRAM_LENGTH][2]);
  *
  * @param p the program to print
  */
-void printProgramVerbose(Program p);
+void printProgramVerbose(Program p, char *filename);
 
 #endif

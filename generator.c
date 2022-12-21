@@ -57,61 +57,80 @@ void readProgramStateFromFile(char* filename) {
     }
 }
 
-void printProgramVerbose(Program p) {
+void printProgramVerbose(Program p, char * filename) {
+    FILE* file = fopen(filename, "a");
     for (int i = 0; i < PROGRAM_LENGTH; i++) {
         char* actionStr;
         char* conditionStr;
+        char* actionStr2;
+        char* conditionStr2;
         switch (p[i].action) {
             case FORWARD:
                 actionStr = "FRWRD";
+                actionStr2 = "FRWRD";
                 break;
             case TURN_LEFT:
                 actionStr = "TRN_LFT";
+                actionStr2 = "TRN_LFT";
                 break;
             case TURN_RIGHT:
                 actionStr = "TRN_RGHT";
+                actionStr2 = "TRN_RGHT";
                 break;
             case PAINT_RED:
                 actionStr = RED "PNT_R" RESET;
+                actionStr2 = "PNT_R";
                 break;
             case PAINT_BLUE:
                 actionStr = CYAN "PNT_B" RESET;
+                actionStr2 = "PNT_B";
                 break;
             case PAINT_ORANGE:
-                actionStr = YELLOW "PNT_O" RESET;
                 actionStr = ORANGE "PNT_O" RESET;
+                actionStr2 = "PNT_O";
                 break;
             case F1:
                 actionStr = "F1";
+                actionStr2 = "F1";
                 break;
             case F2:
                 actionStr = "F2";
+                actionStr2 = "F2";
                 break;
             case F3:
                 actionStr = "F3";
+                actionStr2 = "F3";
                 break;
             case F4:
                 actionStr = "F4";
+                actionStr2 = "F4";
                 break;
         }
         switch (p[i].condition) {
             case CD_NONE:
                 conditionStr = "_";
+                conditionStr2 = "_";
                 break;
             case CD_RED:
                 conditionStr = RED "R" RESET;
+                conditionStr2 = "R";
                 break;
             case CD_ORANGE:
-                conditionStr = YELLOW "O" RESET;
                 conditionStr = ORANGE "O" RESET;
+                conditionStr2 = "O";
                 break;
             case CD_BLUE:
                 conditionStr = CYAN "B" RESET;
+                conditionStr2 = "B";
                 break;
         }
         if (i == F2_START || i == F3_START || i == F4_START) printf("  ");
         printf("[%s;%s] ", actionStr, conditionStr);
+        if (file) 
+            fprintf(file, "[%s;%s] ", actionStr2, conditionStr2);
     }
+    fprintf(file, "\n\n");
+    fclose(file);
     printf("\n\n");
 }
 
