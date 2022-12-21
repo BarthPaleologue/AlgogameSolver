@@ -164,6 +164,7 @@ void initMatrix() {
 }
 
 static char areMapsWellFormatted() {
+    printf(BOLDCYAN "Checking map formatting...\n\n" RESET);
     FILE* map = fopen(pathMap, "r");
     FILE* starsMap = fopen(pathStarsMap, "r");
 
@@ -220,7 +221,7 @@ static char areMapsWellFormatted() {
             }
         }
 
-        printf("Correspondance between the two files is correct\n");
+        printf(BOLDGREEN "\n\nThe map formatting is correct\n" RESET);
         numberOfLines++;
         numberOfLines = numberOfLines + 2;
         numberOfColumns = numberOfColumns + 2;
@@ -231,7 +232,7 @@ static char areMapsWellFormatted() {
     }
     fclose(map);
     fclose(starsMap);
-    printf(RED "Error while reading map files" RESET);
+    printf(BOLDRED "\n\nError while reading map files" RESET);
 
     return 0;
 }

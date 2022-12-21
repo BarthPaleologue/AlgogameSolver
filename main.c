@@ -21,13 +21,19 @@ int main() {
     signal(SIGINT, kill_handler);
 
     initPath();
+    printf("\n");
 
     // read from program_state.txt and update programState
     readProgramStateFromFile(pathProgramState);
+    printf("\n");
 
     initMatrix();
     resetMatrix();
-    printf("\n\n\n");
+    printf(BOLDCYAN
+           "\n"
+           "-----------------------------------------------------------\n"
+           "Algogame Solver will now begin searching for valid programs\n"
+           "-----------------------------------------------------------\n\n" RESET);
 
     // printMatrix(matrix);
 
@@ -39,7 +45,7 @@ int main() {
         executeProgram(program);
 
         if (gameWon()) {
-            printf(GREEN "\rThis program succeeded:\n" RESET);
+            printf(GREEN "\nThis program succeeded:\n" RESET);
             printProgramVerbose(program);
         } /*else if (gameLost()) {
             printf("this program failed\n\n\n");
