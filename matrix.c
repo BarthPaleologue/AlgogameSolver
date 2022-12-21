@@ -72,8 +72,14 @@ void initMatrix() {
     }
     
     FILE * map = fopen(pathMap, "r");
-    for (int i = 0; i < numberOfLines; i++) {
-        for (int j = 0; j < numberOfColumns; j++) {
+
+    for (int j = 0; j < numberOfColumns; j++) {
+        matrixColorBase[0][j] = CASE_WHITE;
+    }
+    for (int i = 1; i < numberOfLines-1; i++) {
+
+        matrixColorBase[i][0] = CASE_WHITE;
+        for (int j = 1; j < numberOfColumns-1; j++) {
             char cell = fgetc(map);
 
 
@@ -99,12 +105,22 @@ void initMatrix() {
                     return;
             }
         }
+        matrixColorBase[i][numberOfColumns-1] = CASE_WHITE;
+    }
+    for (int j = 0; j < numberOfColumns; j++) {
+        matrixColorBase[numberOfLines-1][j] = CASE_WHITE;
     }
 
     fclose(map);
 
     FILE * starsMap = fopen(pathStarsMap, "r");
+
+    for (int j = 0; j < numberOfColumns; j++) {
+        matrixBase[0][j] = CASE_WHITE;
+    }
     for (int i = 0; i < numberOfLines; i++) {
+
+        matrixBase[i][0] = CASE_WHITE;
         for (int j = 0; j < numberOfColumns; j++) {
             char cell = fgetc(starsMap);
 
@@ -139,6 +155,10 @@ void initMatrix() {
                     return;
             }
         }
+        matrixBase[i][numberOfColumns-1] = CASE_WHITE;
+    }
+    for (int j = 0; j < numberOfColumns; j++) {
+        matrixBase[numberOfLines-1][j] = CASE_WHITE;
     }
 
     fclose(starsMap);
@@ -200,6 +220,8 @@ static char initMap() {
 
         printf("Correspondance between the two files is correct\n");
         numberOfLines++;
+        numberOfLines = numberOfLines+2;
+        numberOfColumns = numberOfColumns+2;
         fclose(map);
         fclose(starsMap);
         return 1;
