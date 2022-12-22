@@ -10,10 +10,4 @@
  */
 void executeProgram(Program program);
 
-/**
- * @brief Will reset the execution state of the program
- *
- */
-void initStack();
-
 #endif

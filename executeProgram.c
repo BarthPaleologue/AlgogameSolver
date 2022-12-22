@@ -16,16 +16,11 @@
  */
 static int programPointer;
 
+static void initProgramPointer();
 static void updateProgramPointer();
+static void initExecution();
 static void doInstruction(enum Action action, enum Condition condition);
 static void printExecutionInfo();
-
-void initStack() {
-    while (!stackEmpty()) {
-        jumpBack(&programPointer);  // permet de free tous les nodes
-    }
-    programPointer = 0;
-}
 
 /**
  * @brief Updates the program pointer (in case the function ends, it is temporally set to -1).<br>
@@ -41,6 +36,21 @@ static void updateProgramPointer() {
         programPointer = programPointer + 1;
         // otherwise we set the pointer to the next instruction
     }
+}
+
+/**
+ * @brief Sets the programPointer to 0.
+*/
+static void initProgramPointer() {
+    programPointer = 0;
+}
+
+/**
+ * @brief Sets all the nessecary parameters to start a new program's execution.
+*/
+void initExecution() {
+    initProgramPointer();
+    initGame();
 }
 
 /**
@@ -92,7 +102,7 @@ static void doInstruction(enum Action action, enum Condition condition) {
 }
 
 void executeProgram(Program program) {
-    initGame();
+    initExecution();
 
     for (int step = 0; step < MAX_EXECUTION_ITERATIONS; step++) {
         struct Instruction instruction = program[programPointer];
