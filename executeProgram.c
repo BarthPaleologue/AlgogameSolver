@@ -20,7 +20,7 @@ static void updateProgramPointer();
 static void doInstruction(enum Action action, enum Condition condition);
 static void printExecutionInfo();
 
-void resetExecution() {
+void initStack() {
     while (!stackEmpty()) {
         jumpBack(&programPointer);  // permet de free tous les nodes
     }

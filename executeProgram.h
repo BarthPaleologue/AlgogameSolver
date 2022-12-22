@@ -14,6 +14,6 @@ void executeProgram(Program program);
  * @brief Will reset the execution state of the program
  *
  */
-void resetExecution();
+void initStack();
 
 #endif
