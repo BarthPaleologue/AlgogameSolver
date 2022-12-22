@@ -27,11 +27,6 @@ extern unsigned int matrixWidth;
 extern char** matrix;
 
 /**
- * @brief The unaltered level matrix with stars.
- */
-extern char** matrixBackup;
-
-/**
  * @brief The unaltered level matrix with colors.
  */
 extern char** matrixColorBackup;

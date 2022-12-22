@@ -14,7 +14,11 @@ static char areMapsWellFormatted();
 unsigned int matrixHeight;
 unsigned int matrixWidth;
 
-char** matrixBackup;
+/**
+ * @brief The unaltered level matrix with stars.
+ */
+static char** matrixBackup;
+
 char** matrixColorBackup;
 char** matrix;
 
