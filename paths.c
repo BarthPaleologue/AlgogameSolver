@@ -1,4 +1,4 @@
-#include "path.h"
+#include "paths.h"
 
 #include <stdio.h>
 

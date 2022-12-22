@@ -6,7 +6,7 @@
 #include "game.h"
 #include "generator.h"
 #include "matrix.h"
-#include "path.h"
+#include "paths.h"
 
 #define NB_PROGRAMS 12
 

@@ -5,9 +5,8 @@
 #include "executeProgram.h"
 #include "game.h"
 #include "generator.h"
-#include "level_specifics.h"
 #include "matrix.h"
-#include "path.h"
+#include "paths.h"
 
 #define NB_PROGRAMS 7
 

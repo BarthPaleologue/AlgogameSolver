@@ -5,7 +5,7 @@
 
 #include "colors.h"
 #include "level_specifics.h"
-#include "path.h"
+#include "paths.h"
 
 // checks that the two maps are equivalent in terms of color
 // sets the number of columns and lines

@@ -10,7 +10,7 @@
 #include "generator.h"
 #include "level_specifics.h"
 #include "matrix.h"
-#include "path.h"
+#include "paths.h"
 
 /**
  * @brief Saves the generator state to a file when the program is killed
