@@ -58,7 +58,8 @@ int main() {
 
         if (gameWon()) {
             printf(GREEN "\nThis program succeeded:\n" RESET);
-            printProgramVerbose(program, pathSolutions);
+            writeSolutionToFile(program, pathSolutions);
+            printProgramVerbose(program);
         } /*else if (gameLost()) {
             printf("this program failed\n\n\n");
             printf("f-");
@@ -78,7 +79,7 @@ int main() {
            "-------------------------------------------\n\n" RESET);
     
     printf(BLUE "Erasing program_state.txt...\n");
-    printf("All the solutions found are in file solutions.txt\n\n" RESET);
+    printf("All the solutions found were added to file solutions.txt\n\n" RESET);
     char command[36];
     sprintf(command, "rm -f ./levels/%d/program_state.txt", LEVEL);
     system(command);
