@@ -23,7 +23,7 @@ void initGame() {
     nbRemainingStars = numberOfStars;
 
     if (wasPainted()) resetMatrix();
-    resetExecution();
+    initStack();
 }
 
 void eatStar() {
