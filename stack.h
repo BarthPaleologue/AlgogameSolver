@@ -21,4 +21,9 @@ void jumpBack(int *programPointer);
  */
 char stackEmpty();
 
+/**
+ * @brief Empties the stack
+ */
+void initStack();
+
 #endif
