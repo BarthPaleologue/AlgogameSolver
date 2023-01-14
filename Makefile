@@ -40,4 +40,4 @@ print-level:
 
 clean:
 	rm -f *.o main test
-	rm -f $(SPECIFICS)*.o
+	rm -f ./levels/*/*.o
