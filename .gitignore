@@ -3,6 +3,7 @@
 !*.*
 *.o
 .vscode
+.idea
 !Makefile
 program_state.txt
 .gdb_history
