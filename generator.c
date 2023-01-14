@@ -44,6 +44,7 @@ void writeProgramStateToFile(char* filename) {
 void readProgramStateFromFile(char* filename) {
     FILE* file = fopen(filename, "r");
     if (file) {
+        printf(GREEN "File %s read successfully\nThe generator will be initialized at the given value\n" RESET, filename);
         for (int i = 0; i < PROGRAM_LENGTH; i++) {
             fscanf(file, "%hhd", &programState[i]);
         }
@@ -78,6 +79,7 @@ void printProgramVerbose(Program p) {
                 break;
             case PAINT_ORANGE:
                 actionStr = YELLOW "PNT_O" RESET;
+                actionStr = ORANGE "PNT_O" RESET;
                 break;
             case F1:
                 actionStr = "F1";
@@ -101,6 +103,7 @@ void printProgramVerbose(Program p) {
                 break;
             case CD_ORANGE:
                 conditionStr = YELLOW "O" RESET;
+                conditionStr = ORANGE "O" RESET;
                 break;
             case CD_BLUE:
                 conditionStr = CYAN "B" RESET;
@@ -110,6 +113,65 @@ void printProgramVerbose(Program p) {
         printf("[%s;%s] ", actionStr, conditionStr);
     }
     printf("\n\n");
+}
+
+void writeSolutionToFile(Program p, char * filename) {
+    FILE* file = fopen(filename, "a");
+    for (int i = 0; i < PROGRAM_LENGTH; i++) {
+        char* actionStr;
+        char* conditionStr;
+        switch (p[i].action) {
+            case FORWARD:
+                actionStr = "FRWRD";
+                break;
+            case TURN_LEFT:
+                actionStr = "TRN_LFT";
+                break;
+            case TURN_RIGHT:
+                actionStr = "TRN_RGHT";
+                break;
+            case PAINT_RED:
+                actionStr = "PNT_R";
+                break;
+            case PAINT_BLUE:
+                actionStr = "PNT_B";
+                break;
+            case PAINT_ORANGE:
+                actionStr = "PNT_O";
+                break;
+            case F1:
+                actionStr = "F1";
+                break;
+            case F2:
+                actionStr = "F2";
+                break;
+            case F3:
+                actionStr = "F3";
+                break;
+            case F4:
+                actionStr = "F4";
+                break;
+        }
+        switch (p[i].condition) {
+            case CD_NONE:
+                conditionStr = "_";
+                break;
+            case CD_RED:
+                conditionStr = "R";
+                break;
+            case CD_ORANGE:
+                conditionStr = "O";
+                break;
+            case CD_BLUE:
+                conditionStr = "B";
+                break;
+        }
+        if (i == F2_START || i == F3_START || i == F4_START) fprintf(file, "  ");
+        if (file) 
+            fprintf(file, "[%s;%s] ", actionStr, conditionStr);
+    }
+    fprintf(file, "\n\n");
+    fclose(file);
 }
 
 Program getProgramFromVerboseArray(char programArray[PROGRAM_LENGTH][2]) {

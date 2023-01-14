@@ -10,7 +10,7 @@
 #include "generator.h"
 #include "level_specifics.h"
 #include "matrix.h"
-#include "path.h"
+#include "paths.h"
 
 /**
  * @brief Saves the generator state to a file when the program is killed
@@ -58,6 +58,7 @@ int main() {
 
         if (gameWon()) {
             printf(GREEN "\nThis program succeeded:\n" RESET);
+            writeSolutionToFile(program, pathSolutions);
             printProgramVerbose(program);
         } /*else if (gameLost()) {
             printf("this program failed\n\n\n");
@@ -71,5 +72,16 @@ int main() {
 
         free(program);
     }
+    printf(BOLDCYAN
+           "\n"
+           "-------------------------------------------\n"
+           "Algogame Solver has found all the solutions\n"
+           "-------------------------------------------\n\n" RESET);
+    
+    printf(BLUE "Erasing program_state.txt...\n");
+    printf("All the solutions found were added to file solutions.txt\n\n" RESET);
+    char command[36];
+    sprintf(command, "rm -f ./levels/%d/program_state.txt", LEVEL);
+    system(command);
     return 0;
 }

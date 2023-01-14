@@ -1,9 +1,9 @@
 #include "game.h"
 
 #include "dartAgent.h"
-#include "executeProgram.h"
 #include "level_specifics.h"
 #include "matrix.h"
+#include "stack.h"
 
 char nbRemainingStars;
 
@@ -23,7 +23,7 @@ void initGame() {
     nbRemainingStars = numberOfStars;
 
     if (wasPainted()) resetMatrix();
-    resetExecution();
+    initStack();
 }
 
 void eatStar() {

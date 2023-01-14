@@ -5,7 +5,7 @@
 
 #include "colors.h"
 #include "level_specifics.h"
-#include "path.h"
+#include "paths.h"
 
 // checks that the two maps are equivalent in terms of color
 // sets the number of columns and lines
@@ -14,7 +14,11 @@ static char areMapsWellFormatted();
 unsigned int matrixHeight;
 unsigned int matrixWidth;
 
-char** matrixBackup;
+/**
+ * @brief The unaltered level matrix with stars.
+ */
+static char** matrixBackup;
+
 char** matrixColorBackup;
 char** matrix;
 

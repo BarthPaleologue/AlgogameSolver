@@ -26,3 +26,11 @@ void jumpBack(int *programPointer) {
 char stackEmpty() {
     return (stackPointer == NULL);
 }
+
+void initStack() {
+    while (stackPointer != NULL) {
+        node_t *temp = stackPointer->previousNode;
+        free(stackPointer);
+        stackPointer = temp;
+    }
+}
