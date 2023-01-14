@@ -41,7 +41,7 @@ Note that can probably provide informations to reduce the number of tests : a su
 
 ## Run it!
 
-When you have completed all the above steps, you should be able to run the program by entering the command `make anew` in your terminal in the directory of the solver. If you made no mistake, the solver will start brute forcing the level.
+When you have completed all the above steps, you should be able to run the program by entering the command `make anew` in your terminal in the directory of the solver. If you made no mistake, the solver will start brute forcing the level. If you made any changes to the code except in the `./levels` folder, you should run `make` instead of `make anew` so that the code undergoes some fucntionning checks.
 You might have to wait for a few hours depending on the complexity of the level (ie the number of instructions in the program) and the effectiveness of your constraints.
 The program will output all the solutions in the console as you run it.
 You can stop at anytime with ^C and start back where you left it thanks to the program's autosave system.
