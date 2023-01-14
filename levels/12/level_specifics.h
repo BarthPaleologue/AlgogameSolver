@@ -59,7 +59,7 @@ extern const enum Condition possibleConditions[NB_CONDITIONS];
 
 extern enum Direction startingDirection;
 
-extern int LEVEL;
+#define LEVEL 12
 
 char isProgramWorthTesting(Program p);
 

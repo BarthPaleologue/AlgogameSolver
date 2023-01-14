@@ -26,6 +26,7 @@ run-test: clean
 	make clean
 	make test LEVEL=38
 	./test
+	make clean
 
 new: clean
 	make main
