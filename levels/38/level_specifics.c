@@ -84,10 +84,6 @@ __________
 
 Try only to use the 5 above mentionned characters, plus '*' and 'X'. Careful it's a higher case X.*/
 
-// PATHS TO MAP FILES
-
-int LEVEL = 38;  // careful, we supposed that it was a number with two digits
-
 // TESTING
 
 /**
