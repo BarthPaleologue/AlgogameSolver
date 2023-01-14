@@ -25,9 +25,18 @@ The second tool is Make. As for GCC, there are many tutorials online on how to i
 
 ## Breaking a specific level
 
-You need to copy paste a folder from `./levels` and follow the instructions given in `./levels/*/level_specifics.c`.
+All the instructions are given in `./levels/template/level_specifics.c`.
+Once you've completed all the info, you can run your code. But make sure that the Makefile is building the right executive : set the `LEVEL` variable to the name of the folder you used in the first line of the Makefile (or in command line).
+Ex : LEVEL='template'
 
-In short, you need to provide sufficient information about the level (a map of the level, the instructions provided, how many instructions are in the program, etc.). You can also provide informations to reduce the number of tests : a successful program must have at least one TURN_RIGHT intruction or one PAINT_RED...
+#### How does it work ?
+In `./levels/template` are all the files you need to modify so that the program will be adapted to a particular level. You will need to provide sufficient information about the level (a map of the level, the instructions provided, how many instructions are in the program, etc.). 
+
+#### Breaking different levels
+You can copy paste the template folder to `./levels` to break different levels. You can rename it as you want, any folder in `./levels` is treated the same (don't forget to specify the folder name when you compile like it's said above).
+
+#### Speeding up AlgoGame
+Note that can probably provide informations to reduce the number of tests : a successful program might need at least one TURN_RIGHT intruction or one PAINT_RED... In any case it always needs at least one FORWARD. The function to be modified is `isProgramWorthTesting` in `levelspecifics.c`. Testing can take less than a second or over an hour depending on the level, the speed of your machine and also your restrictions, so don't hesitate.
 
 
 ## Run it!

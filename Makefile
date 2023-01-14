@@ -21,7 +21,10 @@ test: test.o $(OBJ)
 	cc -g $^ -o test
 
 run-test: clean 
-	make test
+	make test LEVEL=12
+	./test
+	make clean
+	make test LEVEL=38
 	./test
 
 new: clean
@@ -36,7 +39,6 @@ new-test: clean
 print-level: 
 	@echo
 	@echo LEVEL set to $(LEVEL)
-
 
 clean:
 	rm -f *.o main test
