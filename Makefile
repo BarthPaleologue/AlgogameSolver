@@ -17,7 +17,7 @@ main: main.o $(OBJ)
 run-build: build-check
 	./main
 
-test: $(SPECIFICS)test.o $(OBJ)
+test: test.o $(OBJ)
 	cc -g $^ -o test
 
 run-test: clean 
