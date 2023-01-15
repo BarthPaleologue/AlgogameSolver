@@ -1,8 +1,6 @@
-#include "generator.h"
-
 #include <stdio.h>
 #include <stdlib.h>
-
+#include "generator.h"
 #include "colors.h"
 #include "level_specifics.h"
 #include "utils_struct.h"

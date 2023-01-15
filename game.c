@@ -1,5 +1,4 @@
 #include "game.h"
-
 #include "dartAgent.h"
 #include "level_specifics.h"
 #include "matrix.h"

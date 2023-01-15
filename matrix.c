@@ -1,8 +1,6 @@
-#include "matrix.h"
-
 #include <stdio.h>
 #include <stdlib.h>
-
+#include "matrix.h"
 #include "colors.h"
 #include "level_specifics.h"
 #include "paths.h"
