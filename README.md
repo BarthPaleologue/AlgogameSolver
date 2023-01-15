@@ -26,22 +26,28 @@ The second tool is Make. As for GCC, there are many tutorials online on how to i
 ## Breaking a specific level
 
 All the instructions are given in `./levels/template/level_specifics.c`.
-Once you've completed all the info, you can run your code. But make sure that the Makefile is building the right executive : set the `LEVEL` variable to the name of the folder you used in the first line of the Makefile (or in command line).
+Once you've completed all the info, you can run your code. But make sure that the Makefile is building the right executive : set the `LEVEL` variable to the name of the folder you used (ex : template) in the first line of the Makefile (or in command line).
 Ex : LEVEL='template'
 
 #### How does it work ?
 In `./levels/template` are all the files you need to modify so that the program will be adapted to a particular level. You will need to provide sufficient information about the level (a map of the level, the instructions provided, how many instructions are in the program, etc.). 
 
 #### Breaking different levels
-You can copy paste the template folder to `./levels` to break different levels. You can rename it as you want, any folder in `./levels` is treated the same (don't forget to specify the folder name when you compile like it's said above).
+You can copy paste the template folder to `./levels` to break different levels. You can rename it as you want, any folder in `./levels` is treated the same, but you have to respect these two conditions :
+- the variable LEVEL defined in level_specifics has to be set to the name of the folder it is in <br> Ex : #define LEVEL template
+- don't forget to specify the folder to the Makefile using LEVEL=template in the Makefile or in command-line
+
+
 
 #### Speeding up AlgoGame
-Note that can probably provide informations to reduce the number of tests : a successful program might need at least one TURN_RIGHT intruction or one PAINT_RED... In any case it always needs at least one FORWARD. The function to be modified is `isProgramWorthTesting` in `levelspecifics.c`. Testing can take less than a second or over an hour depending on the level, the speed of your machine and also your restrictions, so don't hesitate.
+Note that can probably provide informations to reduce the number of tests : a successful program might need at least one TURN_RIGHT intruction or one PAINT_RED... In any case it always needs at least one FORWARD. The function to be modified is `isProgramWorthTesting` in `level_specifics.c`. Testing can take less than a second or over an hour depending on the level, the speed of your machine and also your restrictions, so don't hesitate.
 
 
 ## Run it!
 
-When you have completed all the above steps, you should be able to run the program by entering the command `make anew` in your terminal in the directory of the solver. If you made no mistake, the solver will start brute forcing the level. If you made any changes to the code except in the `./levels` folder, you should run `make` instead of `make anew` so that the code undergoes some fucntionning checks.
+When you have completed all the above steps, you should be able to run the program by entering the command `make anew` in your terminal in the directory of the solver. If you followed the instructions, the solver will start brute forcing the level. 
+
+If you made any changes to the code except in the `./levels` folder, you should run `make` instead of `make anew` so that the code undergoes some fucntionning checks.
 You might have to wait for a few hours depending on the complexity of the level (ie the number of instructions in the program) and the effectiveness of your constraints.
 The program will output all the solutions in the console as you run it.
 You can stop at anytime with ^C and start back where you left it thanks to the program's autosave system.

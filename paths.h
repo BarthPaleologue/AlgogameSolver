@@ -1,14 +1,15 @@
 #ifndef PATH_H
 #define PATH_H
 
-extern char pathStarsMap[30];
+#define xstr(s) str(s)
+#define str(s) #s
 
-extern char pathMap[25];
+extern char pathStarsMap[];
 
-extern char pathProgramState[30];
+extern char pathMap[];
 
-extern char pathSolutions[26];
+extern char pathProgramState[];
 
-void initPath(int level);
+extern char pathSolutions[];
 
 #endif

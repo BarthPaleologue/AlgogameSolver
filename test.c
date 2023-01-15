@@ -45,7 +45,6 @@ int main() {
 #endif
 
 
-    initPath(LEVEL);
     initGlobals();
     resetMatrix();
     printf(BOLDCYAN "\n------------------TESTING-LVL%d------------------\n\n" RESET, LEVEL);

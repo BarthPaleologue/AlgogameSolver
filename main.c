@@ -28,7 +28,6 @@ void kill_handler(int signo) {
 int main() {
     signal(SIGINT, kill_handler);
 
-    initPath(LEVEL);
     printf("\n");
 
     // read from program_state.txt and update programState
@@ -80,8 +79,7 @@ int main() {
     
     printf(BLUE "Erasing program_state.txt...\n");
     printf("All the solutions found were added to file solutions.txt\n\n" RESET);
-    char command[36];
-    sprintf(command, "rm -f ./levels/%d/program_state.txt", LEVEL);
+    char command[] = "rm -f ./levels/" xstr(LEVEL) "/program_state.txt";
     system(command);
     return 0;
 }

@@ -59,7 +59,7 @@ extern const enum Condition possibleConditions[NB_CONDITIONS];
 
 extern enum Direction startingDirection;
 
-extern int LEVEL;
+#define LEVEL template //this variable has to be set to the folder name !
 
 char isProgramWorthTesting(Program p);
 
