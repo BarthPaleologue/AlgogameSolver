@@ -5,42 +5,46 @@
 #include "level_specifics.h"
 #include "paths.h"
 
-// checks that the two maps are equivalent in terms of color
-// sets the number of columns and lines
-static char areMapsWellFormatted();
+
+char numberOfStars;
+
+struct Coords startingCoords;
 
 unsigned int matrixHeight;
 unsigned int matrixWidth;
+
+char** matrixColorBackup;
+char** matrix;
+
+char _gameTerminated = 0;
+char _mapWasModified = 0;
+
+/**
+ * @brief Check that the two maps are equivalent in terms of color
+ * 
+ * @return char 
+ */
+static char areMapsWellFormatted();
 
 /**
  * @brief The unaltered level matrix with stars.
  */
 static char** matrixBackup;
 
-char** matrixColorBackup;
-char** matrix;
-
-char numberOfStars;
-
-struct Coords startingCoords;
-
-char _gameTerminated = 0;
-char _MapWasPainted = 0;
-
-void declareWasPainted() {
-    _MapWasPainted = 1;
+void declareMapWasModified() {
+    _mapWasModified = 1;
 }
 
-char wasPainted() {
-    // reads and resets the flag
-    if (!_MapWasPainted) {
+char wasModified() {
+    if (!_mapWasModified) {
         return 0;
     }
-    _MapWasPainted = 0;
+    _mapWasModified = 0;
     return 1;
 }
 
 void initMatrix() {
+
     if (!areMapsWellFormatted()) return;
 
     // allocate memory for the matrices
@@ -202,8 +206,6 @@ static char areMapsWellFormatted() {
                 fclose(starsMap);
                 return 0;
             }
-
-            // if (c2 != '\n') printf(" ");
         }
 
         printf(BOLDGREEN "\nThe map formatting is correct\n" RESET);

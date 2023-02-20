@@ -11,6 +11,37 @@ const char NB_INSTRUCTIONS = NB_CONDITIONS * NB_ACTIONS;
 
 char programState[PROGRAM_LENGTH];
 
+Program generateNextProgram() {
+    Program program = malloc(sizeof(struct Instruction) * PROGRAM_LENGTH);
+
+    do {
+        // generate program using the current state
+        for (unsigned char i = 0; i < PROGRAM_LENGTH; i++) {
+            program[i].action = possibleActions[programState[i] / NB_CONDITIONS];
+            program[i].condition = possibleConditions[programState[i] % NB_CONDITIONS];
+        }
+
+        // increment state
+        int checkSum = 0;
+        for (unsigned char i = 0; i < PROGRAM_LENGTH; i++) {
+            if (programState[i] != NB_INSTRUCTIONS - 1) {
+                programState[i] += 1;
+                checkSum += programState[i];
+                break;
+            }
+            programState[i] = 0;
+        }
+
+        if (checkSum == 0) {
+            // all possible programs have been generated
+            free(program);
+            return NULL;
+        }
+    } while (!isProgramWorthTesting(program));
+
+    return program;
+}
+
 void printProgramState() {
     printf("Program State: {");
     for (int i = 0; i < PROGRAM_LENGTH; i++) {
@@ -78,7 +109,6 @@ void printProgramVerbose(Program p) {
                 actionStr = CYAN "PNT_B" RESET;
                 break;
             case PAINT_ORANGE:
-                actionStr = YELLOW "PNT_O" RESET;
                 actionStr = ORANGE "PNT_O" RESET;
                 break;
             case F1:
@@ -102,7 +132,6 @@ void printProgramVerbose(Program p) {
                 conditionStr = RED "R" RESET;
                 break;
             case CD_ORANGE:
-                conditionStr = YELLOW "O" RESET;
                 conditionStr = ORANGE "O" RESET;
                 break;
             case CD_BLUE:
@@ -181,35 +210,4 @@ Program getProgramFromVerboseArray(char programArray[PROGRAM_LENGTH][2]) {
         p[i].condition = programArray[i][1];
     }
     return p;
-}
-
-Program generateNextProgram() {
-    Program program = malloc(sizeof(struct Instruction) * PROGRAM_LENGTH);
-
-    do {
-        // generate program using the current state
-        for (unsigned char i = 0; i < PROGRAM_LENGTH; i++) {
-            program[i].action = possibleActions[programState[i] / NB_CONDITIONS];
-            program[i].condition = possibleConditions[programState[i] % NB_CONDITIONS];
-        }
-
-        // increment state
-        int checkSum = 0;
-        for (unsigned char i = 0; i < PROGRAM_LENGTH; i++) {
-            if (programState[i] != NB_INSTRUCTIONS - 1) {
-                programState[i] += 1;
-                checkSum += programState[i];
-                break;
-            }
-            programState[i] = 0;
-        }
-
-        if (checkSum == 0) {
-            // all possible programs have been generated
-            free(program);
-            return NULL;
-        }
-    } while (!isProgramWorthTesting(program));
-
-    return program;
 }

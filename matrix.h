@@ -10,11 +10,9 @@ enum Color {
     CASE_BLUE,
     CASE_STAR
 };
-// if you're on CASE_WHITE, you lose
-// if you're on CASE_STAR, you win a star
 
 /**
- * Starting position.
+ * @brief Starting position.
  */
 extern struct Coords startingCoords;
 
@@ -39,25 +37,25 @@ extern char numberOfStars;
 // INITIALIZATIONS OF THE MATRIX
 
 /**
- * @brief Sets the matrix to pre-execution state.
+ * @brief Set the matrix to pre-execution state.
  */
 void resetMatrix();
 
 /**
- * @brief Sets the matrix using the paths to the maps.
+ * @brief Set the matrix using the paths to the maps.
  */
 void initMatrix();
 
 // other useful functions
 
 /**
- * Sets the flag _MapWasPainted to 1.
+ * @brief Set the flag _MapWasModified to 1.
  */
-void declareWasPainted();
+void declareMapWasModified();
 
 /**
- * Returns the flag _MapWasPainted and sets the flag to 0.
+ * @brief Return the flag _MapWasModified and set the flag to 0.
  */
-char wasPainted();
+char wasModified();
 
 #endif

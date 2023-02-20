@@ -81,13 +81,13 @@ static void doInstruction(enum Action action, enum Condition condition) {
             return turnRight();
         case PAINT_RED:
             paintRed();
-            return declareWasPainted();  // shortened syntax : declareWasPainted returns void
+            return declareMapWasModified();  // shortened syntax : declareWasModified returns void
         case PAINT_BLUE:
             paintBlue();
-            return declareWasPainted();
+            return declareMapWasModified();
         case PAINT_ORANGE:
             paintOrange();
-            return declareWasPainted();
+            return declareMapWasModified();
         case F1:
             return jumpInProgram(F1_START, &programPointer);
         case F2:

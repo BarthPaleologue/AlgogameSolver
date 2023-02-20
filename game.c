@@ -22,14 +22,14 @@ void initGame() {
 
     nbRemainingStars = numberOfStars;
 
-    if (wasPainted()) resetMatrix();
+    if (wasModified()) resetMatrix();
     initStack();
 }
 
 void eatStar() {
     if (matrix[coords.y][coords.x] != CASE_STAR) return;
     matrix[coords.y][coords.x] = matrixColorBackup[coords.y][coords.x];
-    declareWasPainted();
+    declareMapWasModified();
     nbRemainingStars--;
 }
 
