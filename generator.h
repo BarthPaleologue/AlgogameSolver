@@ -4,7 +4,10 @@
 #include "level_specifics.h"
 #include "utils_struct.h"
 
-
+/**
+ * @brief The state of the program generator
+ *
+ */
 extern char programState[PROGRAM_LENGTH];
 
 /**
@@ -51,11 +54,11 @@ void printProgramVerbose(Program p);
 
 /**
  * @brief prints the given program to a file
- * 
+ *
  * @param p program
- * 
+ *
  * @param filename path to the file
-*/
-void writeSolutionToFile(Program p, char *filename);
+ */
+void writeSolutionToFile(Program p, char* filename);
 
 #endif

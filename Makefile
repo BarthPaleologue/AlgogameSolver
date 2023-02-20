@@ -11,6 +11,7 @@ run-build: build-check
 	./main
 
 build-check: run-test
+	@echo "\033[1m\033[32mAll tests passed\033[0m"
 	make clean
 	make main
 	make print-level
