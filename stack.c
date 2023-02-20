@@ -1,5 +1,6 @@
-#include <stdlib.h>
 #include "stack.h"
+
+#include <stdlib.h>
 
 typedef struct node {
     struct node *previousNode;
@@ -23,9 +24,7 @@ void jumpBack(int *programPointer) {
     stackPointer = temp;
 }
 
-char stackEmpty() {
-    return (stackPointer == NULL);
-}
+char stackEmpty() { return stackPointer == NULL; }
 
 void initStack() {
     while (stackPointer != NULL) {

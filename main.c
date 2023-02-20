@@ -19,8 +19,8 @@
  */
 void kill_handler(int signo) {
     if (signo == SIGINT) {
-        printProgramState();
-        writeProgramStateToFile(pathProgramState);
+        printGeneratorState();
+        writeGeneratorStateToFile(pathGeneratorState);
         exit(0);
     }
 }
@@ -30,8 +30,8 @@ int main() {
 
     printf("\n");
 
-    // read from program_state.txt and update programState
-    readProgramStateFromFile(pathProgramState);
+    // read from generator_state.txt and update generatorState
+    readGeneratorStateFromFile(pathGeneratorState);
     printf("\n");
 
     initGlobals();  // init global variables

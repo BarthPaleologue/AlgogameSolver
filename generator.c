@@ -9,7 +9,7 @@
 
 const char NB_INSTRUCTIONS = NB_CONDITIONS * NB_ACTIONS;
 
-char programState[PROGRAM_LENGTH];
+char generatorState[PROGRAM_LENGTH];
 
 Program generateNextProgram() {
     Program program = malloc(sizeof(struct Instruction) * PROGRAM_LENGTH);
@@ -17,19 +17,19 @@ Program generateNextProgram() {
     do {
         // generate program using the current state
         for (unsigned char i = 0; i < PROGRAM_LENGTH; i++) {
-            program[i].action = possibleActions[programState[i] / NB_CONDITIONS];
-            program[i].condition = possibleConditions[programState[i] % NB_CONDITIONS];
+            program[i].action = possibleActions[generatorState[i] / NB_CONDITIONS];
+            program[i].condition = possibleConditions[generatorState[i] % NB_CONDITIONS];
         }
 
         // increment state
         int checkSum = 0;
         for (unsigned char i = 0; i < PROGRAM_LENGTH; i++) {
-            if (programState[i] != NB_INSTRUCTIONS - 1) {
-                programState[i] += 1;
-                checkSum += programState[i];
+            if (generatorState[i] != NB_INSTRUCTIONS - 1) {
+                generatorState[i] += 1;
+                checkSum += generatorState[i];
                 break;
             }
-            programState[i] = 0;
+            generatorState[i] = 0;
         }
 
         if (checkSum == 0) {
@@ -42,29 +42,29 @@ Program generateNextProgram() {
     return program;
 }
 
-void printProgramState() {
-    printf("Program State: {");
+void printGeneratorState() {
+    printf("Generator State: {");
     for (int i = 0; i < PROGRAM_LENGTH; i++) {
-        printf("%d", programState[i]);
+        printf("%d", generatorState[i]);
         if (i < PROGRAM_LENGTH - 1)
             printf(", ");
     }
     printf("}\n");
 }
 
-void writeProgramStateToFile(char* filename) {
+void writeGeneratorStateToFile(char* filename) {
     FILE* file = fopen(filename, "w");
     if (file == NULL)
-        printf("Error opening file! Could not write the program state.\n");
+        printf("Error opening file! Could not write the generator state.\n");
 
     for (int i = 0; i < PROGRAM_LENGTH; i++) {
-        fprintf(file, "%d", programState[i]);
+        fprintf(file, "%d", generatorState[i]);
         if (i < PROGRAM_LENGTH - 1)
             fprintf(file, " ");
     }
-    fprintf(file, "\nProgram State: {");
+    fprintf(file, "\nGenerator State: {");
     for (int i = 0; i < PROGRAM_LENGTH; i++) {
-        fprintf(file, "%d", programState[i]);
+        fprintf(file, "%d", generatorState[i]);
         if (i < PROGRAM_LENGTH - 1)
             fprintf(file, ", ");
     }
@@ -72,18 +72,18 @@ void writeProgramStateToFile(char* filename) {
     fclose(file);
 }
 
-void readProgramStateFromFile(char* filename) {
+void readGeneratorStateFromFile(char* filename) {
     FILE* file = fopen(filename, "r");
     if (file) {
         printf(GREEN "File %s read successfully\nThe generator will be initialized at the given value\n" RESET, filename);
         for (int i = 0; i < PROGRAM_LENGTH; i++) {
-            fscanf(file, "%hhd", &programState[i]);
+            fscanf(file, "%hhd", &generatorState[i]);
         }
         fclose(file);
     } else {
         printf(YELLOW "Error while reading file %s\nThe generator will be initialized at 0\n" RESET, filename);
         for (unsigned char i = 0; i < PROGRAM_LENGTH; i++) {
-            programState[i] = 0;
+            generatorState[i] = 0;
         }
     }
 }

@@ -3,6 +3,9 @@
 
 #include "utils_struct.h"
 
+/**
+ * @brief The possible colors of the cells.
+ */
 enum Color {
     CASE_WHITE,
     CASE_RED,

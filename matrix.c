@@ -1,6 +1,8 @@
+#include "matrix.h"
+
 #include <stdio.h>
 #include <stdlib.h>
-#include "matrix.h"
+
 #include "colors.h"
 #include "level_specifics.h"
 #include "paths.h"
@@ -31,14 +33,10 @@ static char areMapsWellFormatted();
  */
 static char** matrixBackup;
 
-void declareMapWasModified() {
-    _mapWasModified = 1;
-}
+void declareMapWasModified() { _mapWasModified = 1; }
 
 char wasModified() {
-    if (!_mapWasModified) {
-        return 0;
-    }
+    if (!_mapWasModified) return 0;
     _mapWasModified = 0;
     return 1;
 }
@@ -147,7 +145,6 @@ void initMatrix() {
     }
 
     fclose(starsMap);
-    // printf("%d\n", numberOfStars);
 }
 
 static char areMapsWellFormatted() {
@@ -160,8 +157,6 @@ static char areMapsWellFormatted() {
         unsigned int columnsCounter = 0;
 
         while ((c1 = fgetc(map)) != EOF && (c2 = fgetc(starsMap)) != EOF) {
-            // printf("%c%c", c1, c2);
-
             // check if the starmap is well formatted
             if (c2 == '_' || c2 == 'O' || c2 == 'R' || c2 == 'B' || c2 == 'X' || c2 == '*') {
                 columnsCounter++;
@@ -230,5 +225,4 @@ void resetMatrix() {
             matrix[i][j] = matrixBackup[i][j];
         }
     }
-    // printMatrix(matrix);
 }

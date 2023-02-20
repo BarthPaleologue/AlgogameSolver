@@ -5,7 +5,7 @@
 .vscode
 .idea
 !Makefile
-program_state.txt
+generator_state.txt
 .gdb_history
 peda-session-main.txt
 
