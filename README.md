@@ -70,3 +70,5 @@ If you made any changes to the code except in the `./levels` folder, you should 
 You might have to wait for a few hours depending on the complexity of the level (i.e the number of instructions in the program) and the effectiveness of your constraints.
 
 The program will output all the solutions in the console as you run it. More over, there will be a file called `solutions.txt` in the folder of the level you are breaking. It will contain all the solutions found by the solver.
+
+![Showcase](./cover/lvl38.png)
