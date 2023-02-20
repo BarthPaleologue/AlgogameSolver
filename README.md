@@ -43,6 +43,8 @@ make LEVEL=[name of your folder]
 
 You should see the number of tested programs in the console. The solver will run until all the programs have been tested or until you stop it with `Ctrl+c`.
 
+Note that the solver will automatically save its state when you stop it. When you restart it, it will start from where it left off. This is useful if you want to stop the solver for a while and come back to it later.
+
 ## More on editing `level_specifics.c`
 
 ### Don't forget this
@@ -59,11 +61,12 @@ You can add constraints in the function `isProgramWorthTesting` in `level_specif
 Setting interesting constraint can help speeding up the execution tremendously. But if you don't know how to program in C, no worries in will work fine as is. It will just be longer.
 
 
-## Run it!
+## More on how the solver works
 
 When you have completed all the above steps, you should be able to run the program by entering the command `make` in your terminal in the directory of the solver (or eventually `make LEVEL=template` if you haven't set the LEVEL variable directly in the Makefile). If you followed the instructions, the solver will start brute forcing the level. 
 
-If you made any changes to the code except in the `./levels` folder, you should run `make run-build` instead of `make` so that the code undergoes some fucntionning checks.
-You might have to wait for a few hours depending on the complexity of the level (ie the number of instructions in the program) and the effectiveness of your constraints.
-The program will output all the solutions in the console as you run it.
-You can stop at anytime with ^C and start back where you left it thanks to the program's autosave system.
+If you made any changes to the code except in the `./levels` folder, you should run `make run-build` instead of `make` to see if the solver passes our tests.
+
+You might have to wait for a few hours depending on the complexity of the level (i.e the number of instructions in the program) and the effectiveness of your constraints.
+
+The program will output all the solutions in the console as you run it. More over, there will be a file called `solutions.txt` in the folder of the level you are breaking. It will contain all the solutions found by the solver.
