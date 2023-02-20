@@ -20,7 +20,7 @@ extern char pathMap[];
  * @brief Path to the file containing the generator state backup (to start the execution where you left it).
  *
  */
-extern char pathProgramState[];
+extern char pathGeneratorState[];
 
 /**
  * @brief Path to the file containing the solutions found.

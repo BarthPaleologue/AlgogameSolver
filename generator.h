@@ -8,7 +8,7 @@
  * @brief The state of the program generator
  *
  */
-extern char programState[PROGRAM_LENGTH];
+extern char generatorState[PROGRAM_LENGTH];
 
 /**
  * @brief Generate the next program worthy of testing
@@ -21,21 +21,21 @@ Program generateNextProgram();
  * @brief print the state of the generator to stdout
  *
  */
-void printProgramState();
+void printGeneratorState();
 
 /**
  * @brief Write the state of the generator to a file
  *
  * @param filename The name of the file to write to
  */
-void writeProgramStateToFile(char* filename);
+void writeGeneratorStateToFile(char* filename);
 
 /**
  * @brief Read the generation state from a file and init the generator. Will init to 0 if no file is found.
  *
  * @param filename The file to read from
  */
-void readProgramStateFromFile(char* filename);
+void readGeneratorStateFromFile(char* filename);
 
 /**
  * @brief Generate a program from an array of array2[action, condition]
