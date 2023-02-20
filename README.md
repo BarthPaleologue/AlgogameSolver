@@ -19,6 +19,7 @@ You will need to have installed two other tools to make the solver work.
 ### GCC
 
 You will need gcc to compile the code for your computer's hardware. There are many tutorials online for you available if you are on Windows. Linux users should already have gcc installed on their machine.
+
 ### MAKE
 
 The second tool is Make. As for GCC, there are many tutorials online on how to install Make on your machine so that we can use `make` later.
@@ -26,7 +27,7 @@ The second tool is Make. As for GCC, there are many tutorials online on how to i
 ## Breaking a specific level
 
 All the instructions are given in `./levels/template/level_specifics.c`.
-Once you've completed all the info, you can run your code. But make sure that the Makefile is building the right executive : set the `LEVEL` variable to the name of the folder you used (ex : template) in the first line of the Makefile (or in command line).
+Once you've completed all the info, you can run your code. But make sure that the Makefile is building the right executive : set the `LEVEL` variable to the name of the folder you used (ex : template) in the first line of the Makefile.
 Ex : LEVEL='template'
 
 #### How does it work ?
@@ -45,9 +46,9 @@ Note that can probably provide informations to reduce the number of tests : a su
 
 ## Run it!
 
-When you have completed all the above steps, you should be able to run the program by entering the command `make anew` in your terminal in the directory of the solver. If you followed the instructions, the solver will start brute forcing the level. 
+When you have completed all the above steps, you should be able to run the program by entering the command `make` in your terminal in the directory of the solver (or eventually `make LEVEL=template` if you haven't set the LEVEL variable directly in the Makefile). If you followed the instructions, the solver will start brute forcing the level. 
 
-If you made any changes to the code except in the `./levels` folder, you should run `make` instead of `make anew` so that the code undergoes some fucntionning checks.
+If you made any changes to the code except in the `./levels` folder, you should run `make run-build` instead of `make` so that the code undergoes some fucntionning checks.
 You might have to wait for a few hours depending on the complexity of the level (ie the number of instructions in the program) and the effectiveness of your constraints.
 The program will output all the solutions in the console as you run it.
 You can stop at anytime with ^C and start back where you left it thanks to the program's autosave system.
