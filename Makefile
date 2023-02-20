@@ -6,6 +6,12 @@ SPECIFICS =./levels/$(LEVEL)/
 
 OBJ = colors.h paths.o generator.o executeProgram.o matrix.o dartAgent.o game.o stack.o $(SPECIFICS)level_specifics.o debug.o
 
+anew: new
+	./main
+
+new: clean
+	make main
+	make print-level
 
 run-build: build-check
 	./main
@@ -16,11 +22,6 @@ build-check: run-test
 	make main
 	make print-level
 
-main: main.o $(OBJ)
-
-test: test.o $(OBJ)
-	cc -g $^ -o test
-
 run-test: clean 
 	make test LEVEL=12
 	./test
@@ -29,18 +30,14 @@ run-test: clean
 	./test
 	make clean
 
-new: clean
-	make main
+main: main.o $(OBJ)
 
-anew: new
-	./main
-
-new-test: clean
-	make test
+test: test.o $(OBJ)
 
 print-level: 
 	@echo
 	@echo LEVEL set to $(LEVEL)
+	@echo
 
 clean:
 	rm -f *.o main test
