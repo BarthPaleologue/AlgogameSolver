@@ -1,6 +1,8 @@
+#include "matrix.h"
+
 #include <stdio.h>
 #include <stdlib.h>
-#include "matrix.h"
+
 #include "colors.h"
 #include "level_specifics.h"
 #include "paths.h"
@@ -27,15 +29,11 @@ struct Coords startingCoords;
 char _gameTerminated = 0;
 char _MapWasPainted = 0;
 
-void declareWasPainted() {
-    _MapWasPainted = 1;
-}
+void declareWasPainted() { _MapWasPainted = 1; }
 
 char wasPainted() {
     // reads and resets the flag
-    if (!_MapWasPainted) {
-        return 0;
-    }
+    if (!_MapWasPainted) return 0;
     _MapWasPainted = 0;
     return 1;
 }
@@ -143,7 +141,6 @@ void initMatrix() {
     }
 
     fclose(starsMap);
-    // printf("%d\n", numberOfStars);
 }
 
 static char areMapsWellFormatted() {
@@ -156,8 +153,6 @@ static char areMapsWellFormatted() {
         unsigned int columnsCounter = 0;
 
         while ((c1 = fgetc(map)) != EOF && (c2 = fgetc(starsMap)) != EOF) {
-            // printf("%c%c", c1, c2);
-
             // check if the starmap is well formatted
             if (c2 == '_' || c2 == 'O' || c2 == 'R' || c2 == 'B' || c2 == 'X' || c2 == '*') {
                 columnsCounter++;
@@ -202,8 +197,6 @@ static char areMapsWellFormatted() {
                 fclose(starsMap);
                 return 0;
             }
-
-            // if (c2 != '\n') printf(" ");
         }
 
         printf(BOLDGREEN "\nThe map formatting is correct\n" RESET);
@@ -228,5 +221,4 @@ void resetMatrix() {
             matrix[i][j] = matrixBackup[i][j];
         }
     }
-    // printMatrix(matrix);
 }
