@@ -1,6 +1,8 @@
+#include "generator.h"
+
 #include <stdio.h>
 #include <stdlib.h>
-#include "generator.h"
+
 #include "colors.h"
 #include "level_specifics.h"
 #include "utils_struct.h"
@@ -113,7 +115,7 @@ void printProgramVerbose(Program p) {
     printf("\n\n");
 }
 
-void writeSolutionToFile(Program p, char * filename) {
+void writeSolutionToFile(Program p, char* filename) {
     FILE* file = fopen(filename, "a");
     for (int i = 0; i < PROGRAM_LENGTH; i++) {
         char* actionStr;
@@ -165,7 +167,7 @@ void writeSolutionToFile(Program p, char * filename) {
                 break;
         }
         if (i == F2_START || i == F3_START || i == F4_START) fprintf(file, "  ");
-        if (file) 
+        if (file)
             fprintf(file, "[%s;%s] ", actionStr, conditionStr);
     }
     fprintf(file, "\n\n");
@@ -201,7 +203,9 @@ Program generateNextProgram() {
             }
             programState[i] = 0;
         }
+
         if (checkSum == 0) {
+            // all possible programs have been generated
             free(program);
             return NULL;
         }

@@ -1,5 +1,7 @@
-#include <stdio.h>
 #include "executeProgram.h"
+
+#include <stdio.h>
+
 #include "dartAgent.h"
 #include "debug.h"
 #include "game.h"
@@ -28,24 +30,22 @@ static void printExecutionInfo();
 static void updateProgramPointer() {
     // TOTHINK : always test for F3_START even when there's no F3 ???
     if (programPointer == PROGRAM_LENGTH - 1 || programPointer == F2_START - 1 || programPointer == F3_START - 1 || programPointer == F4_START - 1) {
+        // if we reach the end of a function, we set the pointer to a special value (-1)
         programPointer = -1;
-        // if we reach the end of a function, we set the pointer to a special value
     } else {
-        programPointer = programPointer + 1;
         // otherwise we set the pointer to the next instruction
+        programPointer = programPointer + 1;
     }
 }
 
 /**
  * @brief Sets the programPointer to 0.
-*/
-static void initProgramPointer() {
-    programPointer = 0;
-}
+ */
+static void initProgramPointer() { programPointer = 0; }
 
 /**
  * @brief Sets all the nessecary parameters to start a new program's execution.
-*/
+ */
 void initExecution() {
     initProgramPointer();
     initGame();
@@ -74,7 +74,7 @@ static void doInstruction(enum Action action, enum Condition condition) {
 
     switch (action) {
         case FORWARD:
-            return move();
+            return moveForward();
         case TURN_LEFT:
             return turnLeft();
         case TURN_RIGHT:
@@ -111,9 +111,7 @@ void executeProgram(Program program) {
         doInstruction(instruction.action, instruction.condition);
 
         while (programPointer == -1) {
-            if (stackEmpty()) {
-                return;
-            }
+            if (stackEmpty()) return;
             jumpBack(&programPointer);
         }
 
@@ -121,9 +119,7 @@ void executeProgram(Program program) {
 
         eatStar();
 
-        if (gameWon() | gameLost()) {
-            return;
-        }
+        if (gameWon() | gameLost()) return;
     }
 }
 

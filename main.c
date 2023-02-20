@@ -34,9 +34,9 @@ int main() {
     readProgramStateFromFile(pathProgramState);
     printf("\n");
 
-    initGlobals();
+    initGlobals();  // init global variables
 
-    resetMatrix();
+    resetMatrix();  // reset matrix to initial state
 
     printMatrix(matrix, matrixHeight, matrixWidth);
 
@@ -46,28 +46,20 @@ int main() {
            "Algogame Solver will now begin searching for valid programs\n"
            "-----------------------------------------------------------\n\n" RESET);
 
-    // printMatrix(matrix);
-
-    unsigned long long n = 0;
+    unsigned long long nbTestedPrograms = 0;
 
     Program program = NULL;
 
     while ((program = generateNextProgram()) != NULL) {
-        executeProgram(program);
+        executeProgram(program);  // executes the program until game is won or lost
 
         if (gameWon()) {
             printf(GREEN "\nThis program succeeded:\n" RESET);
-            writeSolutionToFile(program, pathSolutions);
             printProgramVerbose(program);
-        } /*else if (gameLost()) {
-            printf("this program failed\n\n\n");
-            printf("f-");
-        } else if (gameTerminated()) {
-            printf("this program terminated without finding the star\n\n\n");
-            printf("i-");
-        }*/
+            writeSolutionToFile(program, pathSolutions);
+        }
 
-        printf("Tested programs: %llu\r", ++n);
+        printf("Tested programs: %llu\r", ++nbTestedPrograms);
 
         free(program);
     }
@@ -76,10 +68,12 @@ int main() {
            "-------------------------------------------\n"
            "Algogame Solver has found all the solutions\n"
            "-------------------------------------------\n\n" RESET);
-    
+
+    // we don't need a program_state.txt file anymore
     printf(BLUE "Erasing program_state.txt...\n");
     printf("All the solutions found were added to file solutions.txt\n\n" RESET);
     char command[] = "rm -f ./levels/" xstr(LEVEL) "/program_state.txt";
     system(command);
+
     return 0;
 }

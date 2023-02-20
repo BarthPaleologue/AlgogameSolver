@@ -11,11 +11,18 @@ enum Direction {
     UP
 };
 
+/**
+ * @brief Coordinates on the map.
+ * Careful, the position is at matrix[y][x].
+ */
 struct Coords {
     unsigned char x;
     unsigned char y;
 };
 
+/**
+ * @brief Possible actions of an instruction.
+ */
 enum Action {
     FORWARD,
     TURN_LEFT,
@@ -29,6 +36,9 @@ enum Action {
     F4
 };
 
+/**
+ * @brief Possible conditions of an instruction.
+ */
 enum Condition {
     CD_NONE,
     CD_RED,
@@ -36,6 +46,9 @@ enum Condition {
     CD_BLUE
 };
 
+/**
+ * @brief An instruction is composed of an action and a condition.
+ */
 struct Instruction {
     enum Action action;
     enum Condition condition;

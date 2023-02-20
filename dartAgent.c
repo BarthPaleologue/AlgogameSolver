@@ -1,10 +1,11 @@
 #include "dartAgent.h"
+
 #include "matrix.h"
 
 struct Coords coords;
 enum Direction direction;
 
-void move() {
+void moveForward() {
     switch (direction) {
         case UP:
             coords.y--;
@@ -21,34 +22,18 @@ void move() {
     }
 }
 
-void turnRight() {
-    direction = (direction + 1) % 4;
-}
+void turnRight() { direction = (direction + 1) % 4; }
 
-void turnLeft() {
-    direction = (direction + 3) % 4;
-}
+void turnLeft() { direction = (direction + 3) % 4; }
 
-char isRed() {
-    return matrix[coords.y][coords.x] == CASE_RED;
-}
+char isRed() { return matrix[coords.y][coords.x] == CASE_RED; }
 
-char isOrange() {
-    return matrix[coords.y][coords.x] == CASE_ORANGE;
-}
+char isOrange() { return matrix[coords.y][coords.x] == CASE_ORANGE; }
 
-char isBlue() {
-    return matrix[coords.y][coords.x] == CASE_BLUE;
-}
+char isBlue() { return matrix[coords.y][coords.x] == CASE_BLUE; }
 
-void paintRed() {
-    matrix[coords.y][coords.x] = CASE_RED;
-}
+void paintRed() { matrix[coords.y][coords.x] = CASE_RED; }
 
-void paintBlue() {
-    matrix[coords.y][coords.x] = CASE_BLUE;
-}
+void paintBlue() { matrix[coords.y][coords.x] = CASE_BLUE; }
 
-void paintOrange() {
-    matrix[coords.y][coords.x] = CASE_ORANGE;
-}
+void paintOrange() { matrix[coords.y][coords.x] = CASE_ORANGE; }

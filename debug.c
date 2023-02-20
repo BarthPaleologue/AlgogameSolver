@@ -31,6 +31,4 @@ void printMatrix(char** matrix, unsigned int matrixHeight, unsigned int matrixWi
     }
 }
 
-void printCoords() {
-    printf("x : %d; y : %d\n", coords.x, coords.y);
-}
+void printCoords() { printf("x : %d; y : %d\n", coords.x, coords.y); }
