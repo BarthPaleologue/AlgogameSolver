@@ -1,6 +1,7 @@
 # AlgogameSolver
 
 [![C/C++ CI](https://github.com/BarthPaleologue/AlgogameSolver/actions/workflows/c-cpp.yml/badge.svg)](https://github.com/BarthPaleologue/AlgogameSolver/actions/workflows/c-cpp.yml)
+[![CodeQL](https://github.com/BarthPaleologue/AlgogameSolver/actions/workflows/codeql.yml/badge.svg)](https://github.com/BarthPaleologue/AlgogameSolver/actions/workflows/codeql.yml)
 
 Algogame is a puzzle game centered around algorithmic concepts such as functions and recursion. It can be some kind of a hassle sometimes so it appeared necessary to create a solution capable of breaking any level of the game. The game is available on the google playstore at <a href="https://play.google.com/store/apps/details?id=com.evrardnil.algo_game&hl=fr&gl=US&pli=1">https://play.google.com/store/apps/details?id=com.evrardnil.algo_game&hl=fr&gl=US&pli=1</a>
 
